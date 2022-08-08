@@ -1,0 +1,9 @@
+#create-employee {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    background-color: rgba(147, 173, 24, 0.10);
+    padding: 2em;
+    border-radius: 0.2em;
+}

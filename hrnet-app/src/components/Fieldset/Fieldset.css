@@ -1,0 +1,17 @@
+.address {
+    margin-top: 1em;
+    border: 2px solid #436202;
+    border-radius: 0.2em;
+    padding: 2em 1em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.address legend {
+    color: white;
+    background-color: #436202;
+    border-radius: 0.2em;
+    font-weight: 500;
+    padding: 0.5em 1.5em 0.5em 1em;
+}

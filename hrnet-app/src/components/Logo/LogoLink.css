@@ -1,0 +1,32 @@
+.logo {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    padding: 0.5em;
+/*border: 1px solid black;*/
+    background-color: white;
+    border-radius: 0.2em;
+}
+
+.logo-text {
+    font-family: 'Prosto One', cursive;
+  /*  border: 1px solid black;*/
+    letter-spacing: 1px;
+    margin-right: 1em;
+}
+
+.logo-firstLetter {
+    font-size: 1.125em;
+}
+
+.logo-textRest {
+    font-size: 0.875em;
+}
+
+.logo-image {
+    height: 3em;
+    width: auto;
+    margin-right: 0.5em;
+  /*  border: 1px solid black;*/
+}

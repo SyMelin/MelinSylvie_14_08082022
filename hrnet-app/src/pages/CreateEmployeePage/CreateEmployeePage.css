@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
+    row-gap: 1em;
+    font-size: 1.2em;
+}
+
+.container .link {
+    text-decoration: none;
+    color: #436202;
+    font-weight: 500;
+}
+
+.container .title {
+    color: black;
+    font-family: 'Prosto One', cursive;
+    letter-spacing: 1px;
+    font-size: 1.5em;
+}

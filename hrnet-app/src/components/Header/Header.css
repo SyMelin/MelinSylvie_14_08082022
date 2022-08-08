@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+   /* color: #576B04;*/
+  background-color: #436202;
+   /*color: white;*/
+   padding: 0em 0.25em;
+}
+
+.header .title {
+    color: white;
+    font-family: 'Prosto One', cursive;
+  /*  border: 1px solid black;*/
+    letter-spacing: 1px;
+}

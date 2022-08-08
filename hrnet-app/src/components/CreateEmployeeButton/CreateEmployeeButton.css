@@ -1,0 +1,18 @@
+.button {
+    display: block;
+    padding: 1em 1.5em;
+    font-family: 'Prosto One', cursive;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 0.75em;
+    color: white;
+    background-color: #436202;
+    letter-spacing: 1px;
+    border: 0.25em solid #436202;
+}
+
+.button:hover {
+    color: black;
+    background-color: white;
+    border-color: #436202;
+}
