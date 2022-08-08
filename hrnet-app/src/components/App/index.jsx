@@ -1,15 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from '../Header'
-import CreateEmployeePage from '../../pages/CreateEmployeePage';
-import './App.css';
+import CreateEmployeePage from '../../pages/CreateEmployeePage'
+import EmployeeListPage from '../../pages/EmployeeListPage'
 
 function App() {
   return (
     <div className="App">
+      <Router>
       <Header />
-      <CreateEmployeePage />
-      
+        <Routes>
+          <Route exact path="/" element={<CreateEmployeePage />} />
+          <Route path="/employee-list" element={<EmployeeListPage />} />
+        </Routes> 
+      </Router> 
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

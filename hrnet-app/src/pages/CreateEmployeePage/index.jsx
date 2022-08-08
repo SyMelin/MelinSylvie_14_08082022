@@ -1,14 +1,24 @@
+import { useEffect } from 'react'
+import CustomLink from '../../components/CustomLink'
 import CreateEmployeeForm from '../../components/CreateEmployeeForm'
 import CreateEmployeeButton from '../../components/CreateEmployeeButton'
 import { createEmployeeFormInputs } from '../../utils/constantes/createEmployeeFormInputs'
 import './CreateEmployeePage.css'
 
 function CreateEmployeePage () {
+
+    useEffect(() => {
+        document.title = 'HRnet - Create Employee'
+    })
+
     return (
         <div>
             <section class="container">
-                <a className="link" href="employee-list.html">View Current Employees</a>
-                <h1 className="title">Create Employee</h1>
+                <CustomLink
+                    path="/employee-list"
+                    children='View Current Employees'
+                />
+                <h2 className="title">Create Employee</h2>
                 <CreateEmployeeForm formInputs={createEmployeeFormInputs} />
                 <CreateEmployeeButton />
             </section>

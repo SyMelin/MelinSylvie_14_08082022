@@ -1,0 +1,18 @@
+nav {
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+nav:hover {
+    text-decoration: underline;
+}
+
+.nav ul {
+    color: white;
+    list-style: none;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+}
