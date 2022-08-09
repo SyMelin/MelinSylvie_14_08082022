@@ -1,11 +1,17 @@
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { selectModal } from '../../utils/selectors'
 import CustomLink from '../../components/CustomLink'
 import CreateEmployeeForm from '../../components/CreateEmployeeForm'
 import CreateEmployeeButton from '../../components/CreateEmployeeButton'
 import { createEmployeeFormInputs } from '../../utils/constantes/createEmployeeFormInputs'
+import Modal from '../../components/Modal'
 import './CreateEmployeePage.css'
 
 function CreateEmployeePage () {
+
+    const modal = useSelector(selectModal)
+    const modalIsOpen = modal.modalIsOpen
 
     useEffect(() => {
         document.title = 'HRnet - Create Employee'
@@ -22,7 +28,13 @@ function CreateEmployeePage () {
                 <CreateEmployeeForm formInputs={createEmployeeFormInputs} />
                 <CreateEmployeeButton />
             </section>
-            <div id="confirmation" class="modal">Employee Created!</div>
+            { modalIsOpen
+            ? <Modal
+                id="confirmation"
+                children="Employee Created!"
+                />
+            : null
+            }
         </div>   
     )
 }
