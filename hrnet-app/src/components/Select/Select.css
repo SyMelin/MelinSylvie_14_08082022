@@ -1,0 +1,7 @@
+.input-wrapper select {
+    padding: 0.5em 0.875em;
+    font-size: 1.2rem;
+    border: 1px solid #939218;
+    border-radius: 0.5em;
+    width: 100%;
+}

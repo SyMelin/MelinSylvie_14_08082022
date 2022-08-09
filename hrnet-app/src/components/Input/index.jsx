@@ -1,9 +1,9 @@
 import './Input.css'
 
-function Input ({ htmlFor, children, id, type }) {
+function Input ({ id, children, type }) {
      return (
         <div className="input-wrapper">
-            <label htmlFor={htmlFor}>{children}</label>
+            <label htmlFor={id}>{children}</label>
             <input id={id} type={type} />
         </div>
      )

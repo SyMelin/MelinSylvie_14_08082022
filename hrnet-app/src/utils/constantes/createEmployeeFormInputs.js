@@ -1,26 +1,22 @@
 export const createEmployeeFormInputs = [
     {
-        htmlFor: 'first-name',
-        children: 'First Name',
         id: 'first-name',
+        children: 'First Name',
         type: 'text',
     },
     {
-        htmlFor: 'last-name',
-        children: 'Last Name',
         id: 'last-name',
+        children: 'Last Name',
         type: 'text',
     },
     {
-        htmlFor: 'date-of-birth',
-        children: 'Date of Birth',
         id: 'date-of-birth',
+        children: 'Date of Birth',
         type: 'text',
     },
     {
-        htmlFor: 'start-date',
-        children: 'Start Date',
         id: 'start-date',
+        children: 'Start Date',
         type: 'text',
     },   
 ]

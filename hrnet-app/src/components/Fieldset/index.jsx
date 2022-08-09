@@ -1,26 +1,39 @@
 import Input from '../Input'
+import Select from '../Select'
+import { SelectOption } from '../../models/SelectOption.js'
+import { states } from '../../utils/constantes/stateSelectOptionsList.js'
 import './Fieldset.css'
 
 function Fieldset({ fieldsetInputs }) {
+    const newStates = []
+    states.forEach((state) => {
+        newStates.push(new SelectOption(state.name, state.abbreviation))
+    })
     return (
         <fieldset class="address">
-                <legend>Address</legend>
+            <legend>Address</legend>
 
-                {fieldsetInputs.map((input, index) =>
-                    <Input
-                        key={`fieldsetInput-${index}`}
-                        htmlFor={input.htmlFor}
-                        children={input.children}
-                        id={input.id}
-                        type={input.type}
-                    />)}
-
-                <label for="state">State</label>
-                <select name="state" id="state"></select>
-
-                <label for="zip-code">Zip Code</label>
-                <input id="zip-code" type="number" />
-            </fieldset>
+            {fieldsetInputs.map((input, index) =>
+                <Input
+                    key={`fieldsetInput-${index}`}
+                    id={input.id}
+                    children={input.children}
+                    type={input.type}
+                />)}
+            <Select
+                key={`state-select`}
+                id="state"
+                children="State"
+                name="State"
+                optionsList={newStates}
+            />
+            <Input
+                key="numberInput"
+                id="zip-code"
+                children="Zip Code"
+                type="number"
+            />
+        </fieldset>
     )
 }
 

@@ -1,6 +1,8 @@
 import Input from '../Input'
 import Fieldset from '../Fieldset'
 import { fieldsetInputs } from '../../utils/constantes/fieldsetInputs'
+import Select from '../Select'
+import { departments } from '../../utils/constantes/departmentSelectOptionsList'
 import './CreateEmployeeForm.css'
 
 function CreateEmployeeForm({ formInputs }) {
@@ -9,20 +11,18 @@ function CreateEmployeeForm({ formInputs }) {
             {formInputs.map((input, index) => 
                 <Input
                     key={`input-${index}`}
-                    htmlFor={input.htmlFor}
-                    children={input.children}
                     id={input.id}
+                    children={input.children}
                     type={input.type}
                 />)}
             <Fieldset fieldsetInputs={fieldsetInputs} />
-            <label for="department">Department</label>
-            <select name="department" id="department">
-                <option>Sales</option>
-                <option>Marketing</option>
-                <option>Engineering</option>
-                <option>Human Resources</option>
-                <option>Legal</option>
-            </select>
+            <Select
+                key={`department-select`}
+                id="department"
+                children="Department"
+                name="department"
+                optionsList={departments}
+            />
         </ form>
     )
 }

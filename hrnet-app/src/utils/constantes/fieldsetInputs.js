@@ -1,14 +1,12 @@
 export const fieldsetInputs = [
     {
-        htmlFor: 'street',
-        children: 'Street',
         id: 'street',
+        children: 'Street',
         type: 'text',
     },
     {
-        htmlFor: 'city',
-        children: 'City',
         id: 'city',
+        children: 'City',
         type: 'text',
     },
 ]
