@@ -11,7 +11,10 @@ function Modal({ id, children }) {
                 <button
                     type='button'
                     className='modal-closeButton'
-                    onClick={dispatch(setModalState())}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        dispatch(setModalState())
+                    }}
                 >
                     x
                 </button>

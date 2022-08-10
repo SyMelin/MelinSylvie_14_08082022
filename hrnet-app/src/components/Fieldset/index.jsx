@@ -10,7 +10,7 @@ function Fieldset({ fieldsetInputs }) {
         newStates.push(new SelectOption(state.name, state.abbreviation))
     })
     return (
-        <fieldset class="address">
+        <fieldset className="address">
             <legend>Address</legend>
 
             {fieldsetInputs.map((input, index) =>

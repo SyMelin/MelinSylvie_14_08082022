@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux'
-import { setEditNameFormState } from '../../utils/features/editNameForm'
 import { setModalState } from '../../utils/features/modal'
 import './CreateEmployeeButton.css'
 
@@ -11,7 +10,7 @@ function CreateEmployeeButton() {
             className="button" 
             onClick={(e) => {
                 e.preventDefault()
-                dispatch(setEditNameFormState())
+                dispatch(setModalState())
             }}
         >
             Save

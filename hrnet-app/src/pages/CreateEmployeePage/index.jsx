@@ -11,7 +11,9 @@ import './CreateEmployeePage.css'
 function CreateEmployeePage () {
 
     const modal = useSelector(selectModal)
+    console.log(modal)
     const modalIsOpen = modal.modalIsOpen
+    console.log(modalIsOpen)
 
     useEffect(() => {
         document.title = 'HRnet - Create Employee'
@@ -19,7 +21,7 @@ function CreateEmployeePage () {
 
     return (
         <div>
-            <section class="container">
+            <section className="container">
                 <CustomLink
                     path="/employee-list"
                     children='View Current Employees'

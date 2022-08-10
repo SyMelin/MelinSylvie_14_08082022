@@ -10,7 +10,7 @@ function EmployeeListPage() {
 
     return (
         <div>
-            <section class="container">
+            <section className="container">
                 <h2 className="title">Current Employees</h2>
                 <table id="employee-table" class="display"></table>
                 <CustomLink
