@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import Input from '../Input'
 import Fieldset from '../Fieldset'
 import { fieldsetInputs } from '../../utils/constantes/fieldsetInputs'
@@ -6,6 +8,9 @@ import { departments } from '../../utils/constantes/departmentSelectOptionsList'
 import './CreateEmployeeForm.css'
 
 function CreateEmployeeForm({ formInputs }) {
+
+    const dispatch = useDispatch()
+    
     return (
         <form action="#" id="create-employee">
             {formInputs.map((input, index) => 

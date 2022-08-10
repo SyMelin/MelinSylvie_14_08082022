@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { setModalState } from '../../utils/features/modal'
+import { setFormError } from '../../utils/features/createEmployeeForm'
 import './Modal.css'
 
 function Modal({ id, children }) {
@@ -14,6 +15,7 @@ function Modal({ id, children }) {
                     onClick={(e) => {
                         e.preventDefault()
                         dispatch(setModalState())
+                        dispatch(setFormError())
                     }}
                 >
                     x

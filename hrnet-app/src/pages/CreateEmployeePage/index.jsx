@@ -11,9 +11,7 @@ import './CreateEmployeePage.css'
 function CreateEmployeePage () {
 
     const modal = useSelector(selectModal)
-    console.log(modal)
     const modalIsOpen = modal.modalIsOpen
-    console.log(modalIsOpen)
 
     useEffect(() => {
         document.title = 'HRnet - Create Employee'

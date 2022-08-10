@@ -6,13 +6,12 @@ const initialState = {
 
 
 // Action creators
-export const setModalState = createAction('nameEditing/isOpen')
+export const setModalState = createAction('modal/isOpen')
 
 
 // Reducer creator
 export default createReducer(initialState, builder => builder
     .addCase(setModalState, (draft) => {
-        
         draft.modalIsOpen = !draft.modalIsOpen
         return
     })
