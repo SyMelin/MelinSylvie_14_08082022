@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
+import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
 
 import { employeeListData } from '../../mockedData'
 
 function EmployeeListPage() {
-    console.log(employeeListData)
+    //console.log(employeeListData)
 
     useEffect(() => {
         document.title = 'HRnet - Employee List'
@@ -15,7 +16,7 @@ function EmployeeListPage() {
         <div>
             <section className="container">
                 <h2 className="title">Current Employees</h2>
-                <table id="employee-table" className="display"></table>
+                <Table list={employeeListData} />
                 <CustomLink
                     path='/'
                     children='Home'
