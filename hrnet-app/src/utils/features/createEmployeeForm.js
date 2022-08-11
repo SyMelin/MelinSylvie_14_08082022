@@ -50,7 +50,6 @@ export function saveEmployee() {
 export default createReducer(initialState, builder => builder
     .addCase(checkFormValidity, (draft) => {
         const form = document.getElementById('create-employee')
-        console.log('formValidity', form.checkValidity())
         draft.error.onForm = !form.checkValidity()
         return
     })
