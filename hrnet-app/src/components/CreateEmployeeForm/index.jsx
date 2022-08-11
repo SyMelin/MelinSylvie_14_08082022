@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { saveEmployee } from '../../utils/features/employeeList'
 import Input from '../Input'
 import Fieldset from '../Fieldset'
 import { fieldsetInputs } from '../../utils/constantes/fieldsetInputs'
@@ -12,13 +13,14 @@ function CreateEmployeeForm({ formInputs }) {
     const dispatch = useDispatch()
     
     return (
-        <form action="#" id="create-employee">
+        <form
+            action="#"
+            id="create-employee"
+        >
             {formInputs.map((input, index) => 
                 <Input
                     key={`input-${index}`}
-                    id={input.id}
-                    children={input.children}
-                    type={input.type}
+                    input={input}
                 />)}
             <Fieldset fieldsetInputs={fieldsetInputs} />
             <Select

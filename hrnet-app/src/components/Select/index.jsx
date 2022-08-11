@@ -20,6 +20,7 @@ function Select({ id, children, name, optionsList }) {
                 key={`${id}Select`}
                 name={name}
                 id={id}
+                required
                 onChange={(e) => {dispatch(setInputValue(id, e.target.value))}}
             >
                 {optionsList.map((option, index) => (

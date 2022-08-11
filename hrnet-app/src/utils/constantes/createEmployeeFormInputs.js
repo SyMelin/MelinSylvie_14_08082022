@@ -1,22 +1,35 @@
+const textPattern = `^\\b([A-ZÀ-Ÿ][-,a-zà-ÿ. ']+[ ]*)+$`
+const datePattern = "\\d[0-1][0-2]{2}-\\d[0-3][0-9]{2}-\\d{4}"
+
 export const createEmployeeFormInputs = [
     {
         id: 'first-name',
         children: 'First Name',
         type: 'text',
+        min: 2,
+        max: 100,
+        pattern: textPattern,
+        errorMessage: 'Enter 2 characters at least, the first one being an uppercase letter'
     },
     {
         id: 'last-name',
         children: 'Last Name',
         type: 'text',
+        pattern: textPattern,
+        errorMessage: 'Enter 2 characters at least, the first one being an uppercase letter'
     },
     {
         id: 'date-of-birth',
         children: 'Date of Birth',
-        type: 'text',
+        type: 'date',
+        placeholder: 'mm/dd/yyyyy',
+        pattern: datePattern,
     },
     {
         id: 'start-date',
         children: 'Start Date',
-        type: 'text',
+        type: 'date',
+        placeholder: 'mm/dd/yyyyy',
+        pattern: datePattern,
     },   
 ]

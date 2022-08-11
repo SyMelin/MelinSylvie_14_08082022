@@ -9,6 +9,8 @@
     background-color: #436202;
     letter-spacing: 1px;
     border: 0.25em solid #436202;
+    cursor: pointer;
+    box-shadow: 0.1em 0.15em 0.15em rgba(147, 173, 24, 0.5);
 }
 
 .button:hover {

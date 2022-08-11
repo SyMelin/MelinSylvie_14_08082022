@@ -5,6 +5,15 @@ import { states } from '../../utils/constantes/stateSelectOptionsList.js'
 import './Fieldset.css'
 
 function Fieldset({ fieldsetInputs }) {
+
+    const ZipCodeInput = {
+        id: 'zip-code',
+        children: 'Zip Code',
+        type: 'number',
+        min: '0',
+        max: '99950',
+    }
+
     const newStates = []
     states.forEach((state) => {
         newStates.push(new SelectOption(state.name, state.abbreviation))
@@ -16,9 +25,7 @@ function Fieldset({ fieldsetInputs }) {
             {fieldsetInputs.map((input, index) =>
                 <Input
                     key={`fieldsetInput-${index}`}
-                    id={input.id}
-                    children={input.children}
-                    type={input.type}
+                    input={input}
                 />)}
             <Select
                 key={`state-select`}
@@ -29,9 +36,7 @@ function Fieldset({ fieldsetInputs }) {
             />
             <Input
                 key="numberInput"
-                id="zip-code"
-                children="Zip Code"
-                type="number"
+                input={ZipCodeInput}
             />
         </fieldset>
     )

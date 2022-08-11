@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux'
+import { checkFormValidity } from '../../utils/features/createEmployeeForm'
 import { saveEmployee } from '../../utils/features/employeeList'
+import { newSaveEmployee } from '../../utils/features/createEmployeeForm'
 import './CreateEmployeeButton.css'
 
 function CreateEmployeeButton() {
@@ -9,10 +11,14 @@ function CreateEmployeeButton() {
     return (
         <button 
             className="button"
-            onClick={(e) => dispatch(saveEmployee(e))}
+            type='submit'
+            onClick={(e) => {
+              //  dispatch(checkFormValidity())
+               dispatch(newSaveEmployee())
+            }}
         >
             Save
-        </button> 
+        </button>
     )
 }
 
