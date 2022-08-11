@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
-import { createFormEntry, setInputValue, setInputError } from '../../utils/features/createEmployeeForm'
+import { setInputValue, setInputError } from '../../utils/features/createEmployeeForm'
 import './Input.css'
 
 function Input ({ input }) {
@@ -9,10 +8,6 @@ function Input ({ input }) {
     const dispatch = useDispatch()
     const createEmployeeFormErrorOnFields = useSelector(selectCreateEmployeeForm).error.onFields
 
-    useEffect(() => {
-        dispatch(createFormEntry(input.id)) 
-    }, [])
-    
     return (
         <div className={ createEmployeeFormErrorOnFields[input.id]
                         ? "input-wrapper errorOnField"

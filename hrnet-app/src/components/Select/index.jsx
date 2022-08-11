@@ -1,17 +1,11 @@
-import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { createFormEntry, setInputValue } from '../../utils/features/createEmployeeForm'
+import { setInputValue } from '../../utils/features/createEmployeeForm'
 import SelectOption from '../SelectOption'
 import './Select.css'
 
 function Select({ id, children, name, optionsList }) {
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(createFormEntry(id))
-    }, [])
-
 
     return (
         <div className="input-wrapper">

@@ -1,6 +1,3 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { saveEmployee } from '../../utils/features/employeeList'
 import Input from '../Input'
 import Fieldset from '../Fieldset'
 import { fieldsetInputs } from '../../utils/constantes/fieldsetInputs'
@@ -10,8 +7,6 @@ import './CreateEmployeeForm.css'
 
 function CreateEmployeeForm({ formInputs }) {
 
-    const dispatch = useDispatch()
-    
     return (
         <form
             action="#"
