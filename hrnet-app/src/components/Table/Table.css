@@ -1,4 +1,8 @@
+tbody {
+    font-size: 0.75em;
+}
+
 .table-columnTitle {
-    font-size: 1.2em;
-    width: 11.8%;
+    font-size: 1em;
+    width: 11.725%;
 }

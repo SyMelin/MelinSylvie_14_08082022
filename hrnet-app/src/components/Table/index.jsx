@@ -1,7 +1,7 @@
 import './Table.css'
 
 function Table({ list }) {
-    console.log(list)
+   // console.log(list)
 
     const columnTitles = [
         'First Name',
