@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { setEmployeeList } from '../../utils/features/employeeList'
+import { setEmployeeList, orderEmployeeByTableTitles, sortArrayByStringAscendingOrder } from '../../utils/features/employeeList'
 import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
 
 import { employeeListData } from '../../mockedData'
 
-const orderOfTitles = [
+export const orderOfTableTitles = [
     'firstName',
     'lastName',
     'startDate',
@@ -24,27 +24,8 @@ function EmployeeListPage() {
 
     const dispatch = useDispatch()
 
-    const sortArrayBasedOnAnotherArray = (arr1, arr2) => {
-        arr2.sort((a, b) => {
-            return arr1.indexOf(a) - arr1.indexOf(b)
-        })
-    }
-  
-    const orderEmployeeBasedOnTableTitles = (base, employee) => {
-        const array2 = Object.keys(employee)
-        sortArrayBasedOnAnotherArray(base, array2)
-        const sortedEmployee = array2.reduce((accumulator, key) => {
-            accumulator[key] = employee[key];
-        
-            return accumulator;
-        }, {});
-        return sortedEmployee
-    }
-
-   // console.log(employeeListData)
-    const newEmployeeList = employeeListData.map((employee) => orderEmployeeBasedOnTableTitles(orderOfTitles, employee))
-    console.log('new', newEmployeeList)
-    dispatch(setEmployeeList(newEmployeeList))
+    dispatch(setEmployeeList(employeeListData))
+    dispatch(orderEmployeeByTableTitles())
 
     const employeeList = useSelector(selectEmployeeList).list
 
@@ -61,6 +42,21 @@ function EmployeeListPage() {
                     path='/'
                     children='Home'
                 />
+                <div style={{'border': '2px solid black'}}>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            console.log(employeeList)
+                            const test = [...employeeList]
+                            const employeeListSorted = sortArrayByStringAscendingOrder(test, 'firstName')
+                          //  dispatch(setEmployeeList(employeeListSorted))// infinite loop rerender
+                        }}
+                    >PreNom Croissant</button>
+                    <button
+                        type="button"
+                       // onClick={dispatch(sortEmployeeListDescendingOrder('firstName'))}
+                    >PreNom DeCroissant</button>
+                </div>
             </section>    
         </div>
     )
