@@ -1,0 +1,13 @@
+.triangle {
+    fill: white;
+    width: 0.8em;
+    height: 0.8em;
+}
+
+.triangle:hover {
+    fill: #D8EB00;
+}
+
+.triangle-down {
+    transform: rotate(180deg);
+}

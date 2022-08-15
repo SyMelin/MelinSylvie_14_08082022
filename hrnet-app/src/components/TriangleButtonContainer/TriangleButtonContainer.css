@@ -1,0 +1,14 @@
+.triangleButton-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1em;
+    row-gap: 0;
+}
+
+.triangleButton {
+  border: none;
+  padding: 0.15em;
+  cursor: pointer;
+  text-align: center;
+}

@@ -20,7 +20,7 @@ export const sortArrayByStringAscendingOrder =  ((array, string) => {
        // console.log(b[string])
         return a[string].localeCompare(b[string]);
     });
-    console.log(array)
+    //console.log(array)
     return array
 })
   

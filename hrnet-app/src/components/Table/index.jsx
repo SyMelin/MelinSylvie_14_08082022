@@ -1,3 +1,4 @@
+import TriangleButtonContainer from '../../components/TriangleButtonContainer'
 import './Table.css'
 
 function Table({ list }) {
@@ -21,7 +22,15 @@ function Table({ list }) {
             <thead className='table-header'>
                 <tr className='table-title'>
                     {columnTitles.map((title, index) => (
-                        <th key={`titleColumn-${index}`} className='table-titleColumn'>{title}</th>
+                        <th
+                            key={`titleColumn-${index}`}
+                            className='table-titleColumn'
+                        >
+                            <div className='titleColumn-content'>
+                                <p>{title}</p>
+                                <TriangleButtonContainer />
+                            </div>
+                        </th>
                     ))}
                 </tr>
             </thead>

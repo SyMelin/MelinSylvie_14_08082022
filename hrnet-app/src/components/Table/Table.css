@@ -3,6 +3,12 @@
     border-spacing: 0;
 }
 
+/*
+.table-title {
+    display: flex;
+    flex-direction: row;
+}*/
+
 .table-title:first-child th:first-child {
     border-top-left-radius: 0.5em;
 }
@@ -13,9 +19,17 @@
 
 .table-titleColumn {
     font-size: 1em;
-    padding: 1em 2em;
     color: white;
     background-color: #436202;
+}
+
+.titleColumn-content {
+    margin: 0;
+    padding: 0.5em 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .table-row {
