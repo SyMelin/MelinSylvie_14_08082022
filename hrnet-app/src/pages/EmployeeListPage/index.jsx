@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { setEmployeeList, orderEmployeeByTableTitles, sortArrayByStringAscendingOrder } from '../../utils/features/employeeList'
+import { setEmployeeList, orderEmployeeByTableTitles, sortEmployeeListAscendingOrder, sortEmployeeListDescendingOrder } from '../../utils/features/employeeList'
 import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
@@ -23,13 +23,17 @@ export const orderOfTableTitles = [
 function EmployeeListPage() {
 
     const dispatch = useDispatch()
+    const isEmployeeOrdered = useSelector(selectEmployeeList).isEmployeeOrdered
 
     useEffect(() => {
         document.title = 'HRnet - Employee List'
     })
 
     useEffect (() => {
-        dispatch(orderEmployeeByTableTitles())
+        if (!isEmployeeOrdered) {
+            dispatch(orderEmployeeByTableTitles())
+        }
+        return
     }, [])
    
     const employeeList = useSelector(selectEmployeeList).list
@@ -48,14 +52,15 @@ function EmployeeListPage() {
                         type="button"
                         onClick={() => {
                             console.log(employeeList)
-                          //  const test = [...employeeList]
-                         //   const employeeListSorted = sortArrayByStringAscendingOrder(test, 'firstName')
-                          //  dispatch(setEmployeeList(employeeListSorted))// infinite loop rerender
+                            dispatch(sortEmployeeListAscendingOrder('firstName'))
                         }}
                     >PreNom Croissant</button>
                     <button
                         type="button"
-                       // onClick={dispatch(sortEmployeeListDescendingOrder('firstName'))}
+                        onClick={() => {
+                            console.log(employeeList)
+                            dispatch(sortEmployeeListDescendingOrder('firstName'))
+                        }}
                     >PreNom DeCroissant</button>
                 </div>
             </section>    
