@@ -2,6 +2,8 @@ import { createAction, createReducer } from "@reduxjs/toolkit"
 import { selectCreateEmployeeForm } from '../selectors'
 import { addEmployee } from "./employeeList"
 import { setModalState } from './modal'
+import { camelize } from '../../utils/utils'
+
 
 const initialState = {
     formData: {},
@@ -16,7 +18,7 @@ export const createFormEntry = createAction('createEmployeeForm/formEntry')
 export const setInputError = createAction('createEmployeeForm/setInputError', (formEntry, validity) => {
     return {
         payload: {
-            formEntry: formEntry,
+            formEntry: camelize(formEntry),
             validity: validity,
         }
     }
@@ -25,7 +27,7 @@ export const setFormError = createAction('createEmployeeForm/setFormError')
 export const setInputValue = createAction('createEmployeeForm/setInputValue', (formEntry, value) => {
     return {
         payload: {
-            formEntry: formEntry,
+            formEntry: camelize(formEntry),
             value: value,
         }
     }

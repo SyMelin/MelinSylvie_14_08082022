@@ -13,7 +13,6 @@ import { employeeListData } from '../../mockedData'
 
 function CreateEmployeePage () {
 
-
     const dispatch = useDispatch()
     const employeeList = useSelector(selectEmployeeList).list
     const modal = useSelector(selectModal)
