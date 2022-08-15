@@ -26,7 +26,6 @@ function CreateEmployeePage () {
     //To be replaced by a get request when real data available
     useEffect(() => {
         if (employeeList.length === 0) {
-            console.log('hello')
             dispatch(setEmployeeList(employeeListData))
           }
     }, [])
