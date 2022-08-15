@@ -17,20 +17,20 @@ function Table({ list }) {
 
 
     return (
-        <table id="employee-table" className="display">
-            <thead>
-                <tr>
+        <table id="employee-table" className="table display">
+            <thead className='table-header'>
+                <tr className='table-title'>
                     {columnTitles.map((title, index) => (
                         <th key={`titleColumn-${index}`} className='table-titleColumn'>{title}</th>
                     ))}
                 </tr>
             </thead>
-            <tbody>
+            <tbody className='table-body'>
                 {list.map((employee, index) => {
                     const rowIndex = index
-                    return <tr key={`tableRow-${index}`}>
+                    return <tr key={`tableRow-${index}`} className={Number.isInteger(index / 2) ? 'table-row table-row--evenIndex': 'table-row table-row--oddIndex'}>
                         {Object.values(employee).map((value, index) => {
-                            return <td key={`rowIndex-${rowIndex}-rowCell-${index}`}>{value}</td>
+                            return <td key={`rowIndex-${rowIndex}-rowCell-${index}`} className="table-cell">{value}</td>
                         })}
                     </tr>
                 })}

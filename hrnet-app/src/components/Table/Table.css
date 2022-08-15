@@ -1,8 +1,38 @@
-tbody {
-    font-size: 0.75em;
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-title:first-child th:first-child {
+    border-top-left-radius: 0.5em;
+}
+
+.table-title:first-child th:last-child {
+    border-top-right-radius: 0.5em;
 }
 
 .table-titleColumn {
     font-size: 1em;
-    width: 11.725%;
+    padding: 1em 2em;
+    color: white;
+    background-color: #436202;
+}
+
+.table-row {
+    font-size: 0.75em;
+}
+
+.table-row--evenIndex {
+    color: black;
+    background-color: rgba(147, 173, 24, 0.10);
+}
+
+.table-row--oddIndex {
+    color: white;
+    background-color: #436202; 
+}
+
+
+.table-cell {
+    padding: 1em 0.5em;
 }
