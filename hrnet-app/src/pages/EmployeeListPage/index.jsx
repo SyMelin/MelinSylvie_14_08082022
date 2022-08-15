@@ -6,7 +6,7 @@ import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
 
-import { employeeListData } from '../../mockedData'
+//import { employeeListData } from '../../mockedData'
 
 export const orderOfTableTitles = [
     'firstName',
@@ -24,7 +24,7 @@ function EmployeeListPage() {
 
     const dispatch = useDispatch()
 
-    dispatch(setEmployeeList(employeeListData))
+   // dispatch(setEmployeeList(employeeListData))
     dispatch(orderEmployeeByTableTitles())
 
     const employeeList = useSelector(selectEmployeeList).list
@@ -47,8 +47,8 @@ function EmployeeListPage() {
                         type="button"
                         onClick={() => {
                             console.log(employeeList)
-                            const test = [...employeeList]
-                            const employeeListSorted = sortArrayByStringAscendingOrder(test, 'firstName')
+                          //  const test = [...employeeList]
+                         //   const employeeListSorted = sortArrayByStringAscendingOrder(test, 'firstName')
                           //  dispatch(setEmployeeList(employeeListSorted))// infinite loop rerender
                         }}
                     >PreNom Croissant</button>

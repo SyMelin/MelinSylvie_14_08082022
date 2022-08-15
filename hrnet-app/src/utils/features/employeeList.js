@@ -51,6 +51,7 @@ const orderEmployeeBasedOnTableTitles = (base, employee) => {
 
 export default createReducer(initialState, builder => builder
     .addCase(addEmployee, (draft, action) => {
+        console.log('draftListLLL', draft.list)
         draft.list.push(action.payload)
         return
     })
