@@ -37,7 +37,7 @@ const sortArrayBasedOnAnotherArray = (arr1, arr2) => {
     })
 }
 
-const orderEmployeeBasedOnTableTitles = (base, employee) => {
+const orderEmployeeBasedOnArray = (base, employee) => {
     const array2 = Object.keys(employee)
     sortArrayBasedOnAnotherArray(base, array2)
     const sortedEmployee = array2.reduce((accumulator, key) => {
@@ -60,7 +60,7 @@ export default createReducer(initialState, builder => builder
         return
     })
     .addCase(orderEmployeeByTableTitles, (draft) => {
-        draft.list = draft.list.map((employee) => orderEmployeeBasedOnTableTitles(orderOfTableTitles, employee))
+        draft.list = draft.list.map((employee) => orderEmployeeBasedOnArray(orderOfTableTitles, employee))
         return
     })
     /*

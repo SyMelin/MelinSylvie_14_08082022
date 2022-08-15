@@ -21,18 +21,19 @@ function Table({ list }) {
             <thead>
                 <tr>
                     {columnTitles.map((title, index) => (
-                        <th key={`columnTitle-${index}`} className='table-columnTitle'>{title}</th>
+                        <th key={`titleColumn-${index}`} className='table-titleColumn'>{title}</th>
                     ))}
                 </tr>
             </thead>
             <tbody>
-                {list.map((employee, index) => (
-                    <tr>
+                {list.map((employee, index) => {
+                    const rowIndex = index
+                    return <tr key={`tableRow-${index}`}>
                         {Object.values(employee).map((value, index) => {
-                            return <td>{value}</td>
+                            return <td key={`rowIndex-${rowIndex}-rowCell-${index}`}>{value}</td>
                         })}
                     </tr>
-                ))}
+                })}
             </tbody>
         </table>
     )

@@ -24,14 +24,15 @@ function EmployeeListPage() {
 
     const dispatch = useDispatch()
 
-   // dispatch(setEmployeeList(employeeListData))
-    dispatch(orderEmployeeByTableTitles())
-
-    const employeeList = useSelector(selectEmployeeList).list
-
     useEffect(() => {
         document.title = 'HRnet - Employee List'
     })
+
+    useEffect (() => {
+        dispatch(orderEmployeeByTableTitles())
+    }, [])
+   
+    const employeeList = useSelector(selectEmployeeList).list
 
     return (
         <div>
