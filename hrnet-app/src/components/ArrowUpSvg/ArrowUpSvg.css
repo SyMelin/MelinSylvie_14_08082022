@@ -4,10 +4,10 @@
     height: 0.8em;
 }
 
-.triangleButton:hover > .triangle {
-    fill: #D8EB00;
-}
-
 .triangle-down {
     transform: rotate(180deg);
+}
+
+.sortButton:hover > .triangle {
+    fill: #D8EB00;
 }

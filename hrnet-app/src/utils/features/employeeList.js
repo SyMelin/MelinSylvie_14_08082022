@@ -1,5 +1,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
 import { orderOfTableTitles } from '../../pages/EmployeeListPage'
+import { camelize } from '../utils'
 
 const initialState = {
     list: [],
@@ -10,23 +11,45 @@ const initialState = {
 export const addEmployee = createAction('employeeList/addEmployee')
 export const setEmployeeList = createAction('employeeList/setEmployeeList')
 export const orderEmployeeByTableTitles = createAction('employeeList/orderEmployeeByTableTitles')
-export const sortEmployeeListAscendingOrder = createAction('employeeList/ascendingOrder')
-export const sortEmployeeListDescendingOrder = createAction('employeeList/descendingOrder')
+export const sortEmployeeList = createAction('employeeList/sorting', (string, type, direction) => {
+    return {
+        payload: {
+            string: {
+                value: string,
+                format: type,
+            },
+            direction: direction,
+        }
+    }
+})
+ 
 
-export const sortArrayByStringAscendingOrder =  ((array, string) => {
+export const sortArrayByAscendingOrder =  ((array, string) => {
+    const property =  string.value
+    const type = string.type
    // console.log(array)
     array.sort((a, b) => {
        // console.log(a[string])
        // console.log(b[string])
-        return a[string].localeCompare(b[string]);
+        if (type === 'letterString') {
+            return a[property].localeCompare(b[property]);
+        } else {
+            return (b[property] < a[property]) ? 1 : -1;
+        } 
     });
     //console.log(array)
     return array
 })
   
-export const sortArrayByStringDescendingOrder = ((array, string) => {
+export const sortArrayByDescendingOrder = ((array, string) => {
+    const property =  string.value
+    const type = string.type
     array.sort((a, b) => {
-        return b[string].localeCompare(a[string]);
+        if (type === 'letterString') {
+            return b[string].localeCompare(a[string]);
+        } else {
+            return (a[property] < b[property]) ? 1 : -1;
+        }
     });
     return array
 })
@@ -65,13 +88,42 @@ export default createReducer(initialState, builder => builder
         draft.isEmployeeOrdered = true
         return
     })
-    
+    .addCase(sortEmployeeList, (draft, action) => {
+        const direction = action.payload.direction
+        const string = action.payload.string
+            switch (direction) {
+                case 'up':
+                    draft.list = sortArrayByAscendingOrder(draft.list, string);
+                break;
+
+                case 'down':
+                    draft.list =  sortArrayByDescendingOrder(draft.list, string);
+                break;
+                default:
+                break;
+            }
+        }
+    )
+)
+
+/*
+//export const sortEmployeeListAscendingOrder = createAction('employeeList/ascendingOrder')
+//export const sortEmployeeListDescendingOrder = createAction('employeeList/descendingOrder')
+
+ 
     .addCase(sortEmployeeListAscendingOrder, (draft, action) => {
-        draft.list = sortArrayByStringAscendingOrder(draft.list, action.payload)
+        console.log(action.payload)
+        //if (action.payload === 'firstName' || action.payload === 'lastName' || action.payload === 'city') {
+        //    draft.list = sortArrayByStringAscendingOrder(draft.list, action.payload)
+        //} 
         return
     })
     .addCase(sortEmployeeListDescendingOrder, (draft, action) => {
-        draft.list = sortArrayByStringDescendingOrder(draft.list, action.payload)
+        if (action.payload === 'firstName' || action.payload === 'lastName' || action.payload === 'city') {
+            draft.list = sortArrayByStringDescendingOrder(draft.list, action.payload)
+        }
         return
-    }) 
-)
+    })
+
+
+*/

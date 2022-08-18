@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { orderEmployeeByTableTitles, sortEmployeeListAscendingOrder, sortEmployeeListDescendingOrder } from '../../utils/features/employeeList'
+import { orderEmployeeByTableTitles } from '../../utils/features/employeeList'
 import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'

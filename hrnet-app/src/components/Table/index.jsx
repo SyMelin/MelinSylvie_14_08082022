@@ -1,36 +1,60 @@
-import TriangleButtonContainer from '../../components/TriangleButtonContainer'
+
+import TableTitleCell from '../TableTitleCell'
 import './Table.css'
+import { camelize } from '../../utils/utils'
 
 function Table({ list }) {
    // console.log(list)
 
     const columnTitles = [
-        'First Name',
-        'Last Name',
-        'Start Date',
-        'Department',
-        'Date of Birth',
-        'Street',
-        'City',
-        'State',
-        'Zip Code',
+        {
+            title: 'First Name',
+            type: 'letterString',
+        },
+        {
+            title: 'Last Name',
+            type: 'letterString',
+        },
+        {
+            title: 'Start Date',
+            type: 'date',
+        },
+        {
+            title: 'Department',
+            type: 'letterString',
+        },
+        {
+            title: 'Date of Birth',
+            type: 'date'
+        },
+        {
+            title: 'Street',
+            type: 'letterString',
+        },
+        {   
+            title: 'City',
+            type: 'letterString',
+        },
+        {
+            title: 'State',
+            type: 'letterString',
+        },
+        {
+            title: 'Zip Code',
+            type: 'number',
+        },
     ]
-
 
     return (
         <table id="employee-table" className="table display">
             <thead className='table-header'>
                 <tr className='table-title'>
-                    {columnTitles.map((title, index) => (
-                        <th
+                    {columnTitles.map((obj, index) => (
+                        <TableTitleCell
                             key={`titleColumn-${index}`}
-                            className='table-titleColumn'
-                        >
-                            <div className='titleColumn-content'>
-                                <p>{title}</p>
-                                <TriangleButtonContainer />
-                            </div>
-                        </th>
+                            title={obj.title}
+                            type={obj.type}
+                        />
                     ))}
                 </tr>
             </thead>
