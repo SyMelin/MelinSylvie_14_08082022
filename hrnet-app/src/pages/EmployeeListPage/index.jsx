@@ -5,9 +5,6 @@ import { orderEmployeeByTableTitles } from '../../utils/features/employeeList'
 import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
-import ArrowUpSvg from '../../components/ArrowUpSvg'
-
-//import { employeeListData } from '../../mockedData'
 
 export const orderOfTableTitles = [
     'firstName',
@@ -48,9 +45,6 @@ function EmployeeListPage() {
                     path='/'
                     children='Home'
                 />
-                <div>
-                    <ArrowUpSvg />
-                </div>
             </section>    
         </div>
     )

@@ -25,6 +25,7 @@ function Input ({ input }) {
                 pattern={input.pattern}
                 required
                 onChange={(e) => {
+                    console.log(e.target)
                     dispatch(setInputValue(input.id, e.target.value))
                     dispatch(setInputError(input.id, e.target.checkValidity()))
                 }}   

@@ -3,12 +3,6 @@
     border-spacing: 0;
 }
 
-/*
-.table-title {
-    display: flex;
-    flex-direction: row;
-}*/
-
 .table-title:first-child th:first-child {
     border-top-left-radius: 0.5em;
 }
@@ -30,23 +24,4 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-
-.table-row {
-    font-size: 0.75em;
-}
-
-.table-row--evenIndex {
-    color: black;
-    background-color: rgba(147, 173, 24, 0.10);
-}
-
-.table-row--oddIndex {
-    color: white;
-    background-color: #436202; 
-}
-
-
-.table-cell {
-    padding: 1em 0.5em;
 }

@@ -1,0 +1,13 @@
+.table-body-row {
+    font-size: 0.75em;
+}
+
+.table-body-row--evenIndex {
+    color: black;
+    background-color: rgba(147, 173, 24, 0.10);
+}
+
+.table-body-row--oddIndex {
+    color: white;
+    background-color: #436202; 
+}

@@ -1,0 +1,16 @@
+.sortButton {
+    border: none;
+    padding: 0.25em;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .sortButton-up {
+    padding-bottom: 0;
+    margin-bottom: -0.1em;
+  }
+  
+  .sortButton-down {
+    padding-top: 0;
+    margin-top: -0.1em;
+  }

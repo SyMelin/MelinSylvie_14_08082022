@@ -1,10 +1,10 @@
 
 import TableTitleCell from '../TableTitleCell'
+import TableBodyRow from '../TableBodyRow'
 import './Table.css'
 import { camelize } from '../../utils/utils'
 
 function Table({ list }) {
-   // console.log(list)
 
     const columnTitles = [
         {
@@ -59,14 +59,13 @@ function Table({ list }) {
                 </tr>
             </thead>
             <tbody className='table-body'>
-                {list.map((employee, index) => {
-                    const rowIndex = index
-                    return <tr key={`tableRow-${index}`} className={Number.isInteger(index / 2) ? 'table-row table-row--evenIndex': 'table-row table-row--oddIndex'}>
-                        {Object.values(employee).map((value, index) => {
-                            return <td key={`rowIndex-${rowIndex}-rowCell-${index}`} className="table-cell">{value}</td>
-                        })}
-                    </tr>
-                })}
+                {list.map((employee, index) => (
+                    <TableBodyRow
+                        key={`tableBodyRow-${index}`}
+                        rowIndex={index}
+                        employee={employee}
+                    />
+                ))}
             </tbody>
         </table>
     )

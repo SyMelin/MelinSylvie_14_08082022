@@ -9,7 +9,7 @@ function SortButton({ string, type, direction }) {
 
     return (
         <div
-            className="sortButton sortButton-up"
+            className={`sortButton sortButton-${direction}`}
             onClick={() => {
                dispatch(sortEmployeeList(string, type, direction))
             }}

@@ -24,6 +24,8 @@ export const createEmployeeFormInputs = [
         type: 'date',
         placeholder: 'mm/dd/yyyyy',
         pattern: datePattern,
+        min: '1900-01-01',
+        max: '2100-12-31',
     },
     {
         id: 'start-date',
@@ -31,5 +33,7 @@ export const createEmployeeFormInputs = [
         type: 'date',
         placeholder: 'mm/dd/yyyyy',
         pattern: datePattern,
+        min: "1900-01-01",
+        max: "2100-12-31"
     },   
 ]
