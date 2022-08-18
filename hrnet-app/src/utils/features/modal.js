@@ -1,7 +1,7 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
 
 const initialState = {
-    modalIsOpen: false,
+    modalIsActive: false,
 }
 
 
@@ -12,8 +12,7 @@ export const setModalState = createAction('modal/isOpen')
 // Reducer creator
 export default createReducer(initialState, builder => builder
     .addCase(setModalState, (draft) => {
-        draft.modalIsOpen = !draft.modalIsOpen
+        draft.modalIsActive = !draft.modalIsActive
         return
-    })
-    
+    })  
 )

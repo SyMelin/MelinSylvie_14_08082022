@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
 import { setInputValue, setInputError } from '../../utils/features/createEmployeeForm'
+import { camelize } from '../../utils/utils'
 import './Input.css'
 
 function Input ({ input }) {
@@ -9,7 +10,7 @@ function Input ({ input }) {
     const createEmployeeFormErrorOnFields = useSelector(selectCreateEmployeeForm).error.onFields
 
     return (
-        <div className={ createEmployeeFormErrorOnFields[input.id]
+        <div className={ createEmployeeFormErrorOnFields[camelize(input.id)]
                         ? "input-wrapper errorOnField"
                         : "input-wrapper"
                     }
@@ -26,10 +27,9 @@ function Input ({ input }) {
                 onChange={(e) => {
                     dispatch(setInputValue(input.id, e.target.value))
                     dispatch(setInputError(input.id, e.target.checkValidity()))
-                }}
-                
+                }}   
             />
-            { createEmployeeFormErrorOnFields[input.id]
+            { createEmployeeFormErrorOnFields[camelize(input.id)]
             ? <p className='input-error'>{input.errorMessage}</p>
             : null }
         </div>

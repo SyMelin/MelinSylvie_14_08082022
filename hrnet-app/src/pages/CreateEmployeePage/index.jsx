@@ -16,7 +16,7 @@ function CreateEmployeePage () {
     const dispatch = useDispatch()
     const employeeList = useSelector(selectEmployeeList).list
     const modal = useSelector(selectModal)
-    const modalIsOpen = modal.modalIsOpen
+    const modalIsActive = modal.modalIsActive
 
     useEffect(() => {
         document.title = 'HRnet - Create Employee'
@@ -42,7 +42,7 @@ function CreateEmployeePage () {
                 <CreateEmployeeForm formInputs={createEmployeeFormInputs} />
                 <CreateEmployeeButton />
             </section>
-            { modalIsOpen
+            { modalIsActive
             ? <Modal
                 id="confirmation"
                 children="Employee Created!"
