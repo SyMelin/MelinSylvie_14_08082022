@@ -5,7 +5,12 @@ function Nav() {
     return (
         <nav className='nav'>
             <ul>
-                <li><NavLink to="/employee-list" className='nav-link'>Employee List</NavLink></li>
+                <li>
+                    <NavLink
+                        to="/employee-list"
+                        className={({ isActive }) => "nav-link nav-link" + (isActive ? "-active" : "-notActive")}>Employee List
+                    </NavLink>
+                </li>
             </ul>
         </nav> 
     )

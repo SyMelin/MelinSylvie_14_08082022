@@ -8,7 +8,17 @@
 
 .triangleButton {
   border: none;
-  padding: 0.15em;
+  padding: 0.25em;
   cursor: pointer;
   text-align: center;
+}
+
+.triangleButton-up {
+  padding-bottom: 0;
+  margin-bottom: -0.1em;
+}
+
+.triangleButton-down {
+  padding-top: 0;
+  margin-top: -0.1em;
 }

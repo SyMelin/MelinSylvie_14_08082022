@@ -2,7 +2,7 @@ export const employeeListData = [
     {
         firstName: 'Tony',
         lastName: 'Stark',
-        street: 'Malibu Point 10880',
+        street: '10880 Malibu Point',
         city: 'Malibu',
         zipCode: '90265',
         dateOfBirth: '03/29/1970',

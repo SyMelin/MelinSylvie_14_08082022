@@ -13,6 +13,13 @@ nav:hover {
 }
 
 .nav-link {
-    color: white;
     text-decoration: none;
+}
+
+.nav-link-active {
+    color: #D8EB00;
+}
+
+.nav-link-notActive {
+    color: white;
 }

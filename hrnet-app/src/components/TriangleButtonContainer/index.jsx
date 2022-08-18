@@ -10,7 +10,7 @@ function TriangleButtonContainer() {
     return (
         <div className='triangleButton-container'>
             <div
-                className="triangleButton"
+                className="triangleButton triangleButton-up"
                 onClick={() => {
                     dispatch(sortEmployeeListAscendingOrder('firstName'))
                 }}
@@ -18,7 +18,7 @@ function TriangleButtonContainer() {
                 <ArrowUpSvg direction="up" />
             </div>
             <div
-                className="triangleButton"
+                className="triangleButton triangleButton-down"
                 onClick={() => {
                     dispatch(sortEmployeeListDescendingOrder('firstName'))
                 }}

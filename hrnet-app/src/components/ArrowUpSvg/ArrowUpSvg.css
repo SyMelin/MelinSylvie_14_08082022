@@ -4,7 +4,7 @@
     height: 0.8em;
 }
 
-.triangle:hover {
+.triangleButton:hover > .triangle {
     fill: #D8EB00;
 }
 
