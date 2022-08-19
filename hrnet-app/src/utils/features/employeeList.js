@@ -9,8 +9,8 @@ const initialState = {
         length: 10,
         nbOfPages: 1,
         indexOfCurrentPage: 0,
-        indexOfEmployeeInListMin: 0,
-        indexOfEmployeeInListMax: 0,
+        firstIndexToSlice: 0,
+        lastIndexToSlice: 0,
     } 
 }
 
@@ -18,8 +18,9 @@ const initialState = {
 export const addEmployee = createAction('employeeList/addEmployee')
 export const setEmployeeList = createAction('employeeList/setEmployeeList')
 export const calculateNbOfTablePages = createAction('employeeList/calculateNbOfTablePages')
-export const setIndexOfEmployeeInListMin = createAction('employeeList/setIndexOfEmployeeInListMin')
-export const setIndexOfEmployeeInListMax = createAction('employeeList/setIndexOfEmployeeInListMax')
+export const setFirstIndexToSlice = createAction('employeeList/setFirstIndexToSlice')
+export const setLastIndexToSlice = createAction('employeeList/setLastIndexToSlice')
+export const setIndexOfCurrentPage = createAction('employeeList/setIndexOfCurrentPage')
 export const orderEmployeeByTableTitles = createAction('employeeList/orderEmployeeByTableTitles')
 export const sortEmployeeList = createAction('employeeList/sorting', (string, type, direction) => {
     return {
@@ -96,13 +97,17 @@ export default createReducer(initialState, builder => builder
     .addCase(calculateNbOfTablePages, (draft) => {
         draft.table.nbOfPages = Math.ceil(draft.list.length / draft.table['length'])
     })
-    .addCase(setIndexOfEmployeeInListMin, (draft) => {
-        draft.table.indexOfEmployeeInListMin = draft.table.indexOfCurrentPage * draft.table['length']
+    .addCase(setFirstIndexToSlice, (draft) => {
+        draft.table.firstIndexToSlice = draft.table.indexOfCurrentPage * draft.table['length']
     })
-    .addCase(setIndexOfEmployeeInListMax, (draft) => {
-        console.log((1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1))
-        draft.table.indexOfEmployeeInListMax = (1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * draft.table['length'] - 1) : (draft.list.length - 1)
+    .addCase(setLastIndexToSlice, (draft) => {
+        draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * draft.table['length'] - 1) : (draft.list.length - 1)
         //draft.table.indexOfEmployeeInListMax = draft.table.indexOfCurrentPage * draft.table['length']
+    })
+    .addCase(setIndexOfCurrentPage, (draft, action) => {
+        draft.table.indexOfCurrentPage = action.payload
+        draft.table.firstIndexToSlice = action.payload * draft.table['length']
+        draft.table.lastIndexToSlice = (1 + action.payload) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + action.payload) * draft.table['length'] - 1) : (draft.list.length - 1)
     })
     .addCase(orderEmployeeByTableTitles, (draft) => {
         draft.list = draft.list.map((employee) => orderObjectBasedOnArray(orderOfTableTitles, employee))

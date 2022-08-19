@@ -1,6 +1,5 @@
-
 import TableTitleCell from '../TableTitleCell'
-import TableBodyRow from '../TableBodyRow'
+import TableBody from '../TableBody'
 import './Table.css'
 import { camelize } from '../../utils/utils'
 
@@ -60,15 +59,7 @@ function Table({ list }) {
                     ))}
                 </tr>
             </thead>
-            <tbody className='table-body'>
-                {list.map((employee, index) => (
-                    <TableBodyRow
-                        key={`tableBodyRow-${index}`}
-                        rowIndex={index}
-                        employee={employee}
-                    />
-                ))}
-            </tbody>
+            <TableBody />
         </table>
     )
 }

@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { calculateNbOfTablePages, setIndexOfEmployeeInListMin, setIndexOfEmployeeInListMax, orderEmployeeByTableTitles } from '../../utils/features/employeeList'
+import { calculateNbOfTablePages, setFirstIndexToSlice, setLastIndexToSlice, setIndexOfCurrentPage, orderEmployeeByTableTitles } from '../../utils/features/employeeList'
 import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
+
 
 export const orderOfTableTitles = [
     'firstName',
@@ -29,8 +30,8 @@ function EmployeeListPage() {
 
     useEffect (() => {
         dispatch(calculateNbOfTablePages())
-        dispatch(setIndexOfEmployeeInListMin())
-        dispatch(setIndexOfEmployeeInListMax())
+        dispatch(setFirstIndexToSlice())
+        dispatch(setLastIndexToSlice())
 
         if (!isEmployeeOrdered) {
             dispatch(orderEmployeeByTableTitles())
@@ -75,23 +76,57 @@ function EmployeeListPage() {
 
                     <div class="dataTables_additionalFeatures">
                         <div class="dataTables_info" id="employee-table_info" role="status" aria-live="polite">
-                            Showing { 1 + employeeTable.indexOfEmployeeInListMin } to { 1 + employeeTable.indexOfEmployeeInListMax } of {employeeList.length} entries
+                            Showing { 1 + employeeTable.firstIndexToSlice } to { 1 + employeeTable.lastIndexToSlice } of {employeeList.length} entries
                         </div>
                         <div class="dataTables_paginate paging_simple_numbers" id="employee-table_paginate">
-                            <a class="paginate_button previous disabled" aria-controls="employee-table" data-dt-idx="0" tabindex="-1" id="employee-table_previous">
+                            <button
+                                type='button'
+                                class="paginate_button previous disabled"
+                                aria-controls="employee-table"
+                                data-dt-idx="0"
+                                tabindex="-1"
+                                id="employee-table_previous"
+                                onClick={() => {
+                                    if (employeeTable.indexOfCurrentPage - 1 >= 0) {
+                                        dispatch(setIndexOfCurrentPage(employeeTable.indexOfCurrentPage - 1))
+                                    }
+                                    return
+                                }}
+                            >
                                 Previous
-                            </a>
+                            </button> 
                             <span>
-                                <a class="paginate_button current" aria-controls="employee-table" data-dt-idx="1" tabindex="0">
-                                    1
-                                </a>
-                                <a class="paginate_button " aria-controls="employee-table" data-dt-idx="2" tabindex="0">
-                                    2
-                                </a>
+                                {[...Array(employeeTable.nbOfPages)].map((e, index) => 
+                                    <button
+                                        type="button"
+                                        class={ index === employeeTable.indexOfCurrentPage ? "paginate_button current" : "paginate_button"}
+                                        aria-controls="employee-table"
+                                        data-dt-idx={`${index + 1}`}
+                                        tabindex="0"
+                                        onClick={() => {
+                                            dispatch(setIndexOfCurrentPage(index))
+                                        }}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                )}
                             </span>
-                            <a class="paginate_button next" aria-controls="employee-table" data-dt-idx="3" tabindex="0" id="employee-table_next">
+                            <button
+                                type='button'
+                                class="paginate_button next"
+                                aria-controls="employee-table"
+                                data-dt-idx="3"
+                                tabindex="0"
+                                id="employee-table_next"
+                                onClick={() => {
+                                    if (employeeTable.indexOfCurrentPage + 1 <= (employeeTable.nbOfPages - 1)) {
+                                        dispatch(setIndexOfCurrentPage(employeeTable.indexOfCurrentPage + 1))
+                                    }
+                                    return
+                                }}
+                            >
                                 Next
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

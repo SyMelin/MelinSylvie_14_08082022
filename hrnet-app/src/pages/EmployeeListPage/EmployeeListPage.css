@@ -55,6 +55,27 @@
     padding: 0.5em 0.875em;
     font-size: 1em;
     font-weight: 300;
-    border: 1px solid #939218;
+    border: 2px solid #939218;
     border-radius: 0.5em;
+}
+
+.paginate_button {
+    cursor: pointer;
+    padding: 0.75em;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.875em;
+    font-weight: 500;
+    border-radius: 0.20em;
+    background-color: white;
+    border: 2px solid #436202;
+}
+
+.paginate_button:hover {
+    background-color: #436202;
+    color: white;
+}
+
+.paginate_button.current {
+    background-color: #436202;
+    color: #D8EB00;
 }
