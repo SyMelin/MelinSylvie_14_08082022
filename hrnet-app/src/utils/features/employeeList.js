@@ -5,11 +5,21 @@ import { camelize } from '../utils'
 const initialState = {
     list: [],
     isEmployeeOrdered: false,
+    table: {
+        length: 10,
+        nbOfPages: 1,
+        indexOfCurrentPage: 0,
+        indexOfEmployeeInListMin: 0,
+        indexOfEmployeeInListMax: 0,
+    } 
 }
 
 
 export const addEmployee = createAction('employeeList/addEmployee')
 export const setEmployeeList = createAction('employeeList/setEmployeeList')
+export const calculateNbOfTablePages = createAction('employeeList/calculateNbOfTablePages')
+export const setIndexOfEmployeeInListMin = createAction('employeeList/setIndexOfEmployeeInListMin')
+export const setIndexOfEmployeeInListMax = createAction('employeeList/setIndexOfEmployeeInListMax')
 export const orderEmployeeByTableTitles = createAction('employeeList/orderEmployeeByTableTitles')
 export const sortEmployeeList = createAction('employeeList/sorting', (string, type, direction) => {
     return {
@@ -83,6 +93,17 @@ export default createReducer(initialState, builder => builder
         draft.list = action.payload
         return
     })
+    .addCase(calculateNbOfTablePages, (draft) => {
+        draft.table.nbOfPages = Math.ceil(draft.list.length / draft.table['length'])
+    })
+    .addCase(setIndexOfEmployeeInListMin, (draft) => {
+        draft.table.indexOfEmployeeInListMin = draft.table.indexOfCurrentPage * draft.table['length']
+    })
+    .addCase(setIndexOfEmployeeInListMax, (draft) => {
+        console.log((1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1))
+        draft.table.indexOfEmployeeInListMax = (1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * draft.table['length'] - 1) : (draft.list.length - 1)
+        //draft.table.indexOfEmployeeInListMax = draft.table.indexOfCurrentPage * draft.table['length']
+    })
     .addCase(orderEmployeeByTableTitles, (draft) => {
         draft.list = draft.list.map((employee) => orderObjectBasedOnArray(orderOfTableTitles, employee))
         draft.isEmployeeOrdered = true
@@ -97,7 +118,7 @@ export default createReducer(initialState, builder => builder
                 break;
 
                 case 'down':
-                    draft.list =  sortArrayByDescendingOrder(draft.list, string);
+                    draft.list = sortArrayByDescendingOrder(draft.list, string);
                 break;
                 default:
                 break;
