@@ -32,7 +32,7 @@ function CreateEmployeePage () {
           
     
     return (
-        <div>
+        <main>
             <section className="container">
                 <CustomLink
                     path="/employee-list"
@@ -49,7 +49,7 @@ function CreateEmployeePage () {
                 />
             : null
             }
-        </div>   
+        </main>   
     )
 }
 

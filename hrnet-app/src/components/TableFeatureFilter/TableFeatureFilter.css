@@ -1,0 +1,17 @@
+.table-features__filter {
+    border-radius: 0.2em;
+}
+
+.table-features__filter label {
+    font-weight: 500;
+}
+
+.table-features__filter input {
+    background-color: #F4F7E7;
+    margin-left: 1em;
+    padding: 0.5em 0.875em;
+    font-size: 1em;
+    font-weight: 300;
+    border: 2px solid #939218;
+    border-radius: 0.5em;
+}

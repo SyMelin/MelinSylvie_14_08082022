@@ -1,0 +1,18 @@
+.table-features__lengthSelect label {
+    font-weight: 500;
+}
+
+.table-features__lengthSelect select {
+    margin: 0 0.5em;
+    background-color: #436202;
+    color: white;
+    border-radius: 0.5em;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+.table-features__lengthSelect option {
+    background-color: #F4F7E7;
+    color: black;
+    border: 1px solid #939218;
+}
