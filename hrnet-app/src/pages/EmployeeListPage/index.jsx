@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { calculateNbOfTablePages, setFirstIndexToSlice, setLastIndexToSlice, setIndexOfCurrentPage, orderEmployeeByTableTitles } from '../../utils/features/employeeList'
+import { initTable, moveToPageIndex, orderEmployeeByTableTitles } from '../../utils/features/employeeList'
 import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
@@ -29,9 +29,8 @@ function EmployeeListPage() {
     })
 
     useEffect (() => {
-        dispatch(calculateNbOfTablePages())
-        dispatch(setFirstIndexToSlice())
-        dispatch(setLastIndexToSlice())
+        const tableLength = document.getElementById('employeeTable-lengthSelect').value
+        dispatch(initTable(tableLength))
 
         if (!isEmployeeOrdered) {
             dispatch(orderEmployeeByTableTitles())
@@ -51,7 +50,13 @@ function EmployeeListPage() {
                         <div class="dataTables_length" id="employee-table_length">
                             <label>
                                 Show
-                                <select name="employee-table_length" aria-controls="employee-table" class="">
+                                <select
+                                    id="employeeTable-lengthSelect"
+                                    name="employee-table_length"
+                                    aria-controls="employee-table"
+                                    class=""
+                                    onChange={(e) => dispatch(initTable(e.target.value))}
+                                >
                                     {[10, 25, 50, 100].map((number, index) =>
                                         <option
                                             key={`employeeTableLength-option-${index}`}
@@ -88,7 +93,7 @@ function EmployeeListPage() {
                                 id="employee-table_previous"
                                 onClick={() => {
                                     if (employeeTable.indexOfCurrentPage - 1 >= 0) {
-                                        dispatch(setIndexOfCurrentPage(employeeTable.indexOfCurrentPage - 1))
+                                        dispatch(moveToPageIndex(employeeTable.indexOfCurrentPage - 1))
                                     }
                                     return
                                 }}
@@ -104,7 +109,7 @@ function EmployeeListPage() {
                                         data-dt-idx={`${index + 1}`}
                                         tabindex="0"
                                         onClick={() => {
-                                            dispatch(setIndexOfCurrentPage(index))
+                                            dispatch(moveToPageIndex(index))
                                         }}
                                     >
                                         {index + 1}
@@ -120,7 +125,7 @@ function EmployeeListPage() {
                                 id="employee-table_next"
                                 onClick={() => {
                                     if (employeeTable.indexOfCurrentPage + 1 <= (employeeTable.nbOfPages - 1)) {
-                                        dispatch(setIndexOfCurrentPage(employeeTable.indexOfCurrentPage + 1))
+                                        dispatch(moveToPageIndex(employeeTable.indexOfCurrentPage + 1))
                                     }
                                     return
                                 }}

@@ -17,10 +17,8 @@ const initialState = {
 
 export const addEmployee = createAction('employeeList/addEmployee')
 export const setEmployeeList = createAction('employeeList/setEmployeeList')
-export const calculateNbOfTablePages = createAction('employeeList/calculateNbOfTablePages')
-export const setFirstIndexToSlice = createAction('employeeList/setFirstIndexToSlice')
-export const setLastIndexToSlice = createAction('employeeList/setLastIndexToSlice')
-export const setIndexOfCurrentPage = createAction('employeeList/setIndexOfCurrentPage')
+export const initTable = createAction('employeeList/initTable')
+export const moveToPageIndex = createAction('employeeList/moveToPageIndex')
 export const orderEmployeeByTableTitles = createAction('employeeList/orderEmployeeByTableTitles')
 export const sortEmployeeList = createAction('employeeList/sorting', (string, type, direction) => {
     return {
@@ -94,20 +92,19 @@ export default createReducer(initialState, builder => builder
         draft.list = action.payload
         return
     })
-    .addCase(calculateNbOfTablePages, (draft) => {
-        draft.table.nbOfPages = Math.ceil(draft.list.length / draft.table['length'])
+    .addCase(initTable, (draft, action) => {
+        const tableLength = action.payload
+        draft.table['length'] = tableLength
+        draft.table.nbOfPages = Math.ceil(draft.list.length / tableLength)
+        draft.table.indexOfCurrentPage = 0
+        draft.table.firstIndexToSlice = 0
+        draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * tableLength <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * tableLength - 1) : (draft.list.length - 1)
     })
-    .addCase(setFirstIndexToSlice, (draft) => {
-        draft.table.firstIndexToSlice = draft.table.indexOfCurrentPage * draft.table['length']
-    })
-    .addCase(setLastIndexToSlice, (draft) => {
-        draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * draft.table['length'] - 1) : (draft.list.length - 1)
-        //draft.table.indexOfEmployeeInListMax = draft.table.indexOfCurrentPage * draft.table['length']
-    })
-    .addCase(setIndexOfCurrentPage, (draft, action) => {
-        draft.table.indexOfCurrentPage = action.payload
-        draft.table.firstIndexToSlice = action.payload * draft.table['length']
-        draft.table.lastIndexToSlice = (1 + action.payload) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + action.payload) * draft.table['length'] - 1) : (draft.list.length - 1)
+    .addCase(moveToPageIndex, (draft, action) => {
+        const index = action.payload
+        draft.table.indexOfCurrentPage = index
+        draft.table.firstIndexToSlice = index * draft.table['length']
+        draft.table.lastIndexToSlice = (1 + index) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + index) * draft.table['length'] - 1) : (draft.list.length - 1)
     })
     .addCase(orderEmployeeByTableTitles, (draft) => {
         draft.list = draft.list.map((employee) => orderObjectBasedOnArray(orderOfTableTitles, employee))
@@ -131,25 +128,3 @@ export default createReducer(initialState, builder => builder
         }
     )
 )
-
-/*
-//export const sortEmployeeListAscendingOrder = createAction('employeeList/ascendingOrder')
-//export const sortEmployeeListDescendingOrder = createAction('employeeList/descendingOrder')
-
- 
-    .addCase(sortEmployeeListAscendingOrder, (draft, action) => {
-        console.log(action.payload)
-        //if (action.payload === 'firstName' || action.payload === 'lastName' || action.payload === 'city') {
-        //    draft.list = sortArrayByStringAscendingOrder(draft.list, action.payload)
-        //} 
-        return
-    })
-    .addCase(sortEmployeeListDescendingOrder, (draft, action) => {
-        if (action.payload === 'firstName' || action.payload === 'lastName' || action.payload === 'city') {
-            draft.list = sortArrayByStringDescendingOrder(draft.list, action.payload)
-        }
-        return
-    })
-
-
-*/

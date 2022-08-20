@@ -4,10 +4,16 @@
 
 .table-body-row--evenIndex {
     color: black;
-    background-color: rgba(147, 173, 24, 0.10);
+    background-color: #F4F7E7;
 }
 
 .table-body-row--oddIndex {
     color: white;
     background-color: #436202; 
+}
+
+.table-body-row:hover {
+    color: black;
+    font-weight: 500;
+    background-color: rgba(216, 235, 0, 0.5);
 }
