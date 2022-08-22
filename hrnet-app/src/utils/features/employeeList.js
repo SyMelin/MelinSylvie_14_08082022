@@ -11,14 +11,19 @@ const initialState = {
         indexOfCurrentPage: 0,
         firstIndexToSlice: 0,
         lastIndexToSlice: 0,
-    } 
+    },
+    listToDisplay: [],
 }
 
 
 export const addEmployee = createAction('employeeList/addEmployee')
 export const setEmployeeList = createAction('employeeList/setEmployeeList')
 export const initTable = createAction('employeeList/initTable')
+export const setTable = createAction('employeeList/setTable')
 export const moveToPageIndex = createAction('employeeList/moveToPageIndex')
+export const filterList = createAction('employeeList/filterList')
+export const setListToDisplay = createAction('employeeList/setListToDisplay')
+export const setIsEmployeeOrdered = createAction('employeeList/setIsEmployeeOrdered')
 export const orderEmployeeByTableTitles = createAction('employeeList/orderEmployeeByTableTitles')
 export const sortEmployeeList = createAction('employeeList/sorting', (string, type, direction) => {
     return {
@@ -36,7 +41,7 @@ export const sortEmployeeList = createAction('employeeList/sorting', (string, ty
 export const sortArrayByAscendingOrder =  ((array, string) => {
     const property =  string.value
     const type = string.type
-   // console.log(array)
+  // console.log(array)
     array.sort((a, b) => {
        // console.log(a[string])
        // console.log(b[string])
@@ -76,7 +81,6 @@ const orderObjectBasedOnArray = (base, employee) => {
     sortArrayBasedOnAnotherArray(base, array2)
     const sortedObject = array2.reduce((accumulator, key) => {
         accumulator[key] = employee[key];
-    
         return accumulator;
     }, {});
     return sortedObject
@@ -95,32 +99,62 @@ export default createReducer(initialState, builder => builder
     .addCase(initTable, (draft, action) => {
         const tableLength = action.payload
         draft.table['length'] = tableLength
-        draft.table.nbOfPages = Math.ceil(draft.list.length / tableLength)
+        draft.table.nbOfPages = Math.ceil(draft.listToDisplay.length / tableLength)
         draft.table.indexOfCurrentPage = 0
         draft.table.firstIndexToSlice = 0
-        draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * tableLength <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * tableLength - 1) : (draft.list.length - 1)
+        draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * tableLength <= (draft.listToDisplay.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * tableLength - 1) : (draft.listToDisplay.length - 1)
+        return
+    })
+    .addCase(setTable, (draft) => {
+        console.log('hello', draft.list)
+        draft.table.nbOfPages = Math.ceil(draft.listToDisplay.length / draft.table['length'])
+        draft.table.indexOfCurrentPage = 0
+        draft.table.firstIndexToSlice = 0
+        draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.listToDisplay.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * draft.table['length'] - 1) : (draft.listToDisplay.length - 1)
+        return
     })
     .addCase(moveToPageIndex, (draft, action) => {
         const index = action.payload
         draft.table.indexOfCurrentPage = index
         draft.table.firstIndexToSlice = index * draft.table['length']
-        draft.table.lastIndexToSlice = (1 + index) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + index) * draft.table['length'] - 1) : (draft.list.length - 1)
+        draft.table.lastIndexToSlice = (1 + index) * draft.table['length'] <= (draft.listToDisplay.length - 1) ? ((1 + index) * draft.table['length'] - 1) : (draft.listToDisplay.length - 1)
+        return
+    })
+    .addCase(filterList, (draft, action) => {
+        const stringToTest = action.payload
+        const newRegExp = new RegExp(stringToTest, 'gi')
+        draft.listToDisplay = draft.list.filter((el) => newRegExp.test(Object.values(el).toString().toLocaleLowerCase()))
+        return
+    })
+    .addCase(setListToDisplay, (draft, action) => {
+        const listToDisplay = action.payload ? action.payload : draft.list
+     //  console.log(listToDisplay)
+        draft.listToDisplay = listToDisplay
+        //console.log(listToDisplay.length )
+      //  draft.table.nbOfPages = Math.ceil(draft.listToDisplay.length / draft.table['length'])
+       // draft.table.indexOfCurrentPage = 0
+      //  draft.table.firstIndexToSlice = 0
+      //  draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * draft.table['length'] - 1) : (draft.list.length - 1)
+        return
     })
     .addCase(orderEmployeeByTableTitles, (draft) => {
         draft.list = draft.list.map((employee) => orderObjectBasedOnArray(orderOfTableTitles, employee))
         draft.isEmployeeOrdered = true
         return
     })
+    .addCase(setIsEmployeeOrdered, (draft) => {
+        draft.isEmployeeOrdered = !draft.isEmployeeOrdered
+    } )
     .addCase(sortEmployeeList, (draft, action) => {
         const direction = action.payload.direction
         const string = action.payload.string
             switch (direction) {
                 case 'up':
-                    draft.list = sortArrayByAscendingOrder(draft.list, string);
+                    draft.listToDisplay = sortArrayByAscendingOrder(draft.listToDisplay, string);
                 break;
 
                 case 'down':
-                    draft.list = sortArrayByDescendingOrder(draft.list, string);
+                    draft.listToDisplay = sortArrayByDescendingOrder(draft.listToDisplay, string);
                 break;
                 default:
                 break;

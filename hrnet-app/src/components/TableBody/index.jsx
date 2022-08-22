@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
 import TableBodyRow from '../TableBodyRow'
 import './TableBody.css'
@@ -6,7 +6,8 @@ import './TableBody.css'
 
 function TableBody () {
 
-    const employeeList = useSelector(selectEmployeeList).list
+    const employeeList = useSelector(selectEmployeeList).listToDisplay
+    console.log('listInTableBody', employeeList)
     const employeeTable = useSelector(selectEmployeeList).table
     const indexOfCurrentPage = employeeTable.indexOfCurrentPage    
     const firstIndex = employeeTable.firstIndexToSlice

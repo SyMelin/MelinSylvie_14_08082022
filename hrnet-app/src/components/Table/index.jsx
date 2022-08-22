@@ -3,7 +3,8 @@ import TableBody from '../TableBody'
 import './Table.css'
 import { camelize } from '../../utils/utils'
 
-function Table({ list }) {
+function Table() {
+
 
     //list = employeList.slice(indexMin, indexMax)
 

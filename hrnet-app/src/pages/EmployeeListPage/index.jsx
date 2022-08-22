@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { initTable, orderEmployeeByTableTitles } from '../../utils/features/employeeList'
+import { initTable, orderEmployeeByTableTitles, setListToDisplay, setTable, filterList } from '../../utils/features/employeeList'
 import TableFeatureLengthSelect from '../../components/TableFeatureLengthSelect'
 import TableFeatureFilter from '../../components/TableFeatureFilter'
 import TableFeatureInfo from '../../components/TableFeatureInfo'
@@ -9,6 +9,8 @@ import TableFeaturePaginate from '../../components/TableFeaturePaginate'
 import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
+
+import {employeeListData} from '../../mockedData'
 
 
 export const orderOfTableTitles = [
@@ -33,16 +35,14 @@ function EmployeeListPage() {
     })
 
     useEffect (() => {
-        const tableLength = document.getElementById('employeeTable-lengthSelect').value
-        dispatch(initTable(tableLength))
         if (!isEmployeeOrdered) {
             dispatch(orderEmployeeByTableTitles())
         }
-        return
+        const tableLength = document.getElementById('employeeTable-lengthSelect').value
+        dispatch(setListToDisplay())
+        dispatch(initTable(tableLength))
     }, [])
    
-    const employeeList = useSelector(selectEmployeeList).list
-
     return (
         <main>
             <section className="container">
@@ -52,7 +52,7 @@ function EmployeeListPage() {
                         <TableFeatureLengthSelect />
                         <TableFeatureFilter />
                     </div>
-                    <Table list={employeeList} />
+                    <Table />
                     <div className="table-features">
                         <TableFeatureInfo />
                         <TableFeaturePaginate />

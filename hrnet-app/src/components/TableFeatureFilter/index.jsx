@@ -1,6 +1,11 @@
+import { useDispatch } from 'react-redux'
+import { filterList, setTable } from '../../utils/features/employeeList'
 import './TableFeatureFilter.css'
 
 function TableFeatureFilter() {
+
+    const dispatch = useDispatch()
+
     return (
         <div className="table-features__filter" id="employee-table__filter">
             <label>
@@ -10,6 +15,11 @@ function TableFeatureFilter() {
                     className=""
                     placeholder=""
                     aria-controls="employee-table"
+                    onChange={(e) => {
+                        dispatch(filterList(e.target.value))
+                        dispatch(setTable())
+                    }
+                    }
                 />
             </label>
         </div>
