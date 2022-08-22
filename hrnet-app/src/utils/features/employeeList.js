@@ -5,6 +5,9 @@ import { camelize } from '../utils'
 const initialState = {
     list: [],
     isEmployeeOrdered: false,
+    listToDisplay: [],
+    listNotDisplayed: [],
+    filterValue: '',
     table: {
         length: 10,
         nbOfPages: 1,
@@ -12,7 +15,6 @@ const initialState = {
         firstIndexToSlice: 0,
         lastIndexToSlice: 0,
     },
-    listToDisplay: [],
 }
 
 
@@ -22,7 +24,9 @@ export const initTable = createAction('employeeList/initTable')
 export const setTable = createAction('employeeList/setTable')
 export const moveToPageIndex = createAction('employeeList/moveToPageIndex')
 export const filterList = createAction('employeeList/filterList')
+export const saveFilterValue = createAction('employeeList/saveFilterValue')
 export const setListToDisplay = createAction('employeeList/setListToDisplay')
+export const setListNotDisplayed = createAction('employeeList/setListNotDisplayed')
 export const setIsEmployeeOrdered = createAction('employeeList/setIsEmployeeOrdered')
 export const orderEmployeeByTableTitles = createAction('employeeList/orderEmployeeByTableTitles')
 export const sortEmployeeList = createAction('employeeList/sorting', (string, type, direction) => {
@@ -68,8 +72,6 @@ export const sortArrayByDescendingOrder = ((array, string) => {
     return array
 })
 
-
-
 const sortArrayBasedOnAnotherArray = (arr1, arr2) => {
     arr2.sort((a, b) => {
         return arr1.indexOf(a) - arr1.indexOf(b);
@@ -106,7 +108,6 @@ export default createReducer(initialState, builder => builder
         return
     })
     .addCase(setTable, (draft) => {
-        console.log('hello', draft.list)
         draft.table.nbOfPages = Math.ceil(draft.listToDisplay.length / draft.table['length'])
         draft.table.indexOfCurrentPage = 0
         draft.table.firstIndexToSlice = 0
@@ -122,21 +123,32 @@ export default createReducer(initialState, builder => builder
     })
     .addCase(filterList, (draft, action) => {
         const stringToTest = action.payload
-        const newRegExp = new RegExp(stringToTest, 'gi')
-        draft.listToDisplay = draft.list.filter((el) => newRegExp.test(Object.values(el).toString().toLocaleLowerCase()))
+        const newRegExp = new RegExp(stringToTest)
+        if (stringToTest.length > draft.filterValue.length) {
+            const [pass, fail] = draft.listToDisplay.reduce(([pass, fail], el) => (newRegExp.test(Object.values(el).toString().toLocaleLowerCase()) ? [[...pass, el], fail] : [pass, [...fail, el]]), [[], []])
+            draft.listToDisplay = pass
+            draft.listNotDisplayed = draft.listNotDisplayed.concat(fail)
+        } else {
+            const [pass, fail] = draft.listNotDisplayed.reduce(([pass, fail], el) => (newRegExp.test(Object.values(el).toString().toLocaleLowerCase()) ? [[...pass, el], fail] : [pass, [...fail, el]]), [[], []])
+            draft.listToDisplay = draft.listToDisplay.concat(pass)
+            draft.listNotDisplayed = fail
+        }
         return
+    })
+    .addCase(saveFilterValue, (draft, action) => {
+        draft.filterValue = action.payload
     })
     .addCase(setListToDisplay, (draft, action) => {
         const listToDisplay = action.payload ? action.payload : draft.list
-     //  console.log(listToDisplay)
         draft.listToDisplay = listToDisplay
-        //console.log(listToDisplay.length )
-      //  draft.table.nbOfPages = Math.ceil(draft.listToDisplay.length / draft.table['length'])
-       // draft.table.indexOfCurrentPage = 0
-      //  draft.table.firstIndexToSlice = 0
-      //  draft.table.lastIndexToSlice = (1 + draft.table.indexOfCurrentPage) * draft.table['length'] <= (draft.list.length - 1) ? ((1 + draft.table.indexOfCurrentPage) * draft.table['length'] - 1) : (draft.list.length - 1)
         return
     })
+    
+    .addCase(setListNotDisplayed, (draft, action) => {
+        const listNotDisplayed = action.payload ? action.payload : []
+        draft.listNotDisplayed = listNotDisplayed
+    })
+
     .addCase(orderEmployeeByTableTitles, (draft) => {
         draft.list = draft.list.map((employee) => orderObjectBasedOnArray(orderOfTableTitles, employee))
         draft.isEmployeeOrdered = true
@@ -144,6 +156,7 @@ export default createReducer(initialState, builder => builder
     })
     .addCase(setIsEmployeeOrdered, (draft) => {
         draft.isEmployeeOrdered = !draft.isEmployeeOrdered
+        return
     } )
     .addCase(sortEmployeeList, (draft, action) => {
         const direction = action.payload.direction

@@ -5,9 +5,6 @@ import { camelize } from '../../utils/utils'
 
 function Table() {
 
-
-    //list = employeList.slice(indexMin, indexMax)
-
     const columnTitles = [
         {
             title: 'First Name',

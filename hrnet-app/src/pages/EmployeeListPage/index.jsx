@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { initTable, orderEmployeeByTableTitles, setListToDisplay, setTable, filterList } from '../../utils/features/employeeList'
+import { initTable, orderEmployeeByTableTitles, setListToDisplay } from '../../utils/features/employeeList'
 import TableFeatureLengthSelect from '../../components/TableFeatureLengthSelect'
 import TableFeatureFilter from '../../components/TableFeatureFilter'
 import TableFeatureInfo from '../../components/TableFeatureInfo'
@@ -10,7 +10,7 @@ import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
 
-import {employeeListData} from '../../mockedData'
+//import {employeeListData} from '../../mockedData'
 
 
 export const orderOfTableTitles = [

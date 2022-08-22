@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { filterList, setTable } from '../../utils/features/employeeList'
+import { saveFilterValue, filterList, setTable } from '../../utils/features/employeeList'
 import './TableFeatureFilter.css'
 
 function TableFeatureFilter() {
@@ -17,6 +17,7 @@ function TableFeatureFilter() {
                     aria-controls="employee-table"
                     onChange={(e) => {
                         dispatch(filterList(e.target.value))
+                        dispatch(saveFilterValue(e.target.value))
                         dispatch(setTable())
                     }
                     }
