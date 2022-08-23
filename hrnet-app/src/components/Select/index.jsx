@@ -3,23 +3,23 @@ import { setInputValue } from '../../utils/features/createEmployeeForm'
 import SelectOption from '../SelectOption'
 import './Select.css'
 
-function Select({ id, children, name, optionsList }) {
+
+function Select({ select }) {
 
     const dispatch = useDispatch()
 
     return (
         <div className="input-wrapper">
-            <label htmlFor={id}>{children}</label>
+            <label htmlFor={select.id}>{select.children}</label>
             <select
-                key={`${id}Select`}
-                name={name}
-                id={id}
+                name={select.name}
+                id={select.id}
                 required
-                onChange={(e) => {dispatch(setInputValue(id, e.target.value))}}
+                onChange={(e) => {dispatch(setInputValue(select.id, e.target.value))}}
             >
-                {optionsList.map((option, index) => (
+                { select.optionsList.map((option, index) => (
                     <SelectOption
-                        key={`${id}SelectOption-${index}`}
+                        key={`${select.id}SelectOption-${index}`}
                         optionText={option.name}
                         optionValue={option.value ? option.value : null}
                     />

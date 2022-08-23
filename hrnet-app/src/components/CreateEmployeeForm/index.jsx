@@ -1,30 +1,35 @@
 import Input from '../Input'
 import Fieldset from '../Fieldset'
-import { fieldsetInputs } from '../../utils/constantes/fieldsetInputs'
+//import { fieldsetInputs } from '../../utils/constantes/fieldsetInputs'
 import Select from '../Select'
-import { departments } from '../../utils/constantes/departmentSelectOptionsList'
 import './CreateEmployeeForm.css'
 
-function CreateEmployeeForm({ formInputs }) {
+
+function CreateEmployeeForm({ formFields }) {
 
     return (
         <form
             action="#"
             id="create-employee"
         >
-            {formInputs.map((input, index) => 
-                <Input
-                    key={`input-${index}`}
-                    input={input}
-                />)}
-            <Fieldset fieldsetInputs={fieldsetInputs} />
-            <Select
-                key={`department-select`}
-                id="department"
-                children="Department"
-                name="department"
-                optionsList={departments}
-            />
+            { formFields.map((field, index) => (
+                field.input
+                ? <Input
+                    key={`formFields-input-${index}`}
+                    input={field.input}
+                />
+                : field.select
+                    ? <Select
+                        key={`formFields-${field.select.id}Select`}
+                        select={field.select}
+                    />
+                    : field.fieldset
+                        ? <Fieldset
+                            key={`formFields-fieldset-${index}`}
+                            fieldsetFields={field.fieldset}
+                        />
+                        : null
+            ))}
         </ form>
     )
 }

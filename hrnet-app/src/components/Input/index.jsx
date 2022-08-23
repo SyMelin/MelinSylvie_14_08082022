@@ -26,7 +26,7 @@ function Input ({ input }) {
                 required
                 onChange={(e) => {
                     //console.log(e.target)
-                    dispatch(setInputValue(input.id, e.target.value))
+                    dispatch(setInputValue(input.id, e.target.value, input.type))
                     dispatch(setInputError(input.id, e.target.checkValidity()))
                 }}   
             />

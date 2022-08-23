@@ -13,8 +13,15 @@ const initialState = {
     },
 }
 
+// From date 'yyyy-mm-dd' to 'mm/dd/yyyy'
+const formatDate = (date) => {
+   const array = date.split('-')
+   return [array[1], array[2], array[0]].join('/')
+}
+
 export const checkFormValidity = createAction('createEmployeeForm/checkValidity')
 export const createFormEntry = createAction('createEmployeeForm/formEntry')
+export const setFormError = createAction('createEmployeeForm/setFormError')
 export const setInputError = createAction('createEmployeeForm/setInputError', (formEntry, validity) => {
     return {
         payload: {
@@ -23,12 +30,12 @@ export const setInputError = createAction('createEmployeeForm/setInputError', (f
         }
     }
 })
-export const setFormError = createAction('createEmployeeForm/setFormError')
-export const setInputValue = createAction('createEmployeeForm/setInputValue', (formEntry, value) => {
+export const setInputValue = createAction('createEmployeeForm/setInputValue', (formEntry, value, type) => {
     return {
         payload: {
             formEntry: camelize(formEntry),
             value: value,
+            type: type,
         }
     }
 })
@@ -43,8 +50,7 @@ export function saveEmployee() {
          } else {
             dispatch(addEmployee(createEmployeeForm.formData))
             dispatch(setModalState())
-         }
-         
+         }  
      }
  }
 
@@ -59,7 +65,7 @@ export default createReducer(initialState, builder => builder
         draft.formData[action.payload] = ""
     })
     .addCase(setInputValue, (draft, action) => {
-        draft.formData[action.payload.formEntry] = action.payload.value
+        draft.formData[action.payload.formEntry] = action.payload.type === 'date' ? formatDate(action.payload.value) : action.payload.value
         return
     })
     .addCase(setInputError, (draft, action) => {

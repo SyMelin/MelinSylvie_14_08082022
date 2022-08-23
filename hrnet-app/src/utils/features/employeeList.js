@@ -45,17 +45,13 @@ export const sortEmployeeList = createAction('employeeList/sorting', (string, ty
 export const sortArrayByAscendingOrder =  ((array, string) => {
     const property =  string.value
     const type = string.type
-  // console.log(array)
     array.sort((a, b) => {
-       // console.log(a[string])
-       // console.log(b[string])
         if (type === 'letterString') {
             return a[property].localeCompare(b[property]);
         } else {
             return (b[property] < a[property]) ? 1 : -1;
         } 
     });
-    //console.log(array)
     return array
 })
   

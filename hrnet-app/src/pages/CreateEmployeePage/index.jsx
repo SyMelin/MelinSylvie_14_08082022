@@ -4,7 +4,7 @@ import { selectEmployeeList, selectModal } from '../../utils/selectors'
 import CustomLink from '../../components/CustomLink'
 import CreateEmployeeForm from '../../components/CreateEmployeeForm'
 import CreateEmployeeButton from '../../components/CreateEmployeeButton'
-import { createEmployeeFormInputs } from '../../utils/constantes/createEmployeeFormInputs'
+import { createEmployeeFormFields } from '../../utils/constantes/createEmployeeFormFields'
 import { setEmployeeList } from '../../utils/features/employeeList'
 import Modal from '../../components/Modal'
 import './CreateEmployeePage.css'
@@ -39,7 +39,7 @@ function CreateEmployeePage () {
                     children='View Current Employees'
                 />
                 <h2 className="title">Create Employee</h2>
-                <CreateEmployeeForm formInputs={createEmployeeFormInputs} />
+                <CreateEmployeeForm formFields={createEmployeeFormFields} />
                 <CreateEmployeeButton />
             </section>
             { modalIsActive
