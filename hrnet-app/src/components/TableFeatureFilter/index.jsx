@@ -19,8 +19,7 @@ function TableFeatureFilter() {
                         dispatch(filterList(e.target.value))
                         dispatch(saveFilterValue(e.target.value))
                         dispatch(setTable())
-                    }
-                    }
+                    }}
                 />
             </label>
         </div>
