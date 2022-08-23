@@ -18,6 +18,7 @@ function Fieldset({ fieldsetInputs }) {
     states.forEach((state) => {
         newStates.push(new SelectOption(state.name, state.abbreviation))
     })
+    
     return (
         <fieldset className="address">
             <legend>Address</legend>

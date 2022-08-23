@@ -91,7 +91,8 @@ const orderObjectBasedOnArray = (base, employee) => {
 
 export default createReducer(initialState, builder => builder
     .addCase(addEmployee, (draft, action) => {
-        draft.list.push(action.payload)
+        const newEmployee = orderObjectBasedOnArray(orderOfTableTitles, action.payload)
+        draft.list.push(newEmployee)
         return
     })
     .addCase(setEmployeeList, (draft, action) => {
@@ -137,18 +138,18 @@ export default createReducer(initialState, builder => builder
     })
     .addCase(saveFilterValue, (draft, action) => {
         draft.filterValue = action.payload
+        return
     })
     .addCase(setListToDisplay, (draft, action) => {
         const listToDisplay = action.payload ? action.payload : draft.list
         draft.listToDisplay = listToDisplay
         return
     })
-    
     .addCase(setListNotDisplayed, (draft, action) => {
         const listNotDisplayed = action.payload ? action.payload : []
         draft.listNotDisplayed = listNotDisplayed
+        return
     })
-
     .addCase(orderEmployeeByTableTitles, (draft) => {
         draft.list = draft.list.map((employee) => orderObjectBasedOnArray(orderOfTableTitles, employee))
         draft.isEmployeeOrdered = true

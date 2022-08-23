@@ -4,6 +4,16 @@ import { setModalState } from '../../utils/features/modal'
 import { setFormError } from '../../utils/features/createEmployeeForm'
 import './Modal.css'
 
+
+function resetForm() {
+    const form = document.getElementById('create-employee')
+    const formInputs = Array.from(form.getElementsByTagName('input'))
+    const formSelects = Array.from(form.getElementsByTagName('select'))
+    const formFields =  formInputs.concat(formSelects)
+    formFields.map((field) => document.getElementById(field.id).value = '')
+}
+
+
 function Modal({ id, children }) {
     const dispatch = useDispatch()
 
@@ -31,6 +41,7 @@ function Modal({ id, children }) {
                         e.preventDefault()
                         dispatch(setModalState())
                         dispatch(setFormError())
+                        resetForm()
                     }}
                 >
                     x
