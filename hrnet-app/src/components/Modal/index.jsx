@@ -5,7 +5,7 @@ import { setFormError } from '../../utils/features/createEmployeeForm'
 import './Modal.css'
 
 
-function resetForm() {
+export function resetForm() {
     const form = document.getElementById('create-employee')
     const formInputs = Array.from(form.getElementsByTagName('input'))
     const formSelects = Array.from(form.getElementsByTagName('select'))
@@ -14,25 +14,44 @@ function resetForm() {
 }
 
 
-function Modal({ id, children }) {
+function Modal({
+        id,
+        children,
+        escapeClose= true,  // Allows the user to close the modal by pressing `ESC`
+        clickClose= true,   // Allows the user to close the modal by clicking the overlay
+        className="modal",  // CSS class added to the element being displayed in the modal.
+        handleCloseModal= null,
+    }) {
     const dispatch = useDispatch()
+
+    function closeModal() {
+        dispatch(setModalState())
+        handleCloseModal()
+    }
+
 
     const handleKeyPress = (e) => {
         if (e.key === "Escape") {
-            dispatch(setModalState())
+           closeModal()
         }
     }
 
     useEffect(() => {
-        window.addEventListener("keydown", handleKeyPress);
+        if (escapeClose) {
+            window.addEventListener("keydown", handleKeyPress);
     
-        return () => {
-          window.removeEventListener("keydown", handleKeyPress);
+            return () => {
+            window.removeEventListener("keydown", handleKeyPress);
+            }
         }
-      }, [])
+    }, [])
     
     return (
-        <div id={id} className='modal'>
+        <div
+            id={id}
+            className={className}
+            onClick={clickClose ? () => dispatch(setModalState()) : null}
+        >
             <div className='modal-content'>
                 <button
                     type='button'

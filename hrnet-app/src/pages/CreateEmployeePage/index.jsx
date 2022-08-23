@@ -6,6 +6,8 @@ import CreateEmployeeForm from '../../components/CreateEmployeeForm'
 import CreateEmployeeButton from '../../components/CreateEmployeeButton'
 import { createEmployeeFormFields } from '../../utils/constantes/createEmployeeFormFields'
 import { setEmployeeList } from '../../utils/features/employeeList'
+import { setFormError } from '../../utils/features/createEmployeeForm'
+import { resetForm } from '../../components/Modal'
 import Modal from '../../components/Modal'
 import './CreateEmployeePage.css'
 
@@ -46,6 +48,10 @@ function CreateEmployeePage () {
             ? <Modal
                 id="confirmation"
                 children="Employee Created!"
+                //escapeClose={true}
+                //clickClose={true}
+                //modalClass="modal"
+              //  handleCloseModal={() =>  {dispatch(setFormError())}}
                 />
             : null
             }
