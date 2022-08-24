@@ -7,11 +7,19 @@ import CreateEmployeeButton from '../../components/CreateEmployeeButton'
 import { createEmployeeFormFields } from '../../utils/constantes/createEmployeeFormFields'
 import { setEmployeeList } from '../../utils/features/employeeList'
 import { setFormError } from '../../utils/features/createEmployeeForm'
-import { resetForm } from '../../components/Modal'
+//import { resetForm } from '../../components/Modal'
 import Modal from '../../components/Modal'
 import './CreateEmployeePage.css'
 
 import { employeeListData } from '../../mockedData'
+
+export function resetForm() {
+    const form = document.getElementById('create-employee')
+    const formInputs = Array.from(form.getElementsByTagName('input'))
+    const formSelects = Array.from(form.getElementsByTagName('select'))
+    const formFields =  formInputs.concat(formSelects)
+    formFields.map((field) => document.getElementById(field.id).value = '')
+}
 
 function CreateEmployeePage () {
 
@@ -31,6 +39,12 @@ function CreateEmployeePage () {
             dispatch(setEmployeeList(employeeListData))
           }
     }, [])
+
+    const closeModal = () => {
+        console.log('test')
+        dispatch(setFormError())
+        resetForm()
+    }
           
     
     return (
@@ -51,7 +65,7 @@ function CreateEmployeePage () {
                 //escapeClose={true}
                 //clickClose={true}
                 //modalClass="modal"
-              //  handleCloseModal={() =>  {dispatch(setFormError())}}
+                handleCloseModal={closeModal}
                 />
             : null
             }

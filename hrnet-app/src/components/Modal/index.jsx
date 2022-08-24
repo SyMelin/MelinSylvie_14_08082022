@@ -5,13 +5,7 @@ import { setFormError } from '../../utils/features/createEmployeeForm'
 import './Modal.css'
 
 
-export function resetForm() {
-    const form = document.getElementById('create-employee')
-    const formInputs = Array.from(form.getElementsByTagName('input'))
-    const formSelects = Array.from(form.getElementsByTagName('select'))
-    const formFields =  formInputs.concat(formSelects)
-    formFields.map((field) => document.getElementById(field.id).value = '')
-}
+
 
 
 function Modal({
@@ -50,17 +44,17 @@ function Modal({
         <div
             id={id}
             className={className}
-            onClick={clickClose ? () => dispatch(setModalState()) : null}
+           // onClick={clickClose ? () => closeModal() : null}
         >
             <div className='modal-content'>
                 <button
                     type='button'
                     className='modal-closeButton'
-                    onClick={(e) => {
-                        e.preventDefault()
-                        dispatch(setModalState())
-                        dispatch(setFormError())
-                        resetForm()
+                    onClick={() => {
+                        closeModal()
+                       // dispatch(setModalState())
+                       // dispatch(setFormError())
+                       // resetForm()
                     }}
                 >
                     x
