@@ -11,14 +11,23 @@ import './Modal.css'
 function Modal({
         id,
         children,
-        escapeClose= true,  // Allows the user to close the modal by pressing `ESC`
-        clickClose= true,   // Allows the user to close the modal by clicking the overlay
-        className="modal",  // CSS class added to the element being displayed in the modal.
+        escapeClose= true,      // Allows the user to close the modal by pressing `ESC`
+        clickClose= true,       // Allows the user to close the modal by clicking the overlay
+        closeText="Close",      // Text content for the close <button> tag.
+        blockerClass="modal",   // CSS class added to the overlay (blocker).
+        modalClass="modal",     // CSS class added to the element being displayed in the modal.
+        closeButtonClass="",    // Add additional class(es) to the close <button> tag.
+        showCloseButton= true,  // Shows a (X) icon/button in the top-right corner of the displayed element
+
         handleCloseModal= null,
+
+        fadeDuration= null,
+        fadeDelay= 1.0,
     }) {
+
     const dispatch = useDispatch()
 
-    function closeModal() {
+    const closeModal = () => {
         dispatch(setModalState())
         handleCloseModal()
     }
@@ -26,7 +35,7 @@ function Modal({
 
     const handleKeyPress = (e) => {
         if (e.key === "Escape") {
-           closeModal()
+           return closeModal()
         }
     }
 
@@ -43,23 +52,45 @@ function Modal({
     return (
         <div
             id={id}
-            className={className}
+            className={blockerClass}
            // onClick={clickClose ? () => closeModal() : null}
+            style={{
+                'animation': `fadeIn ${fadeDuration}ms`,
+            }}
         >
-            <div className='modal-content'>
-                <button
+            <style>
+                {`
+                    @keyframes fadeIn {
+                        0% { opacity: 0; }
+                        100% { opacity: 1; }
+                    }
+                `}
+            </style>
+            <div
+                className={modalClass}
+                style={{
+                    'animation': `hide ${fadeDuration * fadeDelay}ms, fadeInIn ${fadeDuration}ms`,
+               }}
+            >
+                <style>
+                {`
+                    @keyframes hide {
+                        0% { opacity: 0; }
+                        100% { opacity: 0; }
+                    }
+                `}
+            </style>
+                {showCloseButton
+                ? <button
                     type='button'
-                    className='modal-closeButton'
-                    onClick={() => {
-                        closeModal()
-                       // dispatch(setModalState())
-                       // dispatch(setFormError())
-                       // resetForm()
-                    }}
+                    className={`close-modal ${closeButtonClass}`}
+                    onClick={closeModal}
                 >
-                    x
+                    x {closeText}
                 </button>
-                <p>{children}</p>
+                : null
+                }  
+                {children}
             </div>
         </div>
     )

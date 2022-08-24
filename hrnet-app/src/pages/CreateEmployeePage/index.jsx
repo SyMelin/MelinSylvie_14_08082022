@@ -45,6 +45,8 @@ function CreateEmployeePage () {
         dispatch(setFormError())
         resetForm()
     }
+
+    const modalContentChildren = <p>Employee Created!</p>
           
     
     return (
@@ -61,11 +63,17 @@ function CreateEmployeePage () {
             { modalIsActive
             ? <Modal
                 id="confirmation"
-                children="Employee Created!"
+                children={modalContentChildren}
                 //escapeClose={true}
                 //clickClose={true}
-                //modalClass="modal"
+                //closeText="Close Modal"
+                blockerClass='modal'
+                modalClass="modal-content"
                 handleCloseModal={closeModal}
+                closeButtonClass="modal-closeButton"
+               // showCloseButton={true}
+                fadeDuration={10000}
+                fadeDelay={0.8}
                 />
             : null
             }
