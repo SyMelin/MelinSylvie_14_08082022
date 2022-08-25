@@ -64,7 +64,7 @@ function CreateEmployeePage () {
                 id="confirmation"
                 children={modalContentChildren}
                 //escapeClose={true}
-                //clickClose={true}
+               // clickClose={false}
                 //closeText="Close Modal"
                 blockerClass='modal'
                 modalClass="modal-content"

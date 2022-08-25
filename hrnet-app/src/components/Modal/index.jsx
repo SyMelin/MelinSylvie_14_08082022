@@ -68,7 +68,7 @@ function Modal({
         <div
             id={id}
             className={`${blockerClass} fadingIn`}
-           // onClick={clickClose ? () => closeModal() : null}
+            onClick={clickClose ? closeModal : null}
         >
             <style>
                 {`  
@@ -105,7 +105,7 @@ function Modal({
                     ? <button
                         type='button'
                         className={`close-modal ${closeButtonClass}`}
-                        onClick={closeModal}
+                        onClick={clickClose ? null : closeModal}
                     >
                         x {closeText}
                     </button>
