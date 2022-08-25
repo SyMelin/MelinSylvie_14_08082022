@@ -72,8 +72,8 @@ function CreateEmployeePage () {
                 handleCloseModal={closeModal}
                 closeButtonClass="modal-closeButton"
                // showCloseButton={true}
-                fadeDuration={10000}
-                fadeDelay={0.8}
+              //  fadeDuration={1000} //test with 1000
+               // fadeDelay={1.5} //test with 1.5
                 />
             : null
             }

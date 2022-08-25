@@ -55,12 +55,12 @@ function Modal({
             className={blockerClass}
            // onClick={clickClose ? () => closeModal() : null}
             style={{
-                'animation': `fadeIn ${fadeDuration}ms`,
+                'animation': `blockerFadeIn ${fadeDuration}ms`,
             }}
         >
             <style>
                 {`
-                    @keyframes fadeIn {
+                    @keyframes blockerFadeIn {
                         0% { opacity: 0; }
                         100% { opacity: 1; }
                     }
@@ -69,14 +69,15 @@ function Modal({
             <div
                 className={modalClass}
                 style={{
-                    'animation': `hide ${fadeDuration * fadeDelay}ms, fadeInIn ${fadeDuration}ms`,
+                    'animation': `modalFadeIn ${fadeDuration * (1 + fadeDelay)}ms` ,
                }}
             >
                 <style>
                 {`
-                    @keyframes hide {
+                    @keyframes modalFadeIn {
                         0% { opacity: 0; }
-                        100% { opacity: 0; }
+                        ${fadeDelay / (1 + fadeDelay) * 100}% { opacity: 0; }
+                        100% { opacity: 1; }
                     }
                 `}
             </style>
