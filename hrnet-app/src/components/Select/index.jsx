@@ -1,12 +1,18 @@
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setInputValue } from '../../utils/features/createEmployeeForm'
+import { setFieldValue, setFieldError } from '../../utils/features/createEmployeeForm'
 import SelectOption from '../SelectOption'
+import { camelize } from '../../utils/utils'
 import './Select.css'
 
 
 function Select({ select }) {
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setFieldError(select.id, null))
+    }, [])
 
     return (
         <div className="input-wrapper">
@@ -15,7 +21,10 @@ function Select({ select }) {
                 name={select.name}
                 id={select.id}
                 required
-                onChange={(e) => {dispatch(setInputValue(select.id, e.target.value))}}
+                onChange={(e) => {
+                    dispatch(setFieldValue(select.id, e.target.value, 'select'))
+                    dispatch(setFieldError(select.id, e.target.checkValidity()))
+                }}
             >
                 { select.optionsList.map((option, index) => (
                     <SelectOption
