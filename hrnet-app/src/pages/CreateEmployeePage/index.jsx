@@ -41,7 +41,6 @@ function CreateEmployeePage () {
     }, [])
 
     const closeModal = () => {
-        console.log('test')
         dispatch(setFormError())
         resetForm()
     }
@@ -72,8 +71,8 @@ function CreateEmployeePage () {
                 handleCloseModal={closeModal}
                 closeButtonClass="modal-closeButton"
                // showCloseButton={true}
-              //  fadeDuration={1000} //test with 1000
-               // fadeDelay={1.5} //test with 1.5
+                fadeDuration={1000} //test with 1000
+                fadeDelay={1.5} //test with 1.5
                 />
             : null
             }

@@ -21,14 +21,27 @@ function Modal({
 
         handleCloseModal= null,
 
-        fadeDuration= null,
-        fadeDelay= 1.0,
+        fadeDuration= null,     // Number of milliseconds the fade transition takes (null means no transition)
+        fadeDelay= 1.0,         // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
     }) {
 
     const dispatch = useDispatch()
 
+    const fadingOut = () => {
+        const blocker = document.getElementById(id)
+        blocker.classList.remove('fadingIn');
+        blocker.classList.add('fadingOut');
+        setTimeout(function() {
+          blocker.classList.remove('fadingOut');
+          blocker.classList.add('fadingIn');
+        }, fadeDuration);
+      }
+
     const closeModal = () => {
-        dispatch(setModalState())
+        fadingOut()
+        setTimeout(function() {
+            dispatch(setModalState())
+        }, fadeDuration);
         handleCloseModal()
     }
 
@@ -48,48 +61,55 @@ function Modal({
             }
         }
     }, [])
+
+   
     
     return (
         <div
             id={id}
-            className={blockerClass}
+            className={`${blockerClass} fadingIn`}
            // onClick={clickClose ? () => closeModal() : null}
-            style={{
-                'animation': `blockerFadeIn ${fadeDuration}ms`,
-            }}
         >
             <style>
-                {`
+                {`  
+                    .fadingIn {
+                        animation: blockerFadeIn ${fadeDuration}ms;
+                    }
+
+                    .fadingOut {
+                        animation: blockerFadeOut ${fadeDuration}ms;
+                    }
+
                     @keyframes blockerFadeIn {
                         0% { opacity: 0; }
                         100% { opacity: 1; }
                     }
-                `}
-            </style>
-            <div
-                className={modalClass}
-                style={{
-                    'animation': `modalFadeIn ${fadeDuration * (1 + fadeDelay)}ms` ,
-               }}
-            >
-                <style>
-                {`
-                    @keyframes modalFadeIn {
-                        0% { opacity: 0; }
-                        ${fadeDelay / (1 + fadeDelay) * 100}% { opacity: 0; }
-                        100% { opacity: 1; }
+
+                    @keyframes blockerFadeOut {
+                        0% { opacity: 1; }
+                        100% { opacity: 0; }
                     }
                 `}
             </style>
+            <div className={modalClass}>
+                <style>
+                    {`
+                        @keyframes modalFadeIn {
+                            0% { opacity: 0; }
+                            ${fadeDelay / (1 + fadeDelay) * 100}% { opacity: 0; }
+                            100% { opacity: 1; }
+                        }
+                    `}
+                </style>
                 {showCloseButton
-                ? <button
-                    type='button'
-                    className={`close-modal ${closeButtonClass}`}
-                    onClick={closeModal}
-                >
-                    x {closeText}
-                </button>
-                : null
+                    ? <button
+                        type='button'
+                        className={`close-modal ${closeButtonClass}`}
+                        onClick={closeModal}
+                    >
+                        x {closeText}
+                    </button>
+                    : null
                 }  
                 {children}
             </div>
