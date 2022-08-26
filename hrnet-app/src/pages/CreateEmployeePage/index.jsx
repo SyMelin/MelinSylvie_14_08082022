@@ -1,32 +1,22 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList, selectModal } from '../../utils/selectors'
+import { setEmployeeList } from '../../utils/features/employeeList'
 import CustomLink from '../../components/CustomLink'
 import CreateEmployeeForm from '../../components/CreateEmployeeForm'
 import CreateEmployeeButton from '../../components/CreateEmployeeButton'
 import { createEmployeeFormFields } from '../../utils/constantes/createEmployeeFormFields'
-import { setEmployeeList } from '../../utils/features/employeeList'
-import { setFormError, resetFormData, initFieldError } from '../../utils/features/createEmployeeForm'
-//import { resetForm } from '../../components/Modal'
 import Modal from '../../components/Modal'
+import { employeeListData } from '../../mockedData'
 import './CreateEmployeePage.css'
 
-import { employeeListData } from '../../mockedData'
 
-export function resetForm() {
-    const form = document.getElementById('create-employee')
-    const formInputs = Array.from(form.getElementsByTagName('input'))
-    const formSelects = Array.from(form.getElementsByTagName('select'))
-    const formFields =  formInputs.concat(formSelects)
-    formFields.map((field) => document.getElementById(field.id).value = '')
-}
 
 function CreateEmployeePage () {
 
     const dispatch = useDispatch()
     const employeeList = useSelector(selectEmployeeList).list
-    const modal = useSelector(selectModal)
-    const modalIsActive = modal.modalIsActive
+    const modalIsActive = useSelector(selectModal).modalIsActive
 
     useEffect(() => {
         document.title = 'HRnet - Create Employee'
@@ -39,15 +29,6 @@ function CreateEmployeePage () {
             dispatch(setEmployeeList(employeeListData))
           }
     }, [])
-
-    const closeModal = () => {
-        dispatch(setFormError())
-        dispatch(initFieldError())
-        resetForm()
-    }
-
-    const modalContentChildren = <p>Employee Created!</p>
-          
     
     return (
         <main>
@@ -61,20 +42,7 @@ function CreateEmployeePage () {
                 <CreateEmployeeButton />
             </section>
             { modalIsActive
-            ? <Modal
-                id="confirmation"
-                children={modalContentChildren}
-                //escapeClose={true}
-               // clickClose={false}
-                //closeText="Close Modal"
-                blockerClass='modal'
-                modalClass="modal-content"
-                handleCloseModal={closeModal}
-                closeButtonClass="modal-closeButton"
-               // showCloseButton={true}
-                fadeDuration={1000} //test with 1000
-                fadeDelay={1.5} //test with 1.5
-                />
+            ? <Modal />
             : null
             }
         </main>   

@@ -1,119 +1,46 @@
-import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setModalState } from '../../utils/features/modal'
-import { setFormError } from '../../utils/features/createEmployeeForm'
+import { setFormError, resetFormData, initFieldError } from '../../utils/features/createEmployeeForm'
+import ModalForImport from '../ModalForImport'
 import './Modal.css'
 
 
+export function resetForm() {
+    const form = document.getElementById('create-employee')
+    const formInputs = Array.from(form.getElementsByTagName('input'))
+    const formSelects = Array.from(form.getElementsByTagName('select'))
+    const formFields =  formInputs.concat(formSelects)
+    formFields.map((field) => document.getElementById(field.id).value = '')
+}
 
 
-
-function Modal({
-        id,
-        children,
-        escapeClose= true,      // Allows the user to close the modal by pressing `ESC`
-        clickClose= true,       // Allows the user to close the modal by clicking the overlay
-        closeText="Close",      // Text content for the close <button> tag.
-        blockerClass="modal",   // CSS class added to the overlay (blocker).
-        modalClass="modal",     // CSS class added to the element being displayed in the modal.
-        closeButtonClass="",    // Add additional class(es) to the close <button> tag.
-        showCloseButton= true,  // Shows a (X) icon/button in the top-right corner of the displayed element
-
-        handleCloseModal= null,
-
-        fadeDuration= null,     // Number of milliseconds the fade transition takes (null means no transition)
-        fadeDelay= 1.0,         // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
-    }) {
+function Modal() {
 
     const dispatch = useDispatch()
 
-    const fadingOut = () => {
-        const blocker = document.getElementById(id)
-        blocker.classList.remove('fadingIn');
-        blocker.classList.add('fadingOut');
-        setTimeout(function() {
-          blocker.classList.remove('fadingOut');
-          blocker.classList.add('fadingIn');
-        }, fadeDuration);
-      }
-
     const closeModal = () => {
-        fadingOut()
-        setTimeout(function() {
-            dispatch(setModalState())
-        }, fadeDuration);
-        handleCloseModal()
+        dispatch(setFormError())
+        dispatch(initFieldError())
+        resetForm()
     }
 
-
-    const handleKeyPress = (e) => {
-        if (e.key === "Escape") {
-           return closeModal()
-        }
-    }
-
-    useEffect(() => {
-        if (escapeClose) {
-            window.addEventListener("keydown", handleKeyPress);
-    
-            return () => {
-            window.removeEventListener("keydown", handleKeyPress);
-            }
-        }
-    }, [])
-
-   
+    const modalContentChildren = <p>Employee Created!</p>
     
     return (
-        <div
-            id={id}
-            className={`${blockerClass} fadingIn`}
-            onClick={clickClose ? closeModal : null}
-        >
-            <style>
-                {`  
-                    .fadingIn {
-                        animation: blockerFadeIn ${fadeDuration}ms;
-                    }
-
-                    .fadingOut {
-                        animation: blockerFadeOut ${fadeDuration}ms;
-                    }
-
-                    @keyframes blockerFadeIn {
-                        0% { opacity: 0; }
-                        100% { opacity: 1; }
-                    }
-
-                    @keyframes blockerFadeOut {
-                        0% { opacity: 1; }
-                        100% { opacity: 0; }
-                    }
-                `}
-            </style>
-            <div className={modalClass}>
-                <style>
-                    {`
-                        @keyframes modalFadeIn {
-                            0% { opacity: 0; }
-                            ${fadeDelay / (1 + fadeDelay) * 100}% { opacity: 0; }
-                            100% { opacity: 1; }
-                        }
-                    `}
-                </style>
-                {showCloseButton
-                    ? <button
-                        type='button'
-                        className={`close-modal ${closeButtonClass}`}
-                        onClick={clickClose ? null : closeModal}
-                    >
-                        x {closeText}
-                    </button>
-                    : null
-                }  
-                {children}
-            </div>
-        </div>
+        <ModalForImport
+            id="confirmation"
+            children={modalContentChildren}
+            //escapeClose={false}
+            //clickClose={false}
+            //closeText="Close Modal"
+            blockerClass='modal'
+            modalClass="modal-content"
+            handleCloseModal={closeModal}
+            closeButtonClass="modal-closeButton"
+            // showCloseButton={false}
+            fadeDuration={1000} //test with 1000
+            fadeDelay={1.5} //test with 1.5
+        />  
     )
 }
+
 export default Modal
