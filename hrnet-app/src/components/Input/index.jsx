@@ -8,44 +8,33 @@ import './Input.css'
 function Input ({ input }) {
 
     const dispatch = useDispatch()
+    const reset = useSelector(selectCreateEmployeeForm).reset
 
     useEffect(() => {
-        dispatch(setFieldError(input.id, null))
         dispatch(setFieldValue(input.id, undefined, input.type))
     }, [])
 
-    const createEmployeeFormErrorOnFields = useSelector(selectCreateEmployeeForm).error.onFields
-   // const createEmployeeFormFields = useSelector(selectCreateEmployeeForm).formFields
+    useEffect(() => {
+        console.log('reset')
+       // dispatch(setFieldValue(input.id, undefined, input.type))
+    }, [reset])
 
     return (
-        <div className={ createEmployeeFormErrorOnFields[camelize(input.id)]
-                        ? "input-wrapper errorOnField"
-                        : "input-wrapper"
-                    }
-        >
-            <label htmlFor={input.id}>{input.children}</label>
-            <input
-                id={input.id}
-                type={input.type}
-                min={input.min}
-                max={input.max}
-                placeholder={input.placeholder}
-                pattern={input.pattern}
-                value={undefined}
-                required
-                onChange={(e) => {
-                    //console.log(e.target)
-                    dispatch(setFieldValue(input.id, e.target.value, input.type))
-                    dispatch(setFieldError(input.id, e.target.checkValidity()))
-                }}   
-            />
-            { createEmployeeFormErrorOnFields[camelize(input.id)] === true
-            // createEmployeeFormFields[camelize(input.id)]
-            // ? createEmployeeFormFields[camelize(input.id)].error
-                ? <p className='input-error'>{input.errorMessage}</p>
-                : null
-            }
-        </div>
+        <input
+            id={input.id}
+            type={input.type}
+            min={input.min}
+            max={input.max}
+            placeholder={input.placeholder}
+            pattern={input.pattern}
+            value={undefined}
+            required
+            onChange={(e) => {
+                //console.log(e.target)
+                dispatch(setFieldValue(input.id, e.target.value, input.type))
+                dispatch(setFieldError(input.id, e.target.checkValidity()))
+            }}   
+        />
     )
 }
 

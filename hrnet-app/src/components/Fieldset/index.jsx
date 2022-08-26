@@ -1,5 +1,6 @@
-import Input from '../Input'
-import Select from '../Select'
+import FormField from '../FormField'
+//import Input from '../Input'
+//import Select from '../Select'
 import './Fieldset.css'
 
 function Fieldset({ fieldsetFields }) {
@@ -10,14 +11,16 @@ function Fieldset({ fieldsetFields }) {
 
             { fieldsetFields.map((field, index) => (
                 field.input
-                ? <Input
-                    key={`fieldsetFields-input-${index}`}
-                    input={field.input}
+                ? <FormField
+                    key={`fieldsetFields-formField-${index}-Input`}
+                    type='input'
+                    innerField={field.input}
                 />
                 : field.select
-                    ? <Select
-                        key={`fieldsetFields-${field.select.id}Select`}
-                        select={field.select}
+                    ? <FormField
+                        key={`fieldsetFields-formField-${index}-Select`}
+                        type='select'
+                        innerField={field.select}
                     />
                     : null
             ))}   

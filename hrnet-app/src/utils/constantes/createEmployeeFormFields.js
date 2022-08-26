@@ -66,6 +66,7 @@ export const createEmployeeFormFields = [
             children: 'State',
             name: 'State',
             optionsList: newStates,
+            errorMessage: 'Select a state',
         }},
         { input: {
             id: 'zip-code',
@@ -81,5 +82,6 @@ export const createEmployeeFormFields = [
         children: 'Department',
         name: 'department',
         optionsList: departments,
+        errorMessage: 'Select a department',
     }},
 ]
