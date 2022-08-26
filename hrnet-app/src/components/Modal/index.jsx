@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux'
-import { setFormError, resetFormData, initFieldError } from '../../utils/features/createEmployeeForm'
+import { setFormError, initFieldError, reset } from '../../utils/features/createEmployeeForm'
 import ModalForImport from '../ModalForImport'
 import './Modal.css'
 
-
+/*
 export function resetForm() {
     const form = document.getElementById('create-employee')
     const formInputs = Array.from(form.getElementsByTagName('input'))
@@ -11,6 +11,7 @@ export function resetForm() {
     const formFields =  formInputs.concat(formSelects)
     formFields.map((field) => document.getElementById(field.id).value = '')
 }
+*/
 
 
 function Modal() {
@@ -20,7 +21,8 @@ function Modal() {
     const closeModal = () => {
         dispatch(setFormError())
         dispatch(initFieldError())
-        resetForm()
+       // resetForm()
+        dispatch(reset())
     }
 
     const modalContentChildren = <p>Employee Created!</p>

@@ -12,6 +12,7 @@ const initialState = {
         onForm: true,
         onFields: {},
     },
+    reset: 0,
 }
 
 // From date 'yyyy-mm-dd' to 'mm/dd/yyyy'
@@ -23,6 +24,7 @@ const formatDate = (date) => {
 export const checkFormValidity = createAction('createEmployeeForm/checkValidity')
 export const createFormEntry = createAction('createEmployeeForm/formEntry')
 export const resetFormData = createAction('createEmployeeForm/resetFormData')
+export const reset = createAction('createEmployeeForm/reset')
 export const setFormError = createAction('createEmployeeForm/setFormError')
 export const initFieldError = createAction('createEmployeeForm/initFieldError') 
 export const setFieldError = createAction('createEmployeeForm/setFieldError', (formEntry, validity) => {
@@ -91,8 +93,15 @@ export default createReducer(initialState, builder => builder
         draft.formData[action.payload] = ""
         return
     })
+    /*
     .addCase(resetFormData, (draft) => {
         draft.formData = {}
+        return
+    })
+    */
+    .addCase(reset, (draft) => {
+        console.log('hello')
+        draft.reset = draft.reset++
         return
     })
     /*
@@ -112,6 +121,8 @@ export default createReducer(initialState, builder => builder
     })
     .addCase(initFieldError, (draft, action) => {
         Object.entries(draft.error.onFields).map(arr => draft.error.onFields[arr[0]] = null)
+        draft.reset = draft.reset + 1
+        return
     })
     .addCase(setFieldError, (draft, action) => {
         const validity = action.payload.validity

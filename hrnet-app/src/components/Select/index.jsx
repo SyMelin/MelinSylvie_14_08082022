@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCreateEmployeeForm } from '../../utils/selectors'
 import { setFieldValue, setFieldError } from '../../utils/features/createEmployeeForm'
 import SelectOption from '../SelectOption'
-import { camelize } from '../../utils/utils'
 import './Select.css'
 
 
@@ -10,9 +10,11 @@ function Select({ select }) {
 
     const dispatch = useDispatch()
 
+    const reset = useSelector(selectCreateEmployeeForm).reset
+
     useEffect(() => {
-        //dispatch(setFieldValue(input.id, undefined, input.type))
-    }, [])
+        dispatch(setFieldValue(select.id, undefined, 'select'))
+    }, [reset])
 
     return (
         <select

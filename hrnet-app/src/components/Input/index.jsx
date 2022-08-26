@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
 import { setFieldValue, setFieldError } from '../../utils/features/createEmployeeForm'
-import { camelize } from '../../utils/utils'
 import './Input.css'
 
 function Input ({ input }) {
@@ -12,11 +11,6 @@ function Input ({ input }) {
 
     useEffect(() => {
         dispatch(setFieldValue(input.id, undefined, input.type))
-    }, [])
-
-    useEffect(() => {
-        console.log('reset')
-       // dispatch(setFieldValue(input.id, undefined, input.type))
     }, [reset])
 
     return (
@@ -30,7 +24,6 @@ function Input ({ input }) {
             value={undefined}
             required
             onChange={(e) => {
-                //console.log(e.target)
                 dispatch(setFieldValue(input.id, e.target.value, input.type))
                 dispatch(setFieldError(input.id, e.target.checkValidity()))
             }}   
