@@ -35,6 +35,15 @@ export const setFieldError = createAction('createEmployeeForm/setFieldError', (f
         }
     }
 })
+export const setFieldValue = createAction('createEmployeeForm/setFieldValue', (formEntry, value, type) => {
+    return {
+        payload: {
+            formEntry: camelize(formEntry),
+            value: value,
+            type: type,
+        }
+    }
+})
 /*
 export const initFormField = createAction('createEmployeeForm/initFormField', (formEntry, type) => {
     return {
@@ -45,16 +54,6 @@ export const initFormField = createAction('createEmployeeForm/initFormField', (f
     }
 })
 */
-export const setFieldValue = createAction('createEmployeeForm/setFieldValue', (formEntry, value, type) => {
-    return {
-        payload: {
-            formEntry: camelize(formEntry),
-            value: value,
-            type: type,
-        }
-    }
-})
-
 
 export function saveEmployee() {
      return (dispatch, getState) => {
@@ -93,15 +92,28 @@ export default createReducer(initialState, builder => builder
         draft.formData[action.payload] = ""
         return
     })
-    /*
-    .addCase(resetFormData, (draft) => {
-        draft.formData = {}
+    
+    .addCase(reset, (draft) => {
+        draft.reset = draft.reset + 1
         return
     })
-    */
-    .addCase(reset, (draft) => {
-        console.log('hello')
-        draft.reset = draft.reset++
+    
+    .addCase(setFieldValue, (draft, action) => {
+        const value = action.payload.value ===  undefined ? 'undefined' : action.payload.type === 'date' ? formatDate(action.payload.value) : action.payload.value
+        draft.formData[action.payload.formEntry] = value
+        return
+    })
+    .addCase(initFieldError, (draft) => {
+        Object.entries(draft.error.onFields).map(arr => draft.error.onFields[arr[0]] = null)
+        return
+    })
+    .addCase(setFieldError, (draft, action) => {
+        const validity = action.payload.validity
+        draft.error.onFields[action.payload.formEntry] = validity === null ? validity : !validity
+        return
+    })
+    .addCase(setFormError, (draft) => {
+        draft.error.onForm = true
         return
     })
     /*
@@ -114,24 +126,11 @@ export default createReducer(initialState, builder => builder
         return
     })
     */
-    .addCase(setFieldValue, (draft, action) => {
-        const value = action.payload.value ===  undefined ? 'undefined' : action.payload.type === 'date' ? formatDate(action.payload.value) : action.payload.value
-        draft.formData[action.payload.formEntry] = value
+    /*
+    .addCase(resetFormData, (draft) => {
+        draft.formData = {}
         return
     })
-    .addCase(initFieldError, (draft, action) => {
-        Object.entries(draft.error.onFields).map(arr => draft.error.onFields[arr[0]] = null)
-        draft.reset = draft.reset + 1
-        return
-    })
-    .addCase(setFieldError, (draft, action) => {
-        const validity = action.payload.validity
-        draft.error.onFields[action.payload.formEntry] = validity === null ? validity : !validity
-        return
-    })
-    .addCase(setFormError, (draft) => {
-        draft.error.onForm = true
-        return
-    })
+    */
     
 )

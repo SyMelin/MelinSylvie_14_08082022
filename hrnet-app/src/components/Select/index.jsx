@@ -26,6 +26,14 @@ function Select({ select }) {
                 dispatch(setFieldError(select.id, e.target.checkValidity()))
             }}
         >
+            <option
+                key={`${select.id}SelectOption-disabled}`}
+                value=""
+                disabled
+                selected
+            >
+                -- Select an option --
+            </option>
             { select.optionsList.map((option, index) => (
                 <SelectOption
                     key={`${select.id}SelectOption-${index}`}

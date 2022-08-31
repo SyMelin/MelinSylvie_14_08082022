@@ -21,7 +21,7 @@ function Input ({ input }) {
             max={input.max}
             placeholder={input.placeholder}
             pattern={input.pattern}
-            value={undefined}
+        //    value={undefined}
             required
             onChange={(e) => {
                 dispatch(setFieldValue(input.id, e.target.value, input.type))
