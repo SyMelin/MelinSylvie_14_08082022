@@ -12,6 +12,16 @@ export function resetForm() {
     formFields.map((field) => document.getElementById(field.id).value = '')
 }
 
+export function whatsinvalue() {
+    const form = document.getElementById('create-employee')
+    const formInputs = Array.from(form.getElementsByTagName('input'))
+    const un = formInputs.map(el => el.value)
+    const formSelects = Array.from(form.getElementsByTagName('select'))
+    const deux = formSelects.map(el => el.value)
+    const formFields =  un.concat(deux)
+    console.log('whatsinvalue', formFields)
+}
+
 
 function Modal() {
 
@@ -22,6 +32,7 @@ function Modal() {
         dispatch(initFieldError())
         resetForm()
         dispatch(reset())
+        whatsinvalue()
     }
 
     const modalContentChildren = <p>Employee Created!</p>

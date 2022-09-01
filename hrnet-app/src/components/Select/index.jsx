@@ -30,7 +30,6 @@ function Select({ select }) {
                 key={`${select.id}SelectOption-disabled}`}
                 value=""
                 disabled
-                selected
             >
                 -- Select an option --
             </option>
