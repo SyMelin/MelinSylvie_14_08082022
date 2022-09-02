@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux'
 import { setFormError, initFieldError, reset } from '../../utils/features/createEmployeeForm'
 import ModalForImport from '../ModalForImport'
-import './Modal.css'
+import Modal from '@symelin/react-component-library/Modal'
+import './ModalInApp.css'
 
 
 export function resetForm() {
@@ -23,7 +24,7 @@ export function whatsinvalue() {
 }
 
 
-function Modal() {
+function ModalInApp() {
 
     const dispatch = useDispatch()
 
@@ -38,7 +39,7 @@ function Modal() {
     const modalContentChildren = <p>Employee Created!</p>
     
     return (
-        <ModalForImport
+        <Modal
             id="confirmation"
             children={modalContentChildren}
             //escapeClose={false}
@@ -55,4 +56,22 @@ function Modal() {
     )
 }
 
-export default Modal
+export default ModalInApp
+
+/*
+<ModalForImport
+    id="confirmation"
+    children={modalContentChildren}
+    //escapeClose={false}
+    //clickClose={false}
+    //closeText="Close Modal"
+    blockerClass='modal'
+    modalClass="modal-content"
+    handleCloseModal={closeModal}
+    closeButtonClass="modal-closeButton"
+    // showCloseButton={false}
+    fadeDuration={1000} //test with 1000
+    fadeDelay={1.5} //test with 1.5
+/>  
+
+*/

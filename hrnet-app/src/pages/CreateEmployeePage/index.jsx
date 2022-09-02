@@ -6,7 +6,7 @@ import CustomLink from '../../components/CustomLink'
 import CreateEmployeeForm from '../../components/CreateEmployeeForm'
 import CreateEmployeeButton from '../../components/CreateEmployeeButton'
 import { createEmployeeFormFields } from '../../utils/constantes/createEmployeeFormFields'
-import Modal from '../../components/Modal'
+import ModalInApp from '../../components/ModalInApp'
 import { employeeListData } from '../../mockedData'
 import './CreateEmployeePage.css'
 
@@ -42,7 +42,7 @@ function CreateEmployeePage () {
                 <CreateEmployeeButton />
             </section>
             { modalIsActive
-            ? <Modal />
+            ? <ModalInApp />
             : null
             }
         </main>   
