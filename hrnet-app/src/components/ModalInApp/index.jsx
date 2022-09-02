@@ -39,20 +39,23 @@ function ModalInApp() {
     const modalContentChildren = <p>Employee Created!</p>
     
     return (
-        <Modal
-            id="confirmation"
-            children={modalContentChildren}
-            //escapeClose={false}
-            //clickClose={false}
-            //closeText="Close Modal"
-            blockerClass='modal'
-            modalClass="modal-content"
-            handleCloseModal={closeModal}
-            closeButtonClass="modal-closeButton"
-            // showCloseButton={false}
-            fadeDuration={1000} //test with 1000
-            fadeDelay={1.5} //test with 1.5
-        />  
+        <div className="modalInApp">
+            <ModalForImport
+                id="confirmation"
+                children={modalContentChildren}
+                //escapeClose={false}
+                //clickClose={false}
+                //closeText="Close Modal"
+                blockerClass='modal'
+                modalClass="modal-content"
+                handleCloseModal={closeModal}
+                closeButtonClass="modal-closeButton"
+                // showCloseButton={false}
+                fadeDuration={1000} //test with 1000
+                fadeDelay={1.5} //test with 1.5
+            />  
+        </div>
+        
     )
 }
 

@@ -21,6 +21,7 @@ function Select({ select }) {
             name={select.name}
             id={select.id}
             required
+            defaultValue=""
             onChange={(e) => {
                 dispatch(setFieldValue(select.id, e.target.value, 'select'))
                 dispatch(setFieldError(select.id, e.target.checkValidity()))
