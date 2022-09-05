@@ -31,7 +31,7 @@ function ModalForImport({
 
     const dispatch = useDispatch()
 
-    const fadingOut = () => {
+    const handleFadingEffect = () => {
         const blocker = document.getElementById(id)
         blocker.classList.remove('fadingIn');
         blocker.classList.add('fadingOut');
@@ -42,7 +42,7 @@ function ModalForImport({
       }
 
     const closeModal = () => {
-        fadingOut()
+        handleFadingEffect()
         setTimeout(function() {
             dispatch(setModalState())
         }, fadeDuration);
