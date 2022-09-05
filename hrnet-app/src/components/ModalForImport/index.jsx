@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setModalState } from '../../utils/features/modal'
+import { setModalState, setModalStatus } from '../../utils/features/modal'
 import './ModalForImport.css'
 
 
@@ -42,11 +42,14 @@ function ModalForImport({
       }
 
     const closeModal = () => {
+        dispatch(setModalStatus('openingRequest'))
+        doSomethingBeforeRequestToClose() //
         handleFadingEffect()
         setTimeout(function() {
             dispatch(setModalState())
         }, fadeDuration);
-        handleCloseModal()
+        handleCloseModal() //
+        doSomethingafterModalIsClosed()//
     }
 
 
@@ -111,7 +114,7 @@ function ModalForImport({
                         className={`close-modal ${closeButtonClass}`}
                         onClick={clickClose ? null : closeModal}
                     >
-                        x {closeText}
+                        {closeText}
                     </button>
                     : null
                 }  
