@@ -33,7 +33,8 @@ function ModalInApp() {
         dispatch(initFieldError())
         resetForm()
         dispatch(reset())
-        whatsinvalue()
+        //whatsinvalue()
+        console.log('function closeModal()')
     }
 
     const modalContentChildren = <p>Employee Created!</p>
@@ -48,7 +49,9 @@ function ModalInApp() {
                 //closeText="Close Modal"
                 blockerClass='modal'
                 modalClass="modal-content"
-                handleCloseModal={closeModal}
+                handleModalBeforeClose={() => {console.log('doSomethingBeforeRequestToClose()')}}
+                handleModalClose={closeModal}
+                handleModalAfterClose={() => {console.log('doSomethingWhenModalIsClosed()')}}
                 closeButtonClass="modal-closeButton"
                 // showCloseButton={false}
                 fadeDuration={1000} //test with 1000

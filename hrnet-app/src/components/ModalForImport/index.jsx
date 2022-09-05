@@ -15,7 +15,9 @@ function ModalForImport({
         closeButtonClass="",    // Add additional class(es) to the close <button> tag.
         showCloseButton= true,  // Shows a (X) icon/button in the top-right corner of the displayed element
 
-        handleCloseModal= null,
+        handleModalBeforeClose=null,    // Fires when the modal has been requested to close.
+        handleModalClose=null,          // Fires when the modal begins closing (including animations).
+        handleModalAfterClose=null,     // Fires after the modal has fully closed (including animations).
 
         /*
         //Not converted since no ajax request needed for JQuery plugin
@@ -42,14 +44,16 @@ function ModalForImport({
       }
 
     const closeModal = () => {
-        dispatch(setModalStatus('openingRequest'))
-        doSomethingBeforeRequestToClose() //
+        dispatch(setModalStatus('closingModalRequest'))
+        handleModalBeforeClose()  //
         handleFadingEffect()
+        dispatch(setModalStatus('modalIsClosing'))
         setTimeout(function() {
             dispatch(setModalState())
+            dispatch(setModalStatus("modalIsClosed"))
+            handleModalAfterClose() //
         }, fadeDuration);
-        handleCloseModal() //
-        doSomethingafterModalIsClosed()//
+        handleModalClose() //
     }
 
 
