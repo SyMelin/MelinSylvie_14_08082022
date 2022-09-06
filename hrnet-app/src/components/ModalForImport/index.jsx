@@ -42,8 +42,6 @@ function ModalForImport({
     const dispatch = useDispatch()
 
     const modal = useSelector(selectModal)
-    const blockerStatus = modal.blocker.status
-    const modalStatus = modal.modal.status
     const modalCanBeOpen = modal.modalCanBeOpen
 
     const handleFadingEffect = () => {
@@ -59,19 +57,28 @@ function ModalForImport({
       }
 
     const closeModal = () => {
-       // dispatch(setModalStatus('closeModalRequest'))
-      //  handleModalBeforeClose()  //
+        dispatch(setModalStatus('modalIsAboutToClose'))
+        dispatch(setBlockerStatus('blockerIsAboutToClose'))
+        if (handleModalBeforeClose) {
+            handleModalBeforeClose()
+        }
         handleFadingEffect()
-      //  dispatch(setModalStatus('modalIsClosing'))
+        dispatch(setModalStatus('modalIsClosing'))
+        if (handleModalClose) {
+            handleModalClose()
+        }
+
         const timerCloseModal = setTimeout(function() {
             dispatch(setModalState())
             dispatch(setModalPermission(false))
             dispatch(setBlockerStatus("blockerIsClosed"))
             dispatch(setModalStatus("modalIsClosed"))
-         //   handleModalAfterClose() //
+            
+            if (handleModalAfterClose) {
+                handleModalAfterClose()
+            }
             return clearTimeout(timerCloseModal)
         }, fadeDuration);
-        handleModalClose() //
     }
 
 

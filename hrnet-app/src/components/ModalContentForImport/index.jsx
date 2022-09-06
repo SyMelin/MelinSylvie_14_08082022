@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setModalState, setBlockerStatus, setModalStatus } from '../../utils/features/modal'
-import { selectModal } from '../../utils/selectors'
+import { useDispatch } from 'react-redux'
+import { setModalStatus } from '../../utils/features/modal'
 import ModalButtonForImport from "../ModalButtonForImport"
 
 function ModalContentForImport({
