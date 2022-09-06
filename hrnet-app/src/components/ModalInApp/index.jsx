@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { setFormError, initFieldError, reset } from '../../utils/features/createEmployeeForm'
-import ModalForImport from '../ModalForImport'
-//import Modal from '@symelin/react-component-library/Modal'
+//import ModalForImport from '../ModalForImport'
+import Modal from '@symelin/react-component-library/Modal'
 import './ModalInApp.css'
 
 
@@ -42,7 +42,7 @@ function ModalInApp() {
     
     return (
         <div className="modalInApp">
-            <ModalForImport
+            <Modal
                 id="confirmation"
                 children={modalContentChildren}
                 //escapeClose={false}

@@ -1,6 +1,6 @@
 import { configureStore }  from '@reduxjs/toolkit'
-import modalReducer from './features/modal'
-//import { default as modalReducer } from '@symelin/react-component-library/Modal/modal'
+//import modalReducer from './features/modal'
+import { default as modalReducer } from '@symelin/react-component-library/Modal/modal'
 import createEmployeeFormReducer from './features/createEmployeeForm'
 import employeeListReducer from './features/employeeList'
 
