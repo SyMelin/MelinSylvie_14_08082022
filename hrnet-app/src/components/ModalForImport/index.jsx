@@ -53,6 +53,7 @@ function ModalForImport({
        
         setTimeout(function() {
           blocker.classList.remove('fadingOut');
+          blocker.classList.add('fadingIn');
         }, fadeDuration);
       }
 
