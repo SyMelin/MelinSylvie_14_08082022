@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { setModalState, setModalStatus } from '../../utils/features/modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { setModalState, setBlockerStatus, setModalStatus, setModalPermission } from '../../utils/features/modal'
+import { selectModal } from '../../utils/selectors'
+import ModalContentForImport from '../ModalContentForImport'
 import './ModalForImport.css'
+
 
 
 function ModalForImport({
@@ -14,6 +17,11 @@ function ModalForImport({
         modalClass="modal",     // CSS class added to the element being displayed in the modal.
         closeButtonClass="",    // Add additional class(es) to the close <button> tag.
         showCloseButton= true,  // Shows a (X) icon/button in the top-right corner of the displayed element
+
+        handleModalBeforeBlock=null,     // Fires just before the overlay (blocker) appears.
+        handleModalBlock=null,                 // Fires after the overlay (block) is visible.
+        hanleModalBeforeOpen=null,         // Fires just before the modal opens.
+        handleModalOpen=null,                   // Fires after the modal has finished opening.
 
         handleModalBeforeClose=null,    // Fires when the modal has been requested to close.
         handleModalClose=null,          // Fires when the modal begins closing (including animations).
@@ -33,25 +41,37 @@ function ModalForImport({
 
     const dispatch = useDispatch()
 
+    const modal = useSelector(selectModal)
+    const blockerStatus = modal.blocker.status
+    const modalStatus = modal.modal.status
+    const modalCanBeOpen = modal.modalCanBeOpen
+
     const handleFadingEffect = () => {
+        const modal = document.getElementById(`${id}-${modalClass}`)
         const blocker = document.getElementById(id)
+        modal.classList.remove('fadingIn');
         blocker.classList.remove('fadingIn');
         blocker.classList.add('fadingOut');
+       
         setTimeout(function() {
           blocker.classList.remove('fadingOut');
           blocker.classList.add('fadingIn');
+      //    modal.classList.add('fadingIn');
         }, fadeDuration);
       }
 
     const closeModal = () => {
-        dispatch(setModalStatus('closingModalRequest'))
-        handleModalBeforeClose()  //
+       // dispatch(setModalStatus('closeModalRequest'))
+      //  handleModalBeforeClose()  //
         handleFadingEffect()
-        dispatch(setModalStatus('modalIsClosing'))
-        setTimeout(function() {
+      //  dispatch(setModalStatus('modalIsClosing'))
+        const timerCloseModal = setTimeout(function() {
             dispatch(setModalState())
+            dispatch(setModalPermission(false))
+            dispatch(setBlockerStatus("blockerIsClosed"))
             dispatch(setModalStatus("modalIsClosed"))
-            handleModalAfterClose() //
+         //   handleModalAfterClose() //
+            return clearTimeout(timerCloseModal)
         }, fadeDuration);
         handleModalClose() //
     }
@@ -73,7 +93,30 @@ function ModalForImport({
         }
     }, [])
 
-   
+    useEffect(() => {
+        if (handleModalBeforeBlock) {
+            handleModalBeforeBlock()
+        }
+        dispatch(setBlockerStatus('blockerIsOpening'))
+
+        const timerBlocker = setTimeout(() => {
+            dispatch(setBlockerStatus('blockerIsOpen'))
+            if (handleModalBlock) {
+                handleModalBlock()
+            }
+            return () => clearTimeout(timerBlocker)
+            }, fadeDuration)
+
+            const delayForOpeningModal = fadeDelay * fadeDuration
+            console.log(delayForOpeningModal)
+
+        const timerModal = setTimeout(() => {
+            dispatch(setModalPermission(true))
+            dispatch(setModalStatus('modalIsAboutToOpen'))
+            return () => clearTimeout(timerModal)
+            }, delayForOpeningModal)
+        }, [])
+
     
     return (
         <div
@@ -102,28 +145,23 @@ function ModalForImport({
                     }
                 `}
             </style>
-            <div className={modalClass}>
-                <style>
-                    {`
-                        @keyframes modalFadeIn {
-                            0% { opacity: 0; }
-                            ${fadeDelay / (1 + fadeDelay) * 100}% { opacity: 0; }
-                            100% { opacity: 1; }
-                        }
-                    `}
-                </style>
-                {showCloseButton
-                    ? <button
-                        type='button'
-                        className={`close-modal ${closeButtonClass}`}
-                        onClick={clickClose ? null : closeModal}
-                    >
-                        {closeText}
-                    </button>
-                    : null
-                }  
-                {children}
-            </div>
+            { modalCanBeOpen
+            ? <ModalContentForImport
+                id={id}
+                children={children}
+                clickClose={clickClose}
+                closeText={closeText}
+                modalClass={modalClass}
+                closeButtonClass={closeButtonClass}
+                showCloseButton={showCloseButton}
+                fadeDuration={fadeDuration}
+                fadeDelay={fadeDelay}
+                closeModal={closeModal}
+                handleModalBeforeOpen={hanleModalBeforeOpen}
+                handleModalOpen={handleModalOpen}
+            />
+            : null
+            }
         </div>
     )
 }

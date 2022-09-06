@@ -1,7 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit"
 import { selectCreateEmployeeForm } from '../selectors'
 import { addEmployee } from "./employeeList"
-import { setModalState } from './modal'
+import { setModalState, setModalStatus  } from './modal'
 import { camelize } from '../../utils/utils'
 
 
@@ -64,6 +64,7 @@ export function saveEmployee() {
          } else {
             dispatch(addEmployee(createEmployeeForm.formData))
             dispatch(setModalState())
+          //  dispatch(setModalStatus('openModalRequest'))
          }  
      }
  }
