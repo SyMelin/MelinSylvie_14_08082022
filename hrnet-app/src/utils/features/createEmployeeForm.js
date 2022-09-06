@@ -64,7 +64,6 @@ export function saveEmployee() {
          } else {
             dispatch(addEmployee(createEmployeeForm.formData))
             dispatch(setModalState())
-          //  dispatch(setModalStatus('openModalRequest'))
          }  
      }
  }

@@ -54,13 +54,13 @@ function ModalInApp() {
                 handleModalAfterClose={() => {console.log('doSomethingWhenModalIsClosed()')}}
                 closeButtonClass="modal-closeButton"
                 // showCloseButton={false}
-                fadeDuration={3000} //test with 1000
-                fadeDelay={1.5} //test with 1.5
+                fadeDuration={6000} //test with 6000
+                fadeDelay={0.5} //test with 0.5
 
-                handleModalBeforeBlock={() => {console.log('handleModalBeforeBlock)')}}
-                handleModalBlock={() => {console.log('handleModalBlock)')}}
-                hanleModalBeforeOpen={() => {console.log('handleModalBeforeOpen)')}}
-                handleModalOpen={() => {console.log('handleModalOpen)')}}
+                handleModalBeforeBlock={() => {console.log('handleModalBeforeBlock')}}
+                handleModalBlock={() => {console.log('handleModalBlock')}}
+                hanleModalBeforeOpen={() => {console.log('handleModalBeforeOpen')}}
+                handleModalOpen={() => {console.log('handleModalOpen')}}
             />  
         </div>
         

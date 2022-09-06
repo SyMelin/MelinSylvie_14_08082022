@@ -13,39 +13,34 @@ function ModalContentForImport({
         closeButtonClass,
         showCloseButton,
         fadeDuration,
-        fadeDelay,
         handleModalBeforeOpen,
         handleModalOpen,
         closeModal
     }) {
 
-        const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-        useEffect(() => {
-            if (handleModalBeforeOpen) {
-                handleModalBeforeOpen()
+    useEffect(() => {
+        if (handleModalBeforeOpen) {
+            handleModalBeforeOpen()
+        }
+        dispatch(setModalStatus('modalIsOpening'))
+        
+        const timerModal = setTimeout(() => {
+            dispatch(setModalStatus('modalIsOpen'))
+            if (handleModalOpen) {
+            handleModalOpen()
             }
-           // dispatch(setModalStatus('modalIsOpening'))
-            
-            const timerModal = setTimeout(() => {
-                dispatch(setModalStatus('modalIsOpen'))
-                if (handleModalOpen) {
-                handleModalOpen()
-                }
-                return () => clearTimeout(timerModal)
-             }, fadeDuration)
-        }, [])
+
+            return () => clearTimeout(timerModal)
+            }, fadeDuration)
+    }, [])
         
-        
-
-
-
     return (
         <div
             id={`${id}-${modalClass}`}
             className={`${modalClass} fadingIn`}
         >
-            
             {showCloseButton
                 ? <ModalButtonForImport
                     clickClose={clickClose}
@@ -60,15 +55,3 @@ function ModalContentForImport({
     )
 }
 export default ModalContentForImport
-
-/*
-<style>
-    {`
-        @keyframes modalFadeIn {
-            0% { opacity: 0; }
-            ${fadeDelay / (1 + fadeDelay) * 100}% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-    `}
-</style>
-*/

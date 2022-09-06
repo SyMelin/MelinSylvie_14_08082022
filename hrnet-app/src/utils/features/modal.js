@@ -26,7 +26,6 @@ export default createReducer(initialState, builder => builder
         return
     })
     .addCase(setModalPermission, (draft, action) => {
-        console.log('ICIIIIIIIIIIIIII')
         draft.modalCanBeOpen = action.payload
         return
     })

@@ -10,18 +10,18 @@ import './ModalForImport.css'
 function ModalForImport({
         id,
         children,
-        escapeClose= true,      // Allows the user to close the modal by pressing `ESC`
-        clickClose= true,       // Allows the user to close the modal by clicking the overlay
-        closeText="Close",      // Text content for the close <button> tag.
-        blockerClass="blocker",   // CSS class added to the overlay (blocker).
-        modalClass="modal",     // CSS class added to the element being displayed in the modal.
-        closeButtonClass="",    // Add additional class(es) to the close <button> tag.
-        showCloseButton= true,  // Shows a (X) icon/button in the top-right corner of the displayed element
+        escapeClose= true,              // Allows the user to close the modal by pressing `ESC`
+        clickClose= true,               // Allows the user to close the modal by clicking the overlay
+        closeText="Close",              // Text content for the close <button> tag.
+        blockerClass="blocker",         // CSS class added to the overlay (blocker).
+        modalClass="modal",             // CSS class added to the element being displayed in the modal.
+        closeButtonClass="",            // Add additional class(es) to the close <button> tag.
+        showCloseButton= true,          // Shows a (X) icon/button in the top-right corner of the displayed element
 
-        handleModalBeforeBlock=null,     // Fires just before the overlay (blocker) appears.
-        handleModalBlock=null,                 // Fires after the overlay (block) is visible.
-        hanleModalBeforeOpen=null,         // Fires just before the modal opens.
-        handleModalOpen=null,                   // Fires after the modal has finished opening.
+        handleModalBeforeBlock=null,    // Fires just before the overlay (blocker) appears.
+        handleModalBlock=null,          // Fires after the overlay (block) is visible.
+        hanleModalBeforeOpen=null,      // Fires just before the modal opens.
+        handleModalOpen=null,           // Fires after the modal has finished opening.
 
         handleModalBeforeClose=null,    // Fires when the modal has been requested to close.
         handleModalClose=null,          // Fires when the modal begins closing (including animations).
@@ -55,8 +55,6 @@ function ModalForImport({
        
         setTimeout(function() {
           blocker.classList.remove('fadingOut');
-          blocker.classList.add('fadingIn');
-      //    modal.classList.add('fadingIn');
         }, fadeDuration);
       }
 
@@ -104,20 +102,20 @@ function ModalForImport({
             if (handleModalBlock) {
                 handleModalBlock()
             }
-            return () => clearTimeout(timerBlocker)
-            }, fadeDuration)
 
-            const delayForOpeningModal = fadeDelay * fadeDuration
-            console.log(delayForOpeningModal)
+            return () => clearTimeout(timerBlocker)
+        }, fadeDuration)
+
+        const delayForOpeningModal = fadeDelay * fadeDuration
 
         const timerModal = setTimeout(() => {
             dispatch(setModalPermission(true))
             dispatch(setModalStatus('modalIsAboutToOpen'))
-            return () => clearTimeout(timerModal)
-            }, delayForOpeningModal)
-        }, [])
 
-    
+            return () => clearTimeout(timerModal)
+        }, delayForOpeningModal)
+    }, [])
+
     return (
         <div
             id={id}
@@ -155,7 +153,6 @@ function ModalForImport({
                 closeButtonClass={closeButtonClass}
                 showCloseButton={showCloseButton}
                 fadeDuration={fadeDuration}
-                fadeDelay={fadeDelay}
                 closeModal={closeModal}
                 handleModalBeforeOpen={hanleModalBeforeOpen}
                 handleModalOpen={handleModalOpen}
