@@ -51,7 +51,7 @@ function ModalInApp() {
                 blockerClass='modal'
                 modalClass="modal-content"
                 closeButtonClass="modal-closeButton"
-                // showCloseButton={false}
+                //showCloseButton={false}
                 handleModalBeforeClose={() => {console.log('handleModalBeforeClose')}}
                 handleModalClose={closeModal}
                 handleModalAfterClose={() => {console.log('handleModalAfterClose')}}

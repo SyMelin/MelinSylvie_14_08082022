@@ -15,6 +15,7 @@ function SortButton({ string, type, direction }) {
             }}
         >   
             <ArrowUpSvg direction={direction} />
+            <span className='sortButton__tag'>{ direction === 'up' ? 'Ascending order' : direction === 'down' ? 'Descending order' : null}</span>
         </div>
     )
 }

@@ -3,6 +3,7 @@
     padding: 0.25em;
     cursor: pointer;
     text-align: center;
+    position: relative;
   }
   
   .sortButton-up {
@@ -13,4 +14,27 @@
   .sortButton-down {
     padding-top: 0;
     margin-top: -0.1em;
+  }
+
+  .sortButton__tag {
+    display: none;
+    position: absolute;
+    color: white;
+    font-size: 0.75em;
+    font-weight: 300;
+    border-radius: 0.5em;
+    background-color: rgba(0, 0, 0, 0.85);
+    right: -1em;
+    padding: 0.5em;
+    white-space: nowrap;
+  }
+
+  .sortButton-up:hover .sortButton__tag {
+    display: block;
+    top: -2.25em;
+  }
+
+  .sortButton-down:hover .sortButton__tag {
+    display: block;
+    bottom: -2.175em;
   }
