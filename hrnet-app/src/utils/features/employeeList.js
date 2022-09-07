@@ -1,5 +1,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
 import { orderOfTableTitles } from '../../pages/EmployeeListPage'
+import { selectEmployeeList } from '../selectors'
 import { camelize } from '../utils'
 
 const initialState = {
@@ -54,7 +55,8 @@ export const sortArrayByAscendingOrder =  ((array, string) => {
     });
     return array
 })
-  
+
+
 export const sortArrayByDescendingOrder = ((array, string) => {
     const property =  string.value
     const type = string.type
@@ -68,11 +70,13 @@ export const sortArrayByDescendingOrder = ((array, string) => {
     return array
 })
 
+
 const sortArrayBasedOnAnotherArray = (arr1, arr2) => {
     arr2.sort((a, b) => {
         return arr1.indexOf(a) - arr1.indexOf(b);
     })
 }
+
 
 const orderObjectBasedOnArray = (base, employee) => {
     const array2 = Object.keys(employee)
@@ -82,6 +86,17 @@ const orderObjectBasedOnArray = (base, employee) => {
         return accumulator;
     }, {});
     return sortedObject
+}
+
+
+export function sortEmployeeListAndMoveToPageNumber1(string, type, direction) {
+    return (dispatch, getState) => {
+        dispatch(sortEmployeeList(string, type, direction))
+        const employeeList = selectEmployeeList(getState())
+        if (employeeList.table.indexOfCurrentPage !== 0) {
+            dispatch(moveToPageIndex(0))
+        }
+    }  
 }
 
 

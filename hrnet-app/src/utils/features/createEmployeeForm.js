@@ -56,17 +56,17 @@ export const initFormField = createAction('createEmployeeForm/initFormField', (f
 */
 
 export function saveEmployee() {
-     return (dispatch, getState) => {
+    return (dispatch, getState) => {
         dispatch(checkFormValidity())
         const createEmployeeForm = selectCreateEmployeeForm(getState())
         if (createEmployeeForm.error.onForm === true) {
             return
-         } else {
+        } else {
             dispatch(addEmployee(createEmployeeForm.formData))
             dispatch(setModalState())
-         }  
-     }
- }
+        }  
+    }
+}
 
 
 export default createReducer(initialState, builder => builder

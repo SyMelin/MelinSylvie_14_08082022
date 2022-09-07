@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { sortEmployeeList } from '../../utils/features/employeeList'
+import { sortEmployeeListAndMoveToPageNumber1 } from '../../utils/features/employeeList'
 import ArrowUpSvg from '../ArrowUpSvg'
 import './SortButton.css'
 
@@ -11,7 +11,7 @@ function SortButton({ string, type, direction }) {
         <div
             className={`sortButton sortButton-${direction}`}
             onClick={() => {
-               dispatch(sortEmployeeList(string, type, direction))
+               dispatch(sortEmployeeListAndMoveToPageNumber1(string, type, direction))
             }}
         >   
             <ArrowUpSvg direction={direction} />
