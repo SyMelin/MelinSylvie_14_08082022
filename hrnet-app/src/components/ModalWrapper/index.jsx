@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { setFormError, initFieldError, reset } from '../../utils/features/createEmployeeForm'
 //import ModalForImport from '../ModalForImport'
 import Modal from '@symelin/react-component-library/Modal'
-import './ModalInApp.css'
+import './ModalWrapper.css'
 
 
 export function resetForm() {

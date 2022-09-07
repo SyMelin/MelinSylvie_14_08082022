@@ -1,3 +1,39 @@
 .table-body-row-cell {
-    padding: 1em 0.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.cell--0 {
+    padding-left: 1em;
+    padding-right: 0.25em;
+}
+
+.cell--1 {
+    padding-left: 0.5em;
+    padding-right: 0.25em;
+}
+
+.cell--2, .cell--3, .cell--4 {
+    padding-left: 1.5em;
+    padding-right: 0.25em;
+}
+
+.cell--5 {
+    padding-left: 0em;
+    padding-right: 0.25em;
+}
+
+.cell--6 {
+    padding-left: 0.25em;
+    padding-right: 0.25em; 
+}
+
+.cell--7 {
+    padding-left: 1.75em;
+    padding-right: 0.25em;
+}
+
+.cell--8 {
+    text-align: right;
+    padding-right: 4em;
 }

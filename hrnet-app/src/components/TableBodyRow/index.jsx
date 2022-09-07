@@ -8,6 +8,7 @@ function TableBodyRow ({ rowIndex, employee }) {
                 <TableBodyRowCell
                     key={`tableBodyRow-${rowIndex}-rowCell-${index}`}
                     value={value}
+                    index={index}
                 />
             ))}
         </tr>

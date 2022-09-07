@@ -1,19 +1,19 @@
 .table-body-row {
     font-size: 0.75em;
-}
-
-.table-body-row--evenIndex {
+    font-weight: 500;
     color: black;
-    background-color: #F4F7E7;
+    background: linear-gradient(#F4F7E7, 98%, #F4F7E7, 1%, #436202);
+}
+/*
+.table-body-row--evenIndex {   
 }
 
 .table-body-row--oddIndex {
-    color: white;
-    background-color: #436202; 
 }
+*/
 
 .table-body-row:hover {
-    color: black;
-    font-weight: 500;
-    background-color: rgba(216, 235, 0, 0.5);
+    color: white;
+    background: none;
+    background-color: #436202;
 }

@@ -1,8 +1,8 @@
 import './TableBodyRowCell.css'
 
-function TableBodyRowCell({ value }) {
+function TableBodyRowCell({ value, index }) {
     return (
-        <td className="table-body-row-cell">{value}</td>
+        <td className={`table-body-row-cell cell--${index}`}>{value}</td>
     )
 }
 

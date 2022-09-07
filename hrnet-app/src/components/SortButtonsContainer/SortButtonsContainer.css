@@ -2,6 +2,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 1em;
+    margin-left: 0.25em;
     row-gap: 0;
 }
