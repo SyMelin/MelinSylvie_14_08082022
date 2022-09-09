@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { selectCreateEmployeeForm } from '../selectors'
 import * as employeeListActions from "./employeeList"
-import { setModalState } from '@symelin/react-component-library/Modal/modal'
+import { setModalState } from '@symelin/react-component-library/Modal/modal.js'
 //import { setModalState } from './modal'
 import { camelize } from '../../utils/utils'
 
