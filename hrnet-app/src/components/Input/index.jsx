@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
-import { setFieldValue, setFieldError } from '../../utils/features/createEmployeeForm'
+import * as createEmployeeFormActions from '../../utils/features/createEmployeeForm'
 import './Input.css'
 
 function Input ({ input }) {
@@ -10,7 +10,7 @@ function Input ({ input }) {
     const reset = useSelector(selectCreateEmployeeForm).reset
 
     useEffect(() => {
-        dispatch(setFieldValue(input.id, undefined, input.type))
+        dispatch(createEmployeeFormActions.setFieldValue(input.id, undefined, input.type))
     }, [reset])
 
     return (
@@ -24,8 +24,8 @@ function Input ({ input }) {
         //    value={undefined}
             required
             onChange={(e) => {
-                dispatch(setFieldValue(input.id, e.target.value, input.type))
-                dispatch(setFieldError(input.id, e.target.checkValidity()))
+                dispatch(createEmployeeFormActions.setFieldValue(input.id, e.target.value, input.type))
+                dispatch(createEmployeeFormActions.setFieldError(input.id, e.target.checkValidity()))
             }}   
         />
     )

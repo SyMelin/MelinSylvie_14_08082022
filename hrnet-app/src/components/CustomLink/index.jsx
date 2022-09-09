@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setIsEmployeeOrdered, setListToDisplay, setListNotDisplayed } from '../../utils/features/employeeList'
+import * as employeeListActions from '../../utils/features/employeeList'
 import './CustomLink.css'
 
 function CustomLink({ path, children }) {
@@ -13,9 +13,9 @@ function CustomLink({ path, children }) {
             className="link"
             onClick={ path === '/'
                 ? ()=> {
-                    dispatch(setIsEmployeeOrdered())
-                    dispatch(setListToDisplay())
-                    dispatch(setListNotDisplayed())
+                    dispatch(employeeListActions.setIsEmployeeOrdered())
+                    dispatch(employeeListActions.setListToDisplay())
+                    dispatch(employeeListActions.setListNotDisplayed())
                 }
                 : null
             }

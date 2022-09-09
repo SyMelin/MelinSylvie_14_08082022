@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { initTable, orderEmployeeByTableTitles, setListToDisplay } from '../../utils/features/employeeList'
+import * as employeeListActions from '../../utils/features/employeeList'
 import TableFeatureLengthSelect from '../../components/TableFeatureLengthSelect'
 import TableFeatureFilter from '../../components/TableFeatureFilter'
 import TableFeatureInfo from '../../components/TableFeatureInfo'
@@ -36,11 +36,11 @@ function EmployeeListPage() {
 
     useEffect (() => {
         if (!isEmployeeOrdered) {
-            dispatch(orderEmployeeByTableTitles())
+            dispatch(employeeListActions.orderEmployeeByTableTitles())
         }
         const tableLength = document.getElementById('employeeTable-lengthSelect').value
-        dispatch(setListToDisplay())
-        dispatch(initTable(tableLength))
+        dispatch(employeeListActions.setListToDisplay())
+        dispatch(employeeListActions.initTable(tableLength))
     }, [])
    
     return (

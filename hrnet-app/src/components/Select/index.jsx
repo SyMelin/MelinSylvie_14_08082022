@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
-import { setFieldValue, setFieldError } from '../../utils/features/createEmployeeForm'
+import * as createEmployeeFormActions from '../../utils/features/createEmployeeForm'
 import SelectOption from '../SelectOption'
 import './Select.css'
 
@@ -13,7 +13,7 @@ function Select({ select }) {
     const reset = useSelector(selectCreateEmployeeForm).reset
 
     useEffect(() => {
-        dispatch(setFieldValue(select.id, undefined, 'select'))
+        dispatch(createEmployeeFormActions.setFieldValue(select.id, undefined, 'select'))
     }, [reset])
 
     return (
@@ -23,8 +23,8 @@ function Select({ select }) {
             required
             defaultValue=""
             onChange={(e) => {
-                dispatch(setFieldValue(select.id, e.target.value, 'select'))
-                dispatch(setFieldError(select.id, e.target.checkValidity()))
+                dispatch(createEmployeeFormActions.setFieldValue(select.id, e.target.value, 'select'))
+                dispatch(createEmployeeFormActions.setFieldError(select.id, e.target.checkValidity()))
             }}
         >
             <option

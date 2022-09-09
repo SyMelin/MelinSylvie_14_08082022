@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList, selectModal } from '../../utils/selectors'
-import { setEmployeeList } from '../../utils/features/employeeList'
+import * as employeeListActions from '../../utils/features/employeeList'
 import CustomLink from '../../components/CustomLink'
 import CreateEmployeeForm from '../../components/CreateEmployeeForm'
 import CreateEmployeeButton from '../../components/CreateEmployeeButton'
@@ -17,7 +17,6 @@ function CreateEmployeePage () {
     const dispatch = useDispatch()
     const employeeList = useSelector(selectEmployeeList).list
    const modalIsActive = useSelector(selectModal).modalIsActive
-   const modalStatus = useSelector(selectModal).status
 
     useEffect(() => {
         document.title = 'HRnet - Create Employee'
@@ -27,7 +26,7 @@ function CreateEmployeePage () {
     //To be replaced by a get request when real data available
     useEffect(() => {
         if (employeeList.length === 0) {
-            dispatch(setEmployeeList(employeeListData))
+            dispatch(employeeListActions.setEmployeeList(employeeListData))
           }
     }, [])
     

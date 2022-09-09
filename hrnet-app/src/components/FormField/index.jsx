@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
-import { setFieldValue, setFieldError } from '../../utils/features/createEmployeeForm'
+import * as createEmployeeFormActions from '../../utils/features/createEmployeeForm'
 import { camelize } from '../../utils/utils'
 import Input from '../Input'
 import Select from '../Select'
@@ -13,7 +13,7 @@ function FormField({ type, innerField }) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(setFieldError(innerField.id, null))
+        dispatch(createEmployeeFormActions.setFieldError(innerField.id, null))
        // dispatch(setFieldValue(input.id, undefined, input.type))
     }, [])
 

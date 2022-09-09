@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { initTable } from '../../utils/features/employeeList'
+import * as employeeListActions from '../../utils/features/employeeList'
 import './TableFeatureLengthSelect.css'
 
 function TableFeatureLengthSelect() {
@@ -15,7 +15,7 @@ function TableFeatureLengthSelect() {
                     name="employee-table_length"
                     aria-controls="employee-table"
                     className=""
-                    onChange={(e) => dispatch(initTable(e.target.value))}
+                    onChange={(e) => dispatch(employeeListActions.initTable(e.target.value))}
                 >
                     {[10, 25, 50, 100].map((number, index) =>
                         <option

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setIsEmployeeOrdered, setListToDisplay, setListNotDisplayed } from '../../utils/features/employeeList'
+import * as employeeListActions from '../../utils/features/employeeList'
 import logo from '../../assets/logo.png'
 import './LogoLink.css'
 
@@ -13,9 +13,9 @@ function LogoLink () {
             to="/"
             className='logo'
             onClick={() => {
-                dispatch(setIsEmployeeOrdered())
-                dispatch(setListToDisplay())
-                dispatch(setListNotDisplayed())
+                dispatch(employeeListActions.setIsEmployeeOrdered())
+                dispatch(employeeListActions.setListToDisplay())
+                dispatch(employeeListActions.setListNotDisplayed())
             }}
         >
             <img className="logo-image" src={logo} alt="Wealth Health" />

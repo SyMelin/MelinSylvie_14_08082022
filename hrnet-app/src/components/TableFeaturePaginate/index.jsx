@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
-import { moveToPageIndex } from '../../utils/features/employeeList'
+import * as employeeListActions from '../../utils/features/employeeList'
 import './TableFeaturePaginate.css'
 
 
@@ -20,7 +20,7 @@ function TableFeaturePaginate() {
                 id="employee-table__previous"
                 onClick={() => {
                     if (employeeTable.indexOfCurrentPage - 1 >= 0) {
-                        dispatch(moveToPageIndex(employeeTable.indexOfCurrentPage - 1))
+                        dispatch(employeeListActions.moveToPageIndex(employeeTable.indexOfCurrentPage - 1))
                     }
                     return
                 }}
@@ -36,7 +36,7 @@ function TableFeaturePaginate() {
                         aria-controls="employee-table"
                         tabIndex="0"
                         onClick={() => {
-                            dispatch(moveToPageIndex(index))
+                            dispatch(employeeListActions.moveToPageIndex(index))
                         }}
                     >
                         {index + 1}
@@ -52,7 +52,7 @@ function TableFeaturePaginate() {
                 id="employee-table__next"
                 onClick={() => {
                     if (employeeTable.indexOfCurrentPage + 1 <= (employeeTable.nbOfPages - 1)) {
-                        dispatch(moveToPageIndex(employeeTable.indexOfCurrentPage + 1))
+                        dispatch(employeeListActions.moveToPageIndex(employeeTable.indexOfCurrentPage + 1))
                     }
                     return
                 }}
