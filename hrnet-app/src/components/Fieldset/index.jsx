@@ -1,6 +1,4 @@
 import FormField from '../FormField'
-//import Input from '../Input'
-//import Select from '../Select'
 import './Fieldset.css'
 
 function Fieldset({ fieldsetFields }) {
