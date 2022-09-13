@@ -12,6 +12,7 @@ function CreateEmployeeForm({ formFields }) {
         <form
             action="#"
             id="create-employee"
+            aria-label="form"
         >
             { formFields.map((field, index) => (
                 field.input

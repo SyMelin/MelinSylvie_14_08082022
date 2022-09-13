@@ -18,7 +18,7 @@ export function render(ui, options) {
     function Wrapper({ children }) {
         return (
             <MemoryRouter {...options}>
-                <Provider store={store}>children</Provider>
+                <Provider store={store}>{children}</Provider>
             </MemoryRouter>
         )
     }
