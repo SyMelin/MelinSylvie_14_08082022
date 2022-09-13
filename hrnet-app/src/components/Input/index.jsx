@@ -16,6 +16,7 @@ function Input ({ input }) {
     return (
         <input
             id={input.id}
+            data-testid={input.id}
             type={input.type}
             min={input.min}
             max={input.max}

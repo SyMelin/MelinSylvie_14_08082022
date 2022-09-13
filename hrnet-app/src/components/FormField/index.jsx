@@ -20,10 +20,12 @@ function FormField({ type, innerField }) {
     const createEmployeeFormErrorOnFields = useSelector(selectCreateEmployeeForm).error.onFields
 
     return (
-        <div className={ createEmployeeFormErrorOnFields[camelize(innerField.id)]
+        <div
+            className={ createEmployeeFormErrorOnFields[camelize(innerField.id)]
                         ? "formField errorOnField"
                         : "formField"
                     }
+            data-testid="formField"
         >
             <label htmlFor={innerField.id}>{innerField.children}</label>
             { type === 'input'
@@ -39,7 +41,7 @@ function FormField({ type, innerField }) {
             { createEmployeeFormErrorOnFields[camelize(innerField.id)] === true
             // createEmployeeFormFields[camelize(input.id)]
             // ? createEmployeeFormFields[camelize(input.id)].error
-                ? <p className='formField-error'>{innerField.errorMessage}</p>
+                ? <p className="formField-error" data-testid="formField-error">{innerField.errorMessage}</p>
                 : null
             }
         </div>

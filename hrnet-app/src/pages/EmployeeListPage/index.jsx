@@ -47,7 +47,7 @@ function EmployeeListPage() {
         <main>
             <section className="container">
                 <h2 className="title">Current Employees</h2>
-                <div className="table-wrapper" id="employee-table__wrapper">
+                <div className="table-wrapper" id="employee-table__wrapper" data-testid="employee-table__wrapper">
                     <div className="table-features">
                         <TableFeatureLengthSelect />
                         <TableFeatureFilter />

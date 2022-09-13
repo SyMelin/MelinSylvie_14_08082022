@@ -41,7 +41,7 @@ function ModalInApp() {
     const modalContentChildren = <p>Employee Created!</p>
     
     return (
-        <div className="modalInApp">
+        <div className="modalWrapper" data-testid="modalWrapper">
             <Modal
                 id="confirmation"
                 children={modalContentChildren}

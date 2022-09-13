@@ -20,6 +20,7 @@ function Select({ select }) {
         <select
             name={select.name}
             id={select.id}
+            data-testid={select.id}
             required
             defaultValue=""
             onChange={(e) => {

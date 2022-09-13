@@ -16,7 +16,7 @@ function CreateEmployeePage () {
 
     const dispatch = useDispatch()
     const employeeList = useSelector(selectEmployeeList).list
-   const modalIsActive = useSelector(selectModal).modalIsActive
+    const modalIsActive = useSelector(selectModal).modalIsActive
 
     useEffect(() => {
         document.title = 'HRnet - Create Employee'
