@@ -9,7 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Redux is managing the application's state.
 
-The project uses a Github package for the modal component (<Modal />) included in an external React library available at:
+The project uses a Github package for the modal component (`<Modal />`) included in an external React library available at:
 
 https://github.com/SyMelin/MelinSylvie_14_react_component_library.git
 
@@ -26,16 +26,16 @@ https://github.com/SyMelin/MelinSylvie_14_08082022.git
 npm install
 ```
 
-#### 2.4 Go to the project directory :
+## 2.4 Go to the project directory :
 ```
 cd hrnet-app
 ```
 
-#### 3.5.2 Launch the application :
+## 2.5 Launch the application :
 ```
 npm run start
 ```
 
-#### 3.5.3 Runs the app in the development mode. :
+## 2.6 Runs the app in the development mode. :
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
