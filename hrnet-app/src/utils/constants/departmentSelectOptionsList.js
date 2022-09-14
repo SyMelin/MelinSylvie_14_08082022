@@ -1,3 +1,6 @@
+/** @constant
+    @type { Array.<Object>}
+*/
 export const departments = [
     {
         name: 'Sales',

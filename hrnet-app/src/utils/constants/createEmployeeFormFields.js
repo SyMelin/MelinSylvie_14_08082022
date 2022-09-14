@@ -11,6 +11,9 @@ states.forEach((state) => {
 const textPattern = `^\\b([A-ZÀ-Ÿ][-,a-zà-ÿ. ']+[ ]*)+$`
 //const datePattern = "\\d[0-1][0-2]{2}-\\d[0-3][0-9]{2}-\\d{4}"
 
+/** @constant
+    @type { Array.<Object>}
+*/
 export const createEmployeeFormFields = [
     { input: {
         id: 'first-name',
