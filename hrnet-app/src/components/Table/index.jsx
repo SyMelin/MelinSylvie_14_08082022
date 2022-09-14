@@ -3,6 +3,13 @@ import TableBody from '../TableBody'
 import './Table.css'
 import { camelize } from '../../utils/utils'
 
+
+/**
+ * React component: Table
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function Table() {
 
     const columnTitles = [

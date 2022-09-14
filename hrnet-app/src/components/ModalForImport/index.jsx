@@ -1,3 +1,4 @@
+/*
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setModalState, setBlockerStatus, setModalStatus, setModalPermission } from '../../utils/features/modal'
@@ -34,7 +35,7 @@ function ModalForImport({
         spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
         showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
         */
-
+/*
         fadeDuration= null,     // Number of milliseconds the fade transition takes (null means no transition)
         fadeDelay= 1.0,         // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
     }) {
@@ -171,3 +172,4 @@ function ModalForImport({
     )
 }
 export default ModalForImport
+*/

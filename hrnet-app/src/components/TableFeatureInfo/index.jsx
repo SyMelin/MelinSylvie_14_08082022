@@ -2,6 +2,13 @@ import { useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
 import './TableFeatureInfo.css'
 
+
+/**
+ * React component: TableFeatureInfo
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function TableFeatureInfo() {
 
     const employeeList = useSelector(selectEmployeeList).list

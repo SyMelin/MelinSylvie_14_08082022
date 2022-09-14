@@ -4,6 +4,13 @@ import * as employeeListActions from '../../utils/features/employeeList'
 import logo from '../../assets/logo.png'
 import './LogoLink.css'
 
+
+/**
+ * React component: LogoLink
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function LogoLink () {
 
     const dispatch = useDispatch()

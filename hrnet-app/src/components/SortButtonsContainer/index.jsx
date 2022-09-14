@@ -1,7 +1,20 @@
 import SortButton from '../SortButton'
-import { camelize } from '../../utils/utils'
 import './SortButtonsContainer.css'
 
+
+/**
+ * SortButtonContainer properties
+ * 
+ * @typedef { Object } SortButtonContainerProps
+ * @prop { String } string - property to be ordered
+ * @prop { String } type - type of data to be ordered
+ */
+/**
+ * React component: SortButtonContainer
+ * 
+ * @type { React.FC<SortButtonContainerProps> }
+ * @returns { React.ReactElement }
+ */
 function SortButtonsContainer({ string, type }) {
 
     return (
@@ -19,22 +32,3 @@ function SortButtonsContainer({ string, type }) {
 }
 
 export default SortButtonsContainer
-
-/*
-<div
-    className="triangleButton triangleButton-up"
-    onClick={() => {
-        dispatch(sortEmployeeListAscendingOrder('firstName'))
-    }}
->   
-    <ArrowUpSvg direction="up" />
-</div>
-<div
-    className="triangleButton triangleButton-down"
-    onClick={() => {
-        dispatch(sortEmployeeListDescendingOrder('firstName'))
-    }}
->
-    <ArrowUpSvg direction="down" />
-</div>
-*/

@@ -1,3 +1,4 @@
+/*
 function ModalButtonForImport({ clickClose, closeText, closeButtonClass, closeModal }) {
     return (
         <button
@@ -11,3 +12,4 @@ function ModalButtonForImport({ clickClose, closeText, closeButtonClass, closeMo
 }
 
 export default ModalButtonForImport
+*/

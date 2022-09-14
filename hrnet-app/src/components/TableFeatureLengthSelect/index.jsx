@@ -2,6 +2,13 @@ import { useDispatch } from 'react-redux'
 import * as employeeListActions from '../../utils/features/employeeList'
 import './TableFeatureLengthSelect.css'
 
+
+/**
+ * React component: TableFeatureLengthSelect
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function TableFeatureLengthSelect() {
 
     const dispatch = useDispatch()

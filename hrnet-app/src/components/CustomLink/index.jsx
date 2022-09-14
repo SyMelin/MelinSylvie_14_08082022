@@ -3,6 +3,20 @@ import { useDispatch } from 'react-redux'
 import * as employeeListActions from '../../utils/features/employeeList'
 import './CustomLink.css'
 
+
+/**
+ * CustomLink properties
+ * 
+ * @typedef { Object } CustomLinkProps
+ * @prop { String } path
+ * @prop { String } children - text to display
+ */
+/**
+ * React component: EditNameFormButton
+ * 
+ * @type { React.FC<CustomLinkProps> }
+ * @returns { React.ReactElement }
+ */
 function CustomLink({ path, children }) {
 
     const dispatch = useDispatch()

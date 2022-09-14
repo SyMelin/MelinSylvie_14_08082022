@@ -3,6 +3,21 @@ import { sortEmployeeListAndMoveToPageNumber1 } from '../../utils/features/emplo
 import ArrowUpSvg from '../ArrowUpSvg'
 import './SortButton.css'
 
+
+/**
+ * SortButton properties
+ * 
+ * @typedef { Object } SortButtonProps
+ * @prop { String } string - property to be ordered
+ * @prop { String } type - type of data to be ordered
+ * @prop { String } direction - direction of the button
+ */
+/**
+ * React component: SortButton
+ * 
+ * @type { React.FC<SortButtonProps> }
+ * @returns { React.ReactElement }
+ */
 function SortButton({ string, type, direction }) {
 
     const dispatch = useDispatch()

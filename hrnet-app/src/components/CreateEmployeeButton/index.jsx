@@ -2,6 +2,13 @@ import { useDispatch } from 'react-redux'
 import { saveEmployee } from '../../utils/features/createEmployeeForm'
 import './CreateEmployeeButton.css'
 
+
+/**
+ * React component: CreateEmployeeButton
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function CreateEmployeeButton() {
    
     const dispatch = useDispatch()

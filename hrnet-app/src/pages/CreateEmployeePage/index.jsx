@@ -11,7 +11,12 @@ import { employeeListData } from '../../mockedData'
 import './CreateEmployeePage.css'
 
 
-
+/**
+ * React component: CreateEmployeePage
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function CreateEmployeePage () {
 
     const dispatch = useDispatch()

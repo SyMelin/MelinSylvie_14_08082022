@@ -8,13 +8,25 @@ import Select from '../Select'
 import './FormField.css'
 
 
+/**
+ * FormField properties
+ * 
+ * @typedef { Object } FormFieldProps
+ * @prop { String } type - type of field
+ * @prop { Object } innerField - object gathering all the field's property
+ */
+/**
+ * React component: FormField
+ * 
+ * @type { React.FC<FormFieldProps> }
+ * @returns { React.ReactElement }
+ */
 function FormField({ type, innerField }) {
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(createEmployeeFormActions.setFieldError(innerField.id, null))
-       // dispatch(setFieldValue(input.id, undefined, input.type))
     }, [])
 
     const createEmployeeFormErrorOnFields = useSelector(selectCreateEmployeeForm).error.onFields
@@ -39,13 +51,10 @@ function FormField({ type, innerField }) {
                 : null
             }
             { createEmployeeFormErrorOnFields[camelize(innerField.id)] === true
-            // createEmployeeFormFields[camelize(input.id)]
-            // ? createEmployeeFormFields[camelize(input.id)].error
                 ? <p className="formField-error" data-testid="formField-error">{innerField.errorMessage}</p>
                 : null
             }
         </div>
-
     )
 }
 

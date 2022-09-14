@@ -10,8 +10,6 @@ import Table from '../../components/Table'
 import CustomLink from '../../components/CustomLink'
 import './EmployeeListPage.css'
 
-//import {employeeListData} from '../../mockedData'
-
 
 export const orderOfTableTitles = [
     'firstName',
@@ -25,6 +23,13 @@ export const orderOfTableTitles = [
     'zipCode',
 ]
 
+
+/**
+ * React component: EmployeeListPage
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function EmployeeListPage() {
 
     const dispatch = useDispatch()

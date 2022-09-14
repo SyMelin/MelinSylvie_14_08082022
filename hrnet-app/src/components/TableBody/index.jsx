@@ -4,6 +4,12 @@ import TableBodyRow from '../TableBodyRow'
 import './TableBody.css'
 
 
+/**
+ * React component: TableBody
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function TableBody () {
 
     const employeeList = useSelector(selectEmployeeList).listToDisplay

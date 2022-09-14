@@ -4,6 +4,19 @@ import { selectCreateEmployeeForm } from '../../utils/selectors'
 import * as createEmployeeFormActions from '../../utils/features/createEmployeeForm'
 import './Input.css'
 
+
+/**
+ * Input properties
+ * 
+ * @typedef { Object } InputProps
+ * @prop { Object } input - object gathering all the input's property
+ */
+/**
+ * React component: Input
+ * 
+ * @type { React.FC<InputProps> }
+ * @returns { React.ReactElement }
+ */
 function Input ({ input }) {
 
     const dispatch = useDispatch()

@@ -12,20 +12,14 @@ export function resetForm() {
     const formFields =  formInputs.concat(formSelects)
     formFields.map((field) => document.getElementById(field.id).value = '')
 }
-/*
-export function whatsinvalue() {
-    const form = document.getElementById('create-employee')
-    const formInputs = Array.from(form.getElementsByTagName('input'))
-    const un = formInputs.map(el => el.value)
-    const formSelects = Array.from(form.getElementsByTagName('select'))
-    const deux = formSelects.map(el => el.value)
-    const formFields =  un.concat(deux)
-    console.log('whatsinvalue', formFields)
-}
-*/
 
-
-function ModalInApp() {
+/**
+ * React component: ModalWrapper
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
+function ModalWrapper() {
 
     const dispatch = useDispatch()
 
@@ -62,9 +56,8 @@ function ModalInApp() {
                 fadeDuration={6000} //test with 6000
                 fadeDelay={0.5} //test with 0.5
             />  
-        </div>
-        
+        </div>   
     )
 }
 
-export default ModalInApp
+export default ModalWrapper

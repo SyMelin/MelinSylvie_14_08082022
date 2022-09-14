@@ -2,6 +2,13 @@ import { useDispatch } from 'react-redux'
 import * as employeeListActions from '../../utils/features/employeeList'
 import './TableFeatureFilter.css'
 
+
+/**
+ * React component: TableFeatureFilter
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function TableFeatureFilter() {
 
     const dispatch = useDispatch()

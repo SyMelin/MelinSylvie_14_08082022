@@ -6,6 +6,18 @@ import SelectOption from '../SelectOption'
 import './Select.css'
 
 
+/**
+ * Select properties
+ * 
+ * @typedef { Object } SelectProps
+ * @prop { Object } select - object gathering all the select's property
+ */
+/**
+ * React component: Select
+ * 
+ * @type { React.FC<SelectProps> }
+ * @returns { React.ReactElement }
+ */
 function Select({ select }) {
 
     const dispatch = useDispatch()

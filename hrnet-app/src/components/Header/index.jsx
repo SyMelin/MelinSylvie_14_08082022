@@ -2,6 +2,13 @@ import LogoLink from '../LogoLink'
 import Nav  from '../Nav'
 import './Header.css'
 
+
+/**
+ * React component: Header
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function Header () {
     return (
         <header className="header">

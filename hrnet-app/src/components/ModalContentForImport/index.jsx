@@ -1,3 +1,4 @@
+/*
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setModalStatus } from '../../utils/features/modal'
@@ -54,3 +55,4 @@ function ModalContentForImport({
     )
 }
 export default ModalContentForImport
+*/

@@ -1,11 +1,21 @@
 //import Input from '../Input'
 import FormField from '../FormField'
 import Fieldset from '../Fieldset'
-//import { fieldsetInputs } from '../../utils/constantes/fieldsetInputs'
-//import Select from '../Select'
 import './CreateEmployeeForm.css'
 
 
+/**
+ * CreateEmployeeForm properties
+ * 
+ * @typedef { Object } CreateEmployeeFormProps
+ * @prop { Array.<Object> } formFields - array gathering all the form's fields
+ */
+/**
+ * React component: CreateEmployeeForm
+ * 
+ * @type { React.FC<CreateEmployeeFormProps> }
+ * @returns { React.ReactElement }
+ */
 function CreateEmployeeForm({ formFields }) {
 
     return (
@@ -38,24 +48,3 @@ function CreateEmployeeForm({ formFields }) {
     )
 }
 export default CreateEmployeeForm
-
-/*
-{ formFields.map((field, index) => (
-                field.input
-                ? <Input
-                    key={`formFields-input-${index}`}
-                    input={field.input}
-                />
-                : field.select
-                    ? <Select
-                        key={`formFields-${field.select.id}Select`}
-                        select={field.select}
-                    />
-                    : field.fieldset
-                        ? <Fieldset
-                            key={`formFields-fieldset-${index}`}
-                            fieldsetFields={field.fieldset}
-                        />
-                        : null
-            ))}
-*/

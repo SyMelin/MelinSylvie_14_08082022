@@ -4,6 +4,12 @@ import * as employeeListActions from '../../utils/features/employeeList'
 import './TableFeaturePaginate.css'
 
 
+/**
+ * React component: TableFeaturePaginate
+ * 
+ * @type { React.FC }
+ * @returns { React.ReactElement }
+ */
 function TableFeaturePaginate() {
 
     const dispatch = useDispatch()

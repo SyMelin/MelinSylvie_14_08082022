@@ -1,5 +1,18 @@
 import './ArrowUpSvg.css'
 
+
+/**
+ * ArrowUpSvg properties
+ * 
+ * @typedef { Object } ArrowUpSvgProps
+ * @prop { String } direction - direction of the button
+ */
+/**
+ * React component: ArrowUpSvg
+ * 
+ * @type { React.FC<ArrowUpSvgProps> }
+ * @returns { React.ReactElement }
+ */
 function  ArrowUpSvg({ direction }) {
     return (
         <svg

@@ -19,8 +19,8 @@ const initialState = {
 
 
 const sortArrayByAscendingOrder =  ((array, string) => {
-    const property =  string.value
-    const type = string.type
+   const property =  string.value
+   const type = string.type
     array.sort((a, b) => {
         if (type === 'letterString') {
             return a[property].localeCompare(b[property]);
@@ -37,7 +37,7 @@ const sortArrayByDescendingOrder = ((array, string) => {
     const type = string.type
     array.sort((a, b) => {
         if (type === 'letterString') {
-            return b[string].localeCompare(a[string]);
+            return b[property].localeCompare(a[property]);
         } else {
             return (a[property] < b[property]) ? 1 : -1;
         }
@@ -153,7 +153,7 @@ const { actions, reducer } = createSlice({
                 payload: {
                     string: {
                         value: string,
-                        format: type,
+                        type: type,
                     },
                     direction: direction,
                 }
