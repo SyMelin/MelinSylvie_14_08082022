@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import './ArrowUpSvg.css'
 
 
@@ -5,7 +6,7 @@ import './ArrowUpSvg.css'
  * ArrowUpSvg properties
  * 
  * @typedef { Object } ArrowUpSvgProps
- * @prop { String } direction - direction of the button
+ * @prop { String } direction - direction of the button. Example: 'up'
  */
 /**
  * React component: ArrowUpSvg
@@ -34,6 +35,11 @@ function  ArrowUpSvg({ direction }) {
                 </g>
         </svg>
     )
+}
+
+ArrowUpSvg.propTypes = {
+    /** Example: 'up' */
+    direction: PropTypes.string
 }
 
 export default ArrowUpSvg

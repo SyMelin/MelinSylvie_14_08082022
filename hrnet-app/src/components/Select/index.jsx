@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
@@ -10,7 +11,7 @@ import './Select.css'
  * Select properties
  * 
  * @typedef { Object } SelectProps
- * @prop { Object } select - object gathering all the select's property
+ * @prop { Object } select - object gathering all the select's properties
  */
 /**
  * React component: Select
@@ -56,6 +57,11 @@ function Select({ select }) {
             ))}
         </select>
     )
+}
+
+Select.propTypes = {
+    /** Object gathering all the select's properties */
+    select: PropTypes.object.isRequired
 }
 
 export default Select

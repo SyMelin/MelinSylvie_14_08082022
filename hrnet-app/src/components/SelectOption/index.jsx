@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import './SelectOption.css'
 
 
@@ -21,6 +22,13 @@ function SelectOption({ optionText, optionValue }) {
         : (
         <option className='select-option'>{optionText}</option>
         )
+}
+
+SelectOption.propTypes = {
+    /** Text of the option to display */
+    optionText: PropTypes.string.isRequired,
+    /** Value of the option */
+    optionValue: PropTypes.string.isRequired
 }
 
 export default SelectOption

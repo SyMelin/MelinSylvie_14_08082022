@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
@@ -13,7 +14,7 @@ import './FormField.css'
  * 
  * @typedef { Object } FormFieldProps
  * @prop { String } type - type of field
- * @prop { Object } innerField - object gathering all the field's property
+ * @prop { Object } innerField - object gathering all the field's properties
  */
 /**
  * React component: FormField
@@ -56,6 +57,13 @@ function FormField({ type, innerField }) {
             }
         </div>
     )
+}
+
+FormField.propTypes = {
+    /** type of field. Example: 'select */
+    type: PropTypes.string.isRequired,
+    /** Object gathering all the field's properties */
+    innerField: PropTypes.object.isRequired
 }
 
 export default FormField

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import './TableBodyRowCell.css'
 
 
@@ -18,6 +19,12 @@ function TableBodyRowCell({ value, index }) {
     return (
         <td className={`table-body-row-cell cell--${index}`}>{value}</td>
     )
+}
+
+TableBodyRowCell.propTypes = {
+    /** Value to display */
+    value: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
 }
 
 export default TableBodyRowCell

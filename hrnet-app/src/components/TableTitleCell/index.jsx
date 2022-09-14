@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import SortButtonsContainer from '../../components/SortButtonsContainer'
 import { camelize } from '../../utils/utils'
 import './TableTitleCell.css'
@@ -31,6 +32,13 @@ function TableTitleCell({ title, type }) {
             </div>
         </th>
     )
+}
+
+TableTitleCell.propTypes = {
+    /** Title of the column */
+    title: PropTypes.string.isRequired,
+    /** Type of data to be ordered */
+    type: PropTypes.string.isRequired
 }
 
 export default TableTitleCell

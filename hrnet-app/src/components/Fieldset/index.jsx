@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import FormField from '../FormField'
 import './Fieldset.css'
 
@@ -37,6 +38,16 @@ function Fieldset({ fieldsetFields }) {
             ))}   
         </fieldset>
     )
+}
+
+
+Fieldset.propTypes = {
+    /** Array gathering all the fieldset's fields */
+    fieldsetFields: PropTypes.arrayOf(PropTypes.object).isRequired
+}
+
+Fieldset.defaultProps = {
+    fieldsetFields: []
 }
 
 export default Fieldset

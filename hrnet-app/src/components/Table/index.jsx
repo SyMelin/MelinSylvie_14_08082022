@@ -1,7 +1,6 @@
 import TableTitleCell from '../TableTitleCell'
 import TableBody from '../TableBody'
 import './Table.css'
-import { camelize } from '../../utils/utils'
 
 
 /**

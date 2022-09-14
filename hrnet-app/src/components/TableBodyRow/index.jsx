@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import TableBodyRowCell from '../TableBodyRowCell'
 import './TableBodyRow.css'
 
@@ -27,6 +28,12 @@ function TableBodyRow ({ rowIndex, employee }) {
             ))}
         </tr>
     )
+}
+
+TableBodyRow.propTypes = {
+    rowIndex: PropTypes.number.isRequired,
+    /** Object of the employee's data */
+    employee: PropTypes.string.isRequired,
 }
 
 export default TableBodyRow

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import SortButton from '../SortButton'
 import './SortButtonsContainer.css'
 
@@ -29,6 +30,13 @@ function SortButtonsContainer({ string, type }) {
             ))}
         </div>
     )
+}
+
+SortButtonsContainer.propTypes = {
+    /** Property to be ordered */
+    string: PropTypes.string.isRequired,
+    /** Type of data to be ordered */
+    type: PropTypes.string.isRequired,
 }
 
 export default SortButtonsContainer

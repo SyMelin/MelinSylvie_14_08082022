@@ -1,4 +1,4 @@
-//import Input from '../Input'
+import PropTypes from 'prop-types'
 import FormField from '../FormField'
 import Fieldset from '../Fieldset'
 import './CreateEmployeeForm.css'
@@ -47,4 +47,14 @@ function CreateEmployeeForm({ formFields }) {
         </ form>
     )
 }
+
+CreateEmployeeForm.propTypes = {
+    /** Array gathering all the form's fields */
+    formFields: PropTypes.arrayOf(PropTypes.object).isRequired
+}
+
+CreateEmployeeForm.defaultProps = {
+    formFields: []
+}
+
 export default CreateEmployeeForm

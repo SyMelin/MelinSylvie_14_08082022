@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCreateEmployeeForm } from '../../utils/selectors'
@@ -9,7 +10,7 @@ import './Input.css'
  * Input properties
  * 
  * @typedef { Object } InputProps
- * @prop { Object } input - object gathering all the input's property
+ * @prop { Object } input - object gathering all the input's properties
  */
 /**
  * React component: Input
@@ -43,6 +44,11 @@ function Input ({ input }) {
             }}   
         />
     )
+}
+
+Input.propTypes = {
+    /** object gathering all the input's properties */
+    input: PropTypes.object.isRequired
 }
 
 export default Input

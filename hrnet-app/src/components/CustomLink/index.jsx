@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import * as employeeListActions from '../../utils/features/employeeList'
@@ -37,6 +38,12 @@ function CustomLink({ path, children }) {
             {children}
         </Link>
     )
+}
+
+CustomLink.propTypes = {
+    path: PropTypes.string.isRequired,
+    /** Text to display */
+    children: PropTypes.string.isRequired
 }
 
 export default CustomLink
