@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Header />
+        <Header />
         <Routes>
           <Route exact path="/" element={<CreateEmployeePage />} />
           <Route path="/employee-list" element={<EmployeeListPage />} />

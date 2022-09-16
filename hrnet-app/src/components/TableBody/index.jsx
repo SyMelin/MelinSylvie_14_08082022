@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { selectEmployeeList } from '../../utils/selectors'
 import TableBodyRow from '../TableBodyRow'
-import './TableBody.css'
 
 
 /**

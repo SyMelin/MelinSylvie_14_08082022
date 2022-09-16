@@ -3,7 +3,7 @@
     width: 15em;
     display: flex;
     flex-direction: row;
-    justify-content: baseline;
+   /* justify-content: baseline;*/
     padding: 0.5em;
     background-color: white;
     border-radius: 0.2em;
@@ -27,6 +27,6 @@
 
 .logo-image {
     height: 3em;
-    width: auto;
+    width: 3em;
     margin-right: 0.5em;
 }

@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux'
 import * as createEmployeeFormActions from '../../utils/features/createEmployeeForm'
-//import ModalForImport from '../ModalForImport'
 import Modal from '@symelin/react-component-library/Modal'
 import './ModalWrapper.css'
 
@@ -28,7 +27,6 @@ function ModalWrapper() {
         dispatch(createEmployeeFormActions.initFieldError())
         resetForm()
         dispatch(createEmployeeFormActions.reset())
-        //whatsinvalue()
         console.log('function closeModal() handles ModalClose')
     }
 
