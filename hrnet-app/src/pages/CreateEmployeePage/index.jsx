@@ -33,7 +33,9 @@ function CreateEmployeePage () {
         if (employeeList.length === 0) {
             dispatch(employeeListActions.setEmployeeList(employeeListData))
           }
-    }, [])
+    },
+    // eslint-disable-next-line
+    [])
     
     return (
         <main>

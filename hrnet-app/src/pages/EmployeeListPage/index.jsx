@@ -46,7 +46,9 @@ function EmployeeListPage() {
         const tableLength = document.getElementById('employeeTable-lengthSelect').value
         dispatch(employeeListActions.setListToDisplay())
         dispatch(employeeListActions.initTable(tableLength))
-    }, [])
+    },
+    // eslint-disable-next-line
+    [])
    
     return (
         <main>

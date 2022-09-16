@@ -25,7 +25,9 @@ function Input ({ input }) {
 
     useEffect(() => {
         dispatch(createEmployeeFormActions.setFieldValue(input.id, undefined, input.type))
-    }, [reset])
+    },
+    // eslint-disable-next-line
+    [reset])
 
     return (
         <input
@@ -36,7 +38,6 @@ function Input ({ input }) {
             max={input.max}
             placeholder={input.placeholder}
             pattern={input.pattern}
-        //    value={undefined}
             required
             onChange={(e) => {
                 dispatch(createEmployeeFormActions.setFieldValue(input.id, e.target.value, input.type))

@@ -28,7 +28,9 @@ function FormField({ type, innerField }) {
 
     useEffect(() => {
         dispatch(createEmployeeFormActions.setFieldError(innerField.id, null))
-    }, [])
+    },
+    // eslint-disable-next-line
+    [])
 
     const createEmployeeFormErrorOnFields = useSelector(selectCreateEmployeeForm).error.onFields
 

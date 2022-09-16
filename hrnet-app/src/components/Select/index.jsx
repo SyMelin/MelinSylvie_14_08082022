@@ -27,7 +27,9 @@ function Select({ select }) {
 
     useEffect(() => {
         dispatch(createEmployeeFormActions.setFieldValue(select.id, undefined, 'select'))
-    }, [reset])
+    },
+    // eslint-disable-next-line
+    [reset])
 
     return (
         <select

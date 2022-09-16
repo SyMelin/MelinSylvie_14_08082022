@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route exact path="/" element={<CreateEmployeePage />} />
+          <Route path="/" element={<CreateEmployeePage />} />
           <Route path="/employee-list" element={<EmployeeListPage />} />
         </Routes>
       </Router> 
