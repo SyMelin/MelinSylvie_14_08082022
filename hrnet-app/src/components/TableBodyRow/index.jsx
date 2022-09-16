@@ -33,7 +33,7 @@ function TableBodyRow ({ rowIndex, employee }) {
 TableBodyRow.propTypes = {
     rowIndex: PropTypes.number.isRequired,
     /** Object of the employee's data */
-    employee: PropTypes.string.isRequired,
+    employee: PropTypes.object.isRequired,
 }
 
 export default TableBodyRow

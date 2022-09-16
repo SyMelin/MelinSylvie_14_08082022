@@ -23,7 +23,6 @@ const formatDate = (date) => {
  
 
  export function saveEmployee() {
-    console.log('hello')
      return (dispatch, getState) => {
          dispatch(actions.checkFormValidity())
          const createEmployeeForm = selectCreateEmployeeForm(getState())
@@ -44,7 +43,6 @@ const { actions, reducer } = createSlice({
         checkFormValidity: (draft) => {
             const form = document.getElementById('create-employee')
             const isError = !form.checkValidity()
-            console.log('isError', isError)
             const errorOnFields = Object.entries(draft.error.onFields).filter(el => el[1] === null || el[1] === true)
             if (errorOnFields.length > 0) {
                 errorOnFields.filter(el => el[1] === null).map(arr => draft.error.onFields[arr[0]] = true)

@@ -28,7 +28,7 @@ SelectOption.propTypes = {
     /** Text of the option to display */
     optionText: PropTypes.string.isRequired,
     /** Value of the option */
-    optionValue: PropTypes.string.isRequired
+    optionValue: PropTypes.string
 }
 
 export default SelectOption

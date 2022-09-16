@@ -12,7 +12,7 @@ import TableBodyRow from '../TableBodyRow'
 function TableBody () {
 
     const employeeList = useSelector(selectEmployeeList).listToDisplay
-    console.log('listInTableBody', employeeList)
+    //console.log('listInTableBody', employeeList)
     const employeeTable = useSelector(selectEmployeeList).table
     const indexOfCurrentPage = employeeTable.indexOfCurrentPage    
     const firstIndex = employeeTable.firstIndexToSlice
