@@ -51,8 +51,8 @@ function ModalWrapper() {
                 handleModalBlock={() => {console.log('handleModalBlock')}}
                 hanleModalBeforeOpen={() => {console.log('handleModalBeforeOpen')}}
                 handleModalOpen={() => {console.log('handleModalOpen')}}
-                fadeDuration={6000} //test with 6000
-                fadeDelay={0.5} //test with 0.5
+                //fadeDuration={6000} //test with 6000
+                //fadeDelay={0.5} //test with 0.5
             />  
         </div>   
     )

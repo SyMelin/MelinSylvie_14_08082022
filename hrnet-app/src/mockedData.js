@@ -1,3 +1,4 @@
+//export const employeeListData = [] //For the performance test
 export const employeeListData = [
     {
         firstName: 'Tony',
@@ -296,5 +297,4 @@ export const employeeListData = [
         state: 'NY',
         department: 'Sales',
     },
-
 ]

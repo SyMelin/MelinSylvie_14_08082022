@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { selectCreateEmployeeForm } from '../selectors'
 import * as employeeListActions from "./employeeList"
-import { setModalState } from '@symelin/react-component-library/Modal/modal.js'
+import { toggleModalState } from '@symelin/react-component-library/Modal/modal.js'
 import { camelize } from '../../utils/utils'
 
 
@@ -22,18 +22,18 @@ const formatDate = (date) => {
  }
  
 
- export function saveEmployee() {
-     return (dispatch, getState) => {
-         dispatch(actions.checkFormValidity())
-         const createEmployeeForm = selectCreateEmployeeForm(getState())
-         if (createEmployeeForm.error.onForm === true) {
-             return
-         } else {
-             dispatch(employeeListActions.addEmployee(createEmployeeForm.formData))
-             dispatch(setModalState())
-         }  
-     }
- }
+export function saveEmployee() {
+    return (dispatch, getState) => {
+        dispatch(actions.checkFormValidity())
+        const createEmployeeForm = selectCreateEmployeeForm(getState())
+        if (createEmployeeForm.error.onForm === true) {
+            return
+        } else {
+            dispatch(employeeListActions.addEmployee(createEmployeeForm.formData))
+            dispatch(toggleModalState())
+        }  
+    }
+}
 
 
 const { actions, reducer } = createSlice({
