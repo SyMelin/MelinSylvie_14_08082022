@@ -1,5 +1,5 @@
-export const employeeListData = [] //For the performance test
-/*export const employeeListData = [
+//export const employeeListData = [] //For the performance tests
+export const employeeListData = [
     {
         firstName: 'Tony',
         lastName: 'Stark',
@@ -298,4 +298,3 @@ export const employeeListData = [] //For the performance test
         department: 'Sales',
     },
 ]
-*/
