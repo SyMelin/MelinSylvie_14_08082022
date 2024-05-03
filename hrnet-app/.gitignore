@@ -10,7 +10,6 @@
 
 # production
 build
-buildWithoutHeader
 
 # misc
 .DS_Store

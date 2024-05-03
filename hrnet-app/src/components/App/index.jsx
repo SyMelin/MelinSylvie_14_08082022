@@ -11,9 +11,11 @@ import EmployeeListPage from '../../pages/EmployeeListPage'
  * @returns { React.ReactElement }
  */
 function App() {
+  const basename = process.env.NODE_ENV === 'production' ? '/MelinSylvie_14_08082022' : ''
+
   return (
     <div className="App">
-      <Router>
+      <Router basename={basename}>
         <Header />
         <Routes>
           <Route path="/" element={<CreateEmployeePage />} />
