@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from '../Header'
 import CreateEmployeePage from '../../pages/CreateEmployeePage'
 import EmployeeListPage from '../../pages/EmployeeListPage'
@@ -15,6 +15,8 @@ function App() {
 
   return (
     <div className="App">
+      {/* HashRouter is used in development mode for performance testing purposes.
+      In production, BrowserRouter should be used instead.*/}
       <Router basename={basename}>
         <Header />
         <Routes>
