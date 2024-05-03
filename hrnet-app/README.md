@@ -1,6 +1,7 @@
 # Project 14 - HRnet
 
 The HRnet project is an internal web application that manages employees' data.
+It is a frontend project for the OpenClassrooms training program, cloned from [OpenClassrooms-Student-Center/P12_Front-end](https://github.com/OpenClassrooms-Student-Center/P12_Front-end.git).
 The repository contains all the source code for the frontend part.
 
 ## 1. General information
